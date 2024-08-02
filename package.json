@@ -1,0 +1,15 @@
+{
+  "name": "websitegamelauncher",
+  "version": "1.0.0",
+  "description": "Game launcher website with 3 games. Idle Atom, Minesweeper, and an RPG",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Darrian Redford, Tristan Cable, Ezekiel Andreason, Lily Bergen",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/tristancable/WebsiteGameLauncher/issues"
+  },
+  "homepage": "https://github.com/tristancable/WebsiteGameLauncher/tree/main#readme"
+}
