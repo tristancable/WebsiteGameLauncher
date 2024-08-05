@@ -11,6 +11,18 @@ app.get('/', (req, res) => {
     res.render('index');
 });
 
+app.get('/minesweeper', (req, res) => {
+    res.render('minesweeper');
+});
+
+app.get('/idle-atom', (req, res) => {
+    res.render('idle_atom');
+});
+
+app.get('/ttyd', (req, res) => {
+    res.render('ttyd');
+});
+
 app.listen(port, () => {
     console.log(`Website Game Launcher running on http://localhost:${port}/`);
 });
