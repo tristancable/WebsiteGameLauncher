@@ -2,8 +2,9 @@
   "name": "websitegamelauncher",
   "version": "1.0.0",
   "description": "Game launcher website with 3 games. Idle Atom, Minesweeper, and an RPG",
-  "main": "index.js",
+  "main": "public/js/frontend.js",
   "scripts": {
+    "start": "nodemon public/js/front-end.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "Darrian Redford, Tristan Cable, Ezekiel Andreason, Lily Bergen",
