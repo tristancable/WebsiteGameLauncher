@@ -4,6 +4,7 @@ body {
     min-height: 940px;
     margin: 0;
     font-family: "typewriter";
+    overflow-x: hidden;
 }
 
 main {
@@ -67,5 +68,36 @@ h1 {
 
 #index {
     margin: 5px;
+    text-align: center;
+}
+
+#game-covers {
+    display: flex;
+    flex-wrap: wrap;
+    height: fit-content;
+}
+
+#game-covers a {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-decoration: none;
+    color: black;
+}
+
+#game-covers a:hover {
+    transform: scale(1.05);
+}
+
+#game-covers img {
+    width: 100%;
+    max-width: fit-content;
+    height: 350px;
+    max-height: fit-content;
+}
+
+#msCover, #iaCover, #ttCover {
+    flex: 1 1 350px;
+    margin: 10px;
     text-align: center;
 }
