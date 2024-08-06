@@ -3,19 +3,23 @@
     <head>
         <title>Idle Atom</title>
         <link rel="stylesheet" href="./css/idle_atom.css"/>
-        <script src="./js/idle_atom.js"></script>
+        <script defer src="./js/idle_atom.js"></script>
     </head>
     <body>
         <%- include('partials/header') %>
         <h1>Idle Atom</h1>
+        <h2 id="atomic_weight">Atomic Weight: 0</h2>
         <div id="element_container">
             <div>
                 <h3 id="hydrogen_title">Hydrogen</h3>
-                <p id="hydrogen-weight">Atomic Weight: 1</p>
-                <p id="hydrogen-tick-time">Tick Time: 5000</p>
-                <button id="hydrogen-tick-time">Reduce Tick Time</button>
-                <button id="hydrogen-isotope">Next Isotope</button>
-                <button id="hydrogen-next-element">Unlock Next Element</button>
+                <p id="hydrogen_weight">Atomic Weight: 1</p>
+                <p id="hydrogen_tick_time">Tick Time: 5000</p>
+                <button id="hydrogen_tick_time_button">Reduce Tick Time</button>
+                <span id="hydrogen_tick_time_price">AW: 1</span>
+                <button id="hydrogen_isotope_button">Next Isotope</button>
+                <span id="hydrogen_isotope_price">AW: 10</span>
+                <button id="hydrogen_next_element_button">Unlock Next Element</button>
+                <span id="hydrogen_next_element_price">AW: 100</span>
             </div>
         </div>
         <%- include('partials/footer') %>
