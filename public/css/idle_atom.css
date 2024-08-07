@@ -1,0 +1,75 @@
+body {
+    display: flex;
+    flex-direction: column;
+    min-height: 940px;
+    margin: 0;
+    font-family: "typewriter";
+    overflow-x: hidden;
+}
+
+main {
+    background-color: black;
+    color: white;
+    flex: 1;
+    border-bottom: red solid 2px;
+    border-top: red solid 2px;
+}
+
+footer {
+    background-color: lightgray;
+    padding: 10px 0;
+    text-align: center;
+    margin-top: auto;
+}
+
+.nav-bar {
+    text-align: left;
+    border-bottom: red solid 2px;
+    border-top: red solid 2px;
+}
+
+nav ul {
+    background-color: black;
+    height: 75px;
+    display: flex;
+    align-items: center;
+    list-style-type: none;
+    margin: 0;
+    padding-left: 5px;
+}
+
+ul li a {
+    color: white;
+    text-decoration: none;
+    padding: 20px 25px;
+    vertical-align: middle;
+    text-align: center;
+}
+
+ul li a:hover {
+    background-color: rgba(255, 255, 255, 0.4);
+    color: black;
+}
+
+.nav-bar a:active {
+    background-color: rgba(255, 255, 255, 0.3);
+}
+
+h1 {
+    background-color: lightgray;
+    text-align: center;
+    font-family: "american-captain";
+    font-size: 50px;
+    letter-spacing: 5px;
+    margin: 0px;
+    padding: 5px;
+}
+
+#home-text {
+    font-size: x-large;
+}
+
+#index {
+    margin: 5px;
+    text-align: center;
+}

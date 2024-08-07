@@ -1,27 +1,32 @@
 <!DOCTYPE html>
 <html>
-    <head>
-        <title>Idle Atom</title>
-        <link rel="stylesheet" href="./css/idle_atom.css"/>
-        <script defer src="./js/idle_atom.js"></script>
-    </head>
-    <body>
-        <%- include('partials/header') %>
+
+<head>
+    <title>Idle Atom</title>
+    <link rel="stylesheet" href="./css/idle_atom.css" />
+    <script defer src="./js/idle_atom.js"></script>
+</head>
+
+<body>
+    <%- include('partials/header') %>
         <h1>Idle Atom</h1>
-        <h2 id="atomic_weight">Atomic Weight: 0</h2>
-        <div id="element_container">
-            <div>
-                <h3 id="hydrogen_title">Hydrogen-1 (Protium)</h3>
-                <p id="hydrogen_weight">Atomic Weight: 1</p>
-                <p id="hydrogen_tick_time">Tick Time: 5000</p>
-                <button id="hydrogen_tick_time_button">Reduce Tick Time</button>
-                <span id="hydrogen_tick_time_price">AW: 1</span>
-                <button id="hydrogen_isotope_button">Next Isotope</button>
-                <span id="hydrogen_isotope_price">AW: 10</span>
-                <button id="hydrogen_next_element_button">Unlock Next Element</button>
-                <span id="hydrogen_next_element_price">AW: 100</span>
+        <main>
+            <h2 id="atomic_weight">Atomic Weight: 0</h2>
+            <div id="element_container">
+                <div>
+                    <h3 id="hydrogen_title">Hydrogen</h3>
+                    <p id="hydrogen_weight">Atomic Weight: 1</p>
+                    <p id="hydrogen_tick_time">Tick Time: 5000</p>
+                    <button id="hydrogen_tick_time_button">Reduce Tick Time</button>
+                    <span id="hydrogen_tick_time_price">AW: 1</span>
+                    <button id="hydrogen_isotope_button">Next Isotope</button>
+                    <span id="hydrogen_isotope_price">AW: 10</span>
+                    <button id="hydrogen_next_element_button">Unlock Next Element</button>
+                    <span id="hydrogen_next_element_price">AW: 100</span>
+                </div>
             </div>
-        </div>
+        </main>
         <%- include('partials/footer') %>
-    </body>
+</body>
+
 </html>

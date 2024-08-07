@@ -17,14 +17,14 @@
 }
 
 .tileClear {
-    width: 25px;
-    height: 25px;
     background-color: white;
     border-color: white;
 }
 
 .tileBomb {
-    width: 25px;
-    height: 25px;
     background-color: red;
+}
+
+.tileFlagged {
+    background-color: blue;
 }
