@@ -10,22 +10,85 @@ const hydrogen_isotope_button = document.getElementById('hydrogen_isotope_button
 const hydrogen_isotope_price = document.getElementById('hydrogen_isotope_price');
 const hydrogen_next_element_button = document.getElementById('hydrogen_next_element_button');
 const hydrogen_next_element_price = document.getElementById('hydrogen_next_element_price');
-let hydrogenTickTime = 5000;
+let hydrogenTickTime = 0;
 let hydrogenWeight = 1;
 let hydrogenTickTimePrice = 1
 let hydrogenIsotopePrice = 10;
 let hydrogenNextElementPrice = 100;
-let hydrogenIsotopes = ['Hydrogen (Protium)', 'Hydrogen-2 (Deuterium)', 'Hydrogen-3 (Tritium)', 'Hydrogen-4', 'Hydrogen-5', 'Hydrogen-6', 'Hydrogen-7'];
+let hydrogenIsotopes = ['Hydrogen-1 (Protium)', 'Hydrogen-2 (Deuterium)', 'Hydrogen-3 (Tritium)', 'Hydrogen-4', 'Hydrogen-5', 'Hydrogen-6', 'Hydrogen-7'];
+let currentHydrogenIsotope = 0;
+let hydrogenNextUnlocked = false;
 window.addEventListener('load', () => {
     setInterval(() => {atomicWeight += hydrogenWeight;}, hydrogenTickTime);
     setInterval(() => {
         atomic_weight.innerText = `Atomic Weight: ${atomicWeight}`;
-        if (atomicWeight >= hydrogenTickTimePrice) {hydrogen_tick_time_button.disabled = false;}
-        else if (atomicWeight <= hydrogenTickTimePrice) {hydrogen_tick_time_button.disabled = true;}
+        if (atomicWeight >= hydrogenTickTimePrice && hydrogenTickTime >= 1) hydrogen_tick_time_button.disabled = false;
+        else hydrogen_tick_time_button.disabled = true;
+        if (atomicWeight >= hydrogenIsotopePrice && currentHydrogenIsotope < hydrogenIsotopes.length - 1) hydrogen_isotope_button.disabled = false;
+        else hydrogen_isotope_button.disabled = true;
+        if (atomicWeight >= hydrogenNextElementPrice && hydrogenNextUnlocked == false) hydrogen_next_element_button.disabled = false;
+        else hydrogen_next_element_button.disabled = true;
+        if (hydrogenNextUnlocked) {
+            if (atomicWeight >= heliumTickTimePrice && heliumTickTime >= 1) helium_tick_time_button.disabled = false;
+            else helium_tick_time_button.disabled = true;
+            if (atomicWeight >= heliumIsotopePrice && currentHeliumIsotope < heliumIsotopes.length - 1) helium_isotope_button.disabled = false;
+            else helium_isotope_button.disabled = true;
+            if (atomicWeight >= heliumNextElementPrice && heliumNextUnlocked == false) helium_next_element_button.disabled = false;
+            else helium_next_element_button.disabled = true;
+        }
     }, 100);
 });
 hydrogen_tick_time_button.addEventListener("click", () => {
     hydrogenTickTime = hydrogenTickTime - 1;
+    atomicWeight = atomicWeight - hydrogenTickTimePrice;
     hydrogen_tick_time.innerText = `Tick Time: ${hydrogenTickTime}`;
 });
-hydrogen_isotope_button.addEventListener("click", () => {});
+hydrogen_isotope_button.addEventListener("click", () => {
+    currentHydrogenIsotope = currentHydrogenIsotope + 1;
+    hydrogen_title.innerText = hydrogenIsotopes[currentHydrogenIsotope];
+    hydrogenWeight = hydrogenWeight + 1;
+    hydrogen_weight.innerText = `Atomic Weight: ${hydrogenWeight}`;
+    atomicWeight = atomicWeight - hydrogenIsotopePrice;
+});
+hydrogen_next_element_button.addEventListener("click", () => {
+    var container = document.createElement('div');
+    helium_title = document.createElement('h3');
+    helium_weight = document.createElement('p');
+    helium_tick_time = document.createElement('p');
+    helium_tick_time_button = document.createElement('button');
+    helium_tick_time_price = document.createElement('span');
+    helium_isotope_button = document.createElement('button');
+    helium_isotope_price = document.createElement('span');
+    helium_next_element_button = document.createElement('button');
+    helium_next_element_price = document.createElement('span');
+    document.getElementById('element_container').appendChild(container);
+    container.appendChild(helium_title);
+    container.appendChild(helium_weight);
+    container.appendChild(helium_tick_time);
+    container.appendChild(helium_tick_time_button);
+    container.appendChild(helium_tick_time_price);
+    container.appendChild(helium_isotope_button);
+    container.appendChild(helium_isotope_price);
+    container.appendChild(helium_next_element_button);
+    container.appendChild(helium_next_element_price);
+    helium_title.innerText = heliumIsotopes[currentHeliumIsotope];
+    helium_weight.innerText = `Atomic Weight: ${heliumWeight}`;
+    
+});
+let helium_title;
+let helium_weight;
+let helium_tick_time;
+let helium_tick_time_button;
+let helium_tick_time_price;
+let helium_isotope_button;
+let helium_isotope_price;
+let helium_next_element_button;
+let helium_next_element_price;
+let heliumTickTime = 5000;
+let heliumWeight = 2;
+let heliumTickTimePrice = 1
+let heliumIsotopePrice = 10;
+let heliumNextElementPrice = 100;
+let heliumIsotopes = ['Helium-2 (Diproton)', 'Helium-3', 'Helium-4', 'Helium-5', 'Helium-6', 'Helium-7', 'Helium-8', 'Helium-9', 'Helium-10'];
+let currentHeliumIsotope = 0;
+let heliumNextUnlocked = false;
