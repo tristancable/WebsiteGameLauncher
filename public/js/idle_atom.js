@@ -10,7 +10,7 @@ const hydrogen_isotope_button = document.getElementById('hydrogen_isotope_button
 const hydrogen_isotope_price = document.getElementById('hydrogen_isotope_price');
 const hydrogen_next_element_button = document.getElementById('hydrogen_next_element_button');
 const hydrogen_next_element_price = document.getElementById('hydrogen_next_element_price');
-let hydrogenTickTime = 0;
+let hydrogenTickTime = 100;
 let hydrogenWeight = 1;
 let hydrogenTickTimePrice = 1
 let hydrogenIsotopePrice = 10;
@@ -51,6 +51,7 @@ hydrogen_isotope_button.addEventListener("click", () => {
     atomicWeight = atomicWeight - hydrogenIsotopePrice;
 });
 hydrogen_next_element_button.addEventListener("click", () => {
+    hydrogenNextUnlocked = true;
     var container = document.createElement('div');
     helium_title = document.createElement('h3');
     helium_weight = document.createElement('p');
@@ -73,7 +74,58 @@ hydrogen_next_element_button.addEventListener("click", () => {
     container.appendChild(helium_next_element_price);
     helium_title.innerText = heliumIsotopes[currentHeliumIsotope];
     helium_weight.innerText = `Atomic Weight: ${heliumWeight}`;
-    
+    helium_tick_time.innerText = `Tick Time: ${heliumTickTime}`;
+    helium_tick_time_button.innerText = 'Reduce Tick Time';
+    helium_tick_time_price.innerText = `AW: ${heliumTickTimePrice}`;
+    helium_isotope_button.innerText = 'Next Isotope';
+    helium_isotope_price.innerText = `AW: ${heliumIsotopePrice}`;
+    helium_next_element_button.innerText = 'Unlock Next Element';
+    helium_next_element_price.innerText = `AW: ${heliumNextElementPrice}`;
+    setInterval(() => {atomicWeight += heliumWeight;}, heliumTickTime);
+    helium_tick_time_button.addEventListener("click", () => {
+        heliumTickTime = heliumTickTime - 1;
+        atomicWeight = atomicWeight - heliumTickTimePrice;
+        helium_tick_time.innerText = `Tick Time: ${heliumTickTime}`;
+    });
+    helium_isotope_button.addEventListener("click", () => {
+        currentHeliumIsotope = currentHeliumIsotope + 1;
+        helium_title.innerText = heliumIsotopes[currentHeliumIsotope];
+        heliumWeight = heliumWeight + 1;
+        helium_weight.innerText = `Atomic Weight: ${heliumWeight}`;
+        atomicWeight = atomicWeight - heliumIsotopePrice;
+    });
+    helium_next_element_button.addEventListener("click", () => {
+        heliumNextUnlocked = true;
+        var container = document.createElement('div');
+        helium_title = document.createElement('h3');
+        helium_weight = document.createElement('p');
+        helium_tick_time = document.createElement('p');
+        helium_tick_time_button = document.createElement('button');
+        helium_tick_time_price = document.createElement('span');
+        helium_isotope_button = document.createElement('button');
+        helium_isotope_price = document.createElement('span');
+        helium_next_element_button = document.createElement('button');
+        helium_next_element_price = document.createElement('span');
+        document.getElementById('element_container').appendChild(container);
+        container.appendChild(helium_title);
+        container.appendChild(helium_weight);
+        container.appendChild(helium_tick_time);
+        container.appendChild(helium_tick_time_button);
+        container.appendChild(helium_tick_time_price);
+        container.appendChild(helium_isotope_button);
+        container.appendChild(helium_isotope_price);
+        container.appendChild(helium_next_element_button);
+        container.appendChild(helium_next_element_price);
+        helium_title.innerText = heliumIsotopes[currentHeliumIsotope];
+        helium_weight.innerText = `Atomic Weight: ${heliumWeight}`;
+        helium_tick_time = `Tick Time: ${heliumTickTime}`;
+        helium_tick_time_button.innerText = 'Reduce Tick Time';
+        helium_tick_time_price.innerText = `AW: ${heliumTickTimePrice}`;
+        helium_isotope_button.innerText = 'Next Isotope';
+        helium_isotope_price.innerText = `AW: ${heliumIsotopePrice}`;
+        helium_next_element_button.innerText = 'Unlock Next Element';
+        helium_next_element_price.innerText = `AW: ${heliumNextElementPrice}`;
+    });
 });
 let helium_title;
 let helium_weight;
@@ -84,7 +136,7 @@ let helium_isotope_button;
 let helium_isotope_price;
 let helium_next_element_button;
 let helium_next_element_price;
-let heliumTickTime = 5000;
+let heliumTickTime = 100;
 let heliumWeight = 2;
 let heliumTickTimePrice = 1
 let heliumIsotopePrice = 10;
