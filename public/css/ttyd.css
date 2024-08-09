@@ -16,6 +16,15 @@ body
     width: 50px;
 }
 
+#curtain
+{
+    visibility: visible;
+    max-height: 940px;
+    min-width: 1707px;
+    background-size: cover;
+    position: absolute;
+}
+
 #vivian
 {
     visibility: hidden;
