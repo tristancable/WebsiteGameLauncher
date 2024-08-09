@@ -1,9 +1,9 @@
 //minesweeper functions
-const EASY_TILES_WIDTH = 5;
-const EASY_TILES_HEIGHT = 5;
-const EASY_MINES = 10;
+const EASY_TILES_WIDTH = 8;
+const EASY_TILES_HEIGHT = 10;
+const EASY_MINES = 20;
 let remianingMineCount = 0;
-var mineArray;
+var floodFill;
 
 window.onload = function() {
     newGame();
@@ -15,13 +15,13 @@ function newGame() {
 }
 
 function generateTiles() {
-    mineArray = Array.from(Array(EASY_TILES_WIDTH), () => new Array(EASY_TILES_HEIGHT));
+    floodFill = Array.from(Array(EASY_TILES_WIDTH), () => new Array(EASY_TILES_HEIGHT));
     for (let i = 0; i < EASY_TILES_WIDTH; i++) {
         for (let j = 0; j < EASY_TILES_HEIGHT; j++) {
             
-            mineArray[i][j] = false;
+            floodFill[i][j] = false;
             let tile = document.createElement("button");
-            let idName = "tile" + i + j;
+            let idName = "tile" + i + "," + j;
             tile.id = idName;
             tile.className = "tile";
             tile.addEventListener("mousedown", clickTile);
@@ -31,17 +31,16 @@ function generateTiles() {
 }
 
 function generateMines() {
-    let rand = getRandomInt(2);
     let i = 0;
     while (i < EASY_MINES) {
         let width = getRandomInt(EASY_TILES_WIDTH);
         let height = getRandomInt(EASY_TILES_HEIGHT);
-        //let tempTile = "tile" + width + height;
-        //console.log(tempTile);
-        if (mineArray[width][height]);
+        // let tempTile = "tile" + width + "," + height;
+        // console.log(tempTile);
+        if (floodFill[width][height]);
         else {
             i++
-            mineArray[width][height] = true;
+            floodFill[width][height] = true;
         }
     }
 
@@ -50,16 +49,24 @@ function generateMines() {
 
 function clickTile(){
     let tempTile = document.getElementById(this.id);
-    let tileNum = this.id.substr(tile01);
-    let x = tileNum.charAt(4);
-    let y = tileNum.charAt(5);
-    if (mineArray[x][y]) {
+    let tileNum = this.id.substr(4);
+    console.log(tileNum);
+    let nums = tileNum.split(',');
+    let x = nums[0];
+    let y = nums[1];
+    if (floodFill[x][y]) {
         tempTile.classList.add("tileBomb");
-        onGameOver();
-    }
-    else {tempTile.classList.add("tileClear");
+        //onGameOver();
+    } else {
+        tempTile.classList.add("tileClear");
+        //console.log(x,y);
         //let num = findNearbyMines(x,y);
+        // appendChild to change text of number
         tempTile.disabled = true;
+        
+        let text = document.createElement("span");
+        text.className = "mineText";
+        tempTile.appendChild(text);
         tempTile.setValue = "2";
     }
 }
@@ -73,13 +80,18 @@ function flagTile() {
 
 function findNearbyMines(x,y) {
 
-    mineCount = floodFill(x,y);
 
+    mineCount = floodFill(x,y);
     return mineCount;
 }
 
 function floodFill(x,y) {
     let nearbyMineCount = 0;
+    console.log(mineArray[x][y]);
+    if (x < 0 || x >= mineArray.length || y < 0 || y >= mineArray[0].length ||
+        mineArray[x][y]) {
+    return;
+    }
 
     if (mineArray[x - 1][y - 1]) nearbyMineCount++;
     if (mineArray[x + 1][y - 1]) nearbyMineCount++;
@@ -93,8 +105,29 @@ function floodFill(x,y) {
     return nearbyMineCount;
 }
 
-function onGameOver() {
+// function floodFill(x,y) {
+//     let nearbyMineCount = 0;
+//     //console.log(mineArray[x][y]);
+//     if (x < 0 || x >= floodFill.length || y < 0 || y >= floodFill[0].length ||
+//         mineArray[x][y]) {
+//     return;
+//     }
 
+//     if (floodFill(x + 1, y + 1)) nearbyMineCount++;
+//     if (floodFill(x - 1, y - 1)) nearbyMineCount++;
+//     if (floodFill(x - 1, y + 1)) nearbyMineCount++;
+//     if (floodFill(x + 1, y - 1)) nearbyMineCount++;
+//     if (floodFill(x - 1, y)) nearbyMineCount++;
+//     if (floodFill(x + 1, y)) nearbyMineCount++;
+//     if (floodFill(x, y - 1)) nearbyMineCount++;
+//     if (floodFill(x, y + 1)) nearbyMineCount++;
+
+//     return nearbyMineCount;
+// }
+
+
+
+function onGameOver() {
 }
 
 

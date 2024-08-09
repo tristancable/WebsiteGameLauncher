@@ -2,12 +2,30 @@
 
 #board {
     background-color: white;
-    width: 125px; 
-    height: 125px;
+    width: 250px;
+    height: 200px;
+
 
     margin: 0 auto;
     display: flex;
     flex-wrap: wrap;
+}
+
+#topBar {
+    background-color: white;
+    border: 2px black solid;
+    width: 250px;   
+
+    margin: 0 auto;
+    display: flex;
+    flex-wrap: wrap;
+}
+
+#mineCount {
+    
+}
+
+#time {
 }
 
 .tile {
