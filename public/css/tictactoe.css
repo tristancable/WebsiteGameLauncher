@@ -1,0 +1,21 @@
+#startGame {
+    margin: auto;
+    width: 50%;
+    text-align: center;
+}
+
+#startGame button {
+    height: 50px;
+    width: 50px;
+}
+
+#gameBoardTable {
+    margin-left: auto;
+    margin-right: auto;
+    display: none;
+}
+
+#gameBoard #gameBoardTable button {
+    height: 100px;
+    width: 100px;
+}
