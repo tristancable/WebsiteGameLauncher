@@ -80,6 +80,7 @@ h1 {
 #game-covers a {
     display: flex;
     flex-direction: column;
+    flex-basis: 25%;
     align-items: center;
     text-decoration: none;
     color: black;
@@ -96,7 +97,7 @@ h1 {
     max-height: 60vh;
 }
 
-#msCover, #iaCover, #ttCover {
+#msCover, #iaCover, #ttydCover, #tttCover {
     flex: 1 1 350px;
     margin: 10px;
     text-align: center;

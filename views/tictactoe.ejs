@@ -1,0 +1,50 @@
+<!-- minesweeper view -->
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Tic-Tac-Toe</title>
+
+    <link rel="stylesheet" href="/css/site.css">
+    <link rel="stylesheet" href="/css/tictactoe.css">
+    <script src="/js/tictactoe.js" defer></script>
+</head>
+
+<body>
+    <%- include('partials/header') %>
+        <h1>Tic-Tac-Toe</h1>
+        <main>
+            <div id="gameBoard">
+                <div id="startGame">
+                    <p>Player 1 choose X or O.</p>
+                    <button id="buttonX">X</button>
+                    <button id="buttonO">O</button>
+                </div>
+                <table id="gameBoardTable">
+                    <tr>
+                        <td></td>
+                        <td id="playerTurn"></td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td><button></button></td>
+                        <td><button></button></td>
+                        <td><button></button></td>
+                    </tr>
+                    <tr>
+                        <td><button></button></td>
+                        <td><button></button></td>
+                        <td><button></button></td>
+                    </tr>
+                    <tr>
+                        <td><button></button></td>
+                        <td><button></button></td>
+                        <td><button></button></td>
+                    </tr>
+                </table>
+            </div>
+        </main>
+        <%- include('partials/footer') %>
+</body>
+
+</html>
