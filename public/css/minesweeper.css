@@ -1,6 +1,13 @@
 
 
-#board {
+.boardTemp {
+    background-color: white;
+
+    margin: 0 auto;
+    display: flex;
+    flex-wrap: wrap;
+}
+#easyBoard {
     background-color: white;
     width: 250px;
     height: 200px;
@@ -11,27 +18,49 @@
     flex-wrap: wrap;
 }
 
-#topBar {
+#mediumBoard {
     background-color: white;
-    border: 2px black solid;
-    width: 250px;   
+    width: 500px;
+    height: 375px;
+
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-wrap: wrap;
+}
+
+#hardBoard {
+    background-color: white;
+    width: 625px;
+    height: 500px;
 
     margin: 0 auto;
     display: flex;
     flex-wrap: wrap;
 }
 
-#mineCount {
+#topBar {
+    background-color: white;
+    border: 2px black solid;
+    width: 625px;   
+
+    margin: 0 auto;
+    display: flex;
+    flex-wrap: wrap;
     
+    margin-top: 50px;
 }
 
-#time {
+
+.tile:focus {
+    visibility: hidden;
 }
 
 .tile {
     width: 25px;
     height: 25px;
     background-color: lightgray;
+    margin: 0;
 }
 
 .tileClear {

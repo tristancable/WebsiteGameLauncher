@@ -14,13 +14,18 @@
     <%- include('partials/header') %>
         <h1>Minesweeper</h1>
         <main>
-            <h3>Don't click the mines!</h3>
-
             <div id="topBar">
                 <span id="mineCount">Mine Count: 0</span>
+                <button onclick="resetGame()">NewGame</button>
                 <span id="time">Time</span>
 
-            <div id="board">
+                <select name="difficulty" id="difficulty">
+                    <option value="0">Easy</option>
+                    <option value="1">Medium</option>
+                    <option value="2">Hard</option>
+                </select>
+
+            <div id="boardTemp">
 
                 <!-- view and stuff  -->
             </div>
