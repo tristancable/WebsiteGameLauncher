@@ -1,5 +1,5 @@
 const express = require('express');
-const { DAL } = require("./dal/mongo-dal");
+//const { DAL } = require("./dal/mongo-dal");
 const bcrypt = require('bcrypt');
 const session = require('express-session');
 
