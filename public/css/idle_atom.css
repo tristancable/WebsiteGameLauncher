@@ -73,3 +73,20 @@ h1 {
     margin: 5px;
     text-align: center;
 }
+
+h2 {
+    padding: 0px 10px;
+}
+
+div {
+    padding: 0px 10px;
+    margin: 10px 0px;
+}
+
+button {
+    margin: 0px 4px 0px 0px;
+}
+
+span {
+    margin: 0px 10px 0px 0px;
+}
