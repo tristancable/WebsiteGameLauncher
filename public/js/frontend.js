@@ -1,11 +1,24 @@
 const express = require('express');
+const { DAL } = require("./dal/mongo-dal");
+const bcrypt = require('bcrypt');
+const session = require('express-session');
+
+const saltRounds = 10;
+
 const port = 1224;
 const app = express();
 
+let sessionOptions = {
+    secret: 'deltacorp',
+    cookie: {}
+};
+
+app.use(session(sessionOptions));
+
+app.set('view engine', 'ejs');
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(express.static('public'));
-app.set('view engine', 'ejs');
 
 app.get('/', (req, res) => {
     res.render('index');
