@@ -1,48 +1,45 @@
 
 
+
 .boardTemp {
     background-color: white;
 
     margin: 0 auto;
     display: flex;
     flex-wrap: wrap;
+    
+    font-size: 0;
+    
+    padding-top: 5px;
 }
 #easyBoard {
     background-color: white;
     width: 250px;
     height: 200px;
 
-
     margin: 0 auto;
-    display: flex;
-    flex-wrap: wrap;
+
+    display: inline-block;
+        flex-wrap: nowrap;
+    
 }
 
 #mediumBoard {
     background-color: white;
     width: 500px;
     height: 375px;
-
-    padding: 0;
-    margin: 0;
-    display: flex;
-    flex-wrap: wrap;
 }
 
 #hardBoard {
     background-color: white;
     width: 625px;
     height: 500px;
-
-    margin: 0 auto;
-    display: flex;
-    flex-wrap: wrap;
 }
 
 #topBar {
     background-color: white;
     border: 2px black solid;
-    width: 625px;   
+    width: 250px;   
 
     margin: 0 auto;
     display: flex;
@@ -60,7 +57,9 @@
     width: 25px;
     height: 25px;
     background-color: lightgray;
-    margin: 0;
+    margin: 0 auto;
+    padding: 0;
+    display: inline-block;
 }
 
 .tileClear {
@@ -74,4 +73,8 @@
 
 .tileFlagged {
     background-color: blue;
+}
+
+#timer {
+    margin: 0px 5px;
 }

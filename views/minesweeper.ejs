@@ -5,8 +5,8 @@
 <head>
     <title>Minesweeper</title>
 
-    <link rel="stylesheet" href="/css/site.css">
     <link rel="stylesheet" href="/css/minesweeper.css">
+    <link rel="stylesheet" href="/css/site.css">
     <script src="/js/minesweeper.js" defer></script>
 </head>
 
@@ -15,19 +15,18 @@
         <h1>Minesweeper</h1>
         <main>
             <div id="topBar">
-                <span id="mineCount">Mine Count: 0</span>
+                <span id="mineCount"></span>
                 <button onclick="resetGame()">NewGame</button>
-                <span id="time">Time</span>
-
+                
                 <select name="difficulty" id="difficulty">
                     <option value="0">Easy</option>
                     <option value="1">Medium</option>
                     <option value="2">Hard</option>
                 </select>
-
+                
+                <span id="timer"></span>
             <div id="boardTemp">
-
-                <!-- view and stuff  -->
+            <!-- view and stuff  -->
             </div>
         </div>
         </main>
