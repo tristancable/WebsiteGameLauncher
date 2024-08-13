@@ -213,7 +213,7 @@ window.addEventListener('load', () => {
     setInterval(() => {atomic_weight.innerText = `Atomic Weight: ${atomicWeight}`;}, 50);
 });
 function tickTimePriceScaling(baseWeight, currentUpgrade) {
-    return Math.floor(baseWeight * Math.exp((Math.log(5000) / 2999) * currentUpgrade));
+    return Math.floor(baseWeight * Math.exp((Math.log(3000) / 2999) * currentUpgrade));
 }
 function isotopePriceScaling(baseWeight, currentUpgrade, isotopeAmount) {
     return Math.floor(baseWeight * Math.exp(Math.log(baseWeight * Math.pow(isotopeAmount.length, 2)) / (isotopeAmount.length - 2) * currentUpgrade));
