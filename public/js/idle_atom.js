@@ -87,6 +87,151 @@ const elementsData = [
         initialWeight: 28,
         isotopes: ['Chlorine-28', 'Chlorine-29', 'Chlorine-30', 'Chlorine-31', 'Chlorine-32', 'Chlorine-33', 'Chlorine-34', 'Chlorine-35', 'Chlorine-36', 'Chlorine-37', 'Chlorine-38', 'Chlorine-39', 'Chlorine-40', 'Chlorine-41', 'Chlorine-42', 'Chlorine-43', 'Chlorine-44', 'Chlorine-45', 'Chlorine-46', 'Chlorine-47', 'Chlorine-48', 'Chlorine-49', 'Chlorine-50', 'Chlorine-51', 'Chlorine-52'],
         isotopeWeights: [28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40, 41, 42, 43, 44, 45, 46, 47, 48, 49, 50, 51, 52]
+    },
+    {
+        initialWeight: 29,
+        isotopes: ['Argon-29', 'Argon-30', 'Argon-31', 'Argon-32', 'Argon-33', 'Argon-34', 'Argon-35', 'Argon-36', 'Argon-37', 'Argon-38', 'Argon-39', 'Argon-40', 'Argon-41', 'Argon-42', 'Argon-43', 'Argon-44', 'Argon-45', 'Argon-46', 'Argon-47', 'Argon-48', 'Argon-49', 'Argon-50', 'Argon-51', 'Argon-52', 'Argon-53', 'Argon-54'],
+        isotopeWeights: [29, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40, 41, 42, 43, 44, 45, 46, 47, 48, 49, 50, 51, 52, 53, 54]
+    },
+    {
+        initialWeight: 31,
+        isotopes: ['Potassium-31', 'Potassium-35', 'Potassium-36', 'Potassium-37', 'Potassium-38', 'Potassium-39', 'Potassium-40', 'Potassium-41', 'Potassium-42', 'Potassium-43', 'Potassium-44', 'Potassium-45', 'Potassium-46', 'Potassium-47', 'Potassium-48', 'Potassium-49', 'Potassium-50', 'Potassium-51', 'Potassium-52', 'Potassium-53', 'Potassium-54', 'Potassium-55', 'Potassium-56', 'Potassium-57', 'Potassium-59'],
+        isotopeWeights: [31, 35, 36, 37, 38, 39, 40, 41, 42, 43, 44, 45, 46, 47, 48, 49, 50, 51, 52, 53, 54, 55, 56, 57, 59]
+    },
+    {
+        initialWeight: 35,
+        isotopes: ['Calcium-35', 'Calcium-36', 'Calcium-37', 'Calcium-38', 'Calcium-39', 'Calcium-40', 'Calcium-41', 'Calcium-42', 'Calcium-43', 'Calcium-44', 'Calcium-45', 'Calcium-46', 'Calcium-47', 'Calcium-48', 'Calcium-49', 'Calcium-50', 'Calcium-51', 'Calcium-52', 'Calcium-53', 'Calcium-54', 'Calcium-55', 'Calcium-56', 'Calcium-57', 'Calcium-58', 'Calcium-59', 'Calcium-60'],
+        isotopeWeights: [35, 36, 37, 38, 39, 40, 41, 42, 43, 44, 45, 46, 47, 48, 49, 50, 51, 52, 53, 54, 55, 56, 57, 58, 59, 60]
+    },
+    {
+        initialWeight: 39,
+        isotopes: ['Scandium-39', 'Scandium-40', 'Scandium-41', 'Scandium-42', 'Scandium-43', 'Scandium-44', 'Scandium-45', 'Scandium-46', 'Scandium-47', 'Scandium-48', 'Scandium-49', 'Scandium-50', 'Scandium-51', 'Scandium-52', 'Scandium-53', 'Scandium-54', 'Scandium-55', 'Scandium-56', 'Scandium-57', 'Scandium-58', 'Scandium-59', 'Scandium-60', 'Scandium-61', 'Scandium-62'],
+        isotopeWeights: [39, 40, 41, 42, 43, 44, 45, 46, 47, 48, 49, 50, 51, 52, 53, 54, 55, 56, 57, 58, 59, 60, 61, 62]
+    },
+    {
+        initialWeight: 39,
+        isotopes: ['Titanium-39', 'Titanium-40', 'Titanium-41', 'Titanium-42', 'Titanium-43', 'Titanium-44', 'Titanium-45', 'Titanium-46', 'Titanium-47', 'Titanium-48', 'Titanium-49', 'Titanium-50', 'Titanium-51', 'Titanium-52', 'Titanium-53', 'Titanium-54', 'Titanium-55', 'Titanium-56', 'Titanium-57', 'Titanium-58', 'Titanium-59', 'Titanium-60', 'Titanium-61', 'Titanium-62', 'Titanium-63', 'Titanium-64'],
+        isotopeWeights: [39, 40, 41, 42, 43, 44, 45, 46, 47, 48, 49, 50, 51, 52, 53, 54, 55, 56, 57, 58, 59, 60, 61, 62, 63, 64]
+    },
+    {
+        initialWeight: 40,
+        isotopes: ['Vanadium-40', 'Vanadium-41', 'Vanadium-42', 'Vanadium-43', 'Vanadium-44', 'Vanadium-45', 'Vanadium-46', 'Vanadium-47', 'Vanadium-48', 'Vanadium-49', 'Vanadium-50', 'Vanadium-51', 'Vanadium-52', 'Vanadium-53', 'Vanadium-54', 'Vanadium-55', 'Vanadium-56', 'Vanadium-57', 'Vanadium-58', 'Vanadium-59', 'Vanadium-60', 'Vanadium-61', 'Vanadium-62', 'Vanadium-63', 'Vanadium-64', 'Vanadium-65', 'Vanadium-66', 'Vanadium-67'],
+        isotopeWeights: [40, 41, 42, 43, 44, 45, 46, 47, 48, 49, 50, 51, 52, 53, 54, 55, 56, 57, 58, 59, 60, 61, 62, 63, 64, 65, 66, 67]
+    },
+    {
+        initialWeight: 42,
+        isotopes: ['Chromium-42', 'Chromium-43', 'Chromium-44', 'Chromium-45', 'Chromium-46', 'Chromium-47', 'Chromium-48', 'Chromium-49', 'Chromium-50', 'Chromium-51', 'Chromium-52', 'Chromium-53', 'Chromium-54', 'Chromium-55', 'Chromium-56', 'Chromium-57', 'Chromium-58', 'Chromium-59', 'Chromium-60', 'Chromium-61', 'Chromium-62', 'Chromium-63', 'Chromium-64', 'Chromium-65', 'Chromium-66', 'Chromium-67', 'Chromium-68', 'Chromium-69', 'Chromium-70'],
+        isotopeWeights: [42, 43, 44, 45, 46, 47, 48, 49, 50, 51, 52, 53, 54, 55, 56, 57, 58, 59, 60, 61, 62, 63, 64, 65, 66, 67, 68, 69, 70]
+    },
+    {
+        initialWeight: 46,
+        isotopes: ['Manganese-46', 'Manganese-47', 'Manganese-48', 'Manganese-49', 'Manganese-50', 'Manganese-51', 'Manganese-52', 'Manganese-53', 'Manganese-54', 'Manganese-55', 'Manganese-56', 'Manganese-57', 'Manganese-58', 'Manganese-59', 'Manganese-60', 'Manganese-61', 'Manganese-62', 'Manganese-63', 'Manganese-64', 'Manganese-65', 'Manganese-66', 'Manganese-67', 'Manganese-68', 'Manganese-69', 'Manganese-70', 'Manganese-71', 'Manganese-72', 'Manganese-73'],
+        isotopeWeights: [46, 47, 48, 49, 50, 51, 52, 53, 54, 55, 56, 57, 58, 59, 60, 61, 62, 63, 64, 65, 66, 67, 68, 69, 70, 71, 72, 73]
+    },
+    {
+        initialWeight: 45,
+        isotopes: ['Iron-45', 'Iron-46', 'Iron-47', 'Iron-48', 'Iron-49', 'Iron-50', 'Iron-51', 'Iron-52', 'Iron-53', 'Iron-54', 'Iron-55', 'Iron-56', 'Iron-57', 'Iron-58', 'Iron-59', 'Iron-60', 'Iron-61', 'Iron-62', 'Iron-63', 'Iron-64', 'Iron-65', 'Iron-66', 'Iron-67', 'Iron-68', 'Iron-69', 'Iron-70', 'Iron-71', 'Iron-72'],
+        isotopeWeights: [45, 46, 47, 48, 49, 50, 51, 52, 53, 54, 55, 56, 57, 58, 59, 60, 61, 62, 63, 64, 65, 66, 67, 68, 69, 70, 71, 72]
+    },
+    {
+        initialWeight: 47,
+        isotopes: ['Cobalt-47', 'Cobalt-48', 'Cobalt-49', 'Cobalt-50', 'Cobalt-51', 'Cobalt-52', 'Cobalt-53', 'Cobalt-54', 'Cobalt-55', 'Cobalt-56', 'Cobalt-57', 'Cobalt-58', 'Cobalt-59', 'Cobalt-60', 'Cobalt-61', 'Cobalt-62', 'Cobalt-63', 'Cobalt-64', 'Cobalt-65', 'Cobalt-66', 'Cobalt-67', 'Cobalt-68', 'Cobalt-69', 'Cobalt-70', 'Cobalt-71', 'Cobalt-72', 'Cobalt-73', 'Cobalt-74', 'Cobalt-75', 'Cobalt-76'],
+        isotopeWeights: [47, 48, 49, 50, 51, 52, 53, 54, 55, 56, 57, 58, 59, 60, 61, 62, 63, 64, 65, 66, 67, 68, 69, 70, 71, 72, 73, 74, 75, 76]
+    },
+    {
+        initialWeight: 48,
+        isotopes: ['Nickel-48', 'Nickel-49', 'Nickel-50', 'Nickel-51', 'Nickel-52', 'Nickel-53', 'Nickel-54', 'Nickel-55', 'Nickel-56', 'Nickel-57', 'Nickel-58', 'Nickel-59', 'Nickel-60', 'Nickel-61', 'Nickel-62', 'Nickel-63', 'Nickel-64', 'Nickel-65', 'Nickel-66', 'Nickel-67', 'Nickel-68', 'Nickel-69', 'Nickel-70', 'Nickel-71', 'Nickel-72', 'Nickel-73', 'Nickel-74', 'Nickel-75', 'Nickel-76', 'Nickel-77', 'Nickel-78', 'Nickel-79', 'Nickel-80'],
+        isotopeWeights: [48, 49, 50, 51, 52, 53, 54, 55, 56, 57, 58, 59, 60, 61, 62, 63, 64, 65, 66, 67, 68, 69, 70, 71, 72, 73, 74, 75, 76, 77, 78, 79, 80]
+    },
+    {
+        initialWeight: 55,
+        isotopes: ['Copper-55', 'Copper-56', 'Copper-57', 'Copper-58', 'Copper-59', 'Copper-61', 'Copper-62', 'Copper-63', 'Copper-64', 'Copper-65', 'Copper-66', 'Copper-67', 'Copper-68', 'Copper-69', 'Copper-70', 'Copper-71', 'Copper-72', 'Copper-73', 'Copper-74', 'Copper-75', 'Copper-76', 'Copper-77', 'Copper-78', 'Copper-79', 'Copper-80', 'Copper-81', 'Copper-82', 'Copper-83', 'Copper-84'],
+        isotopeWeights: [55, 56, 57, 58, 59, 60, 61, 62, 63, 64, 65, 66, 67, 68, 69, 70, 71, 72, 73, 74, 75, 76, 77, 78, 79, 80, 81, 82, 83, 84]
+    },
+    {
+        initialWeight: 54,
+        isotopes: ['Zinc-54', 'Zinc-55', 'Zinc-56', 'Zinc-57', 'Zinc-58', 'Zinc-59', 'Zinc-60', 'Zinc-61', 'Zinc-62', 'Zinc-63', 'Zinc-64', 'Zinc-65', 'Zinc-66', 'Zinc-67', 'Zinc-68', 'Zinc-69', 'Zinc-70', 'Zinc-71', 'Zinc-72', 'Zinc-73', 'Zinc-74', 'Zinc-75', 'Zinc-76', 'Zinc-77', 'Zinc-78', 'Zinc-79', 'Zinc-80', 'Zinc-81', 'Zinc-82', 'Zinc-83', 'Zinc-84', 'Zinc-85', 'Zinc-86', 'Zinc-87'],
+        isotopeWeights: [54, 55, 56, 57, 58, 59, 60, 61, 62, 63, 64, 65, 66, 67, 68, 69, 70, 71, 72, 73, 74, 75, 76, 77, 78, 79, 80, 81, 82, 83, 84, 85, 86, 87]
+    },
+    {
+        initialWeight: 60,
+        isotopes: ['Gallium-60', 'Gallium-61', 'Gallium-62', 'Gallium-63', 'Gallium-64', 'Gallium-65', 'Gallium-66', 'Gallium-67', 'Gallium-68', 'Gallium-69', 'Gallium-70', 'Gallium-71', 'Gallium-72', 'Gallium-73', 'Gallium-74', 'Gallium-75', 'Gallium-76', 'Gallium-77', 'Gallium-78', 'Gallium-79', 'Gallium-80', 'Gallium-81', 'Gallium-82', 'Gallium-83', 'Gallium-84', 'Gallium-85', 'Gallium-86', 'Gallium-87', 'Gallium-88', 'Gallium-89'],
+        isotopeWeights: [60, 61, 62, 63, 64, 65, 66, 67, 68, 69, 70, 71, 72, 73, 74, 75, 76, 77, 78, 79, 80, 81, 82, 83, 84, 85, 86, 87, 88, 89]
+    },
+    {
+        initialWeight: 59,
+        isotopes: ['Germanium-59', 'Germanium-60', 'Germanium-61', 'Germanium-62', 'Germanium-63', 'Germanium-64', 'Germanium-65', 'Germanium-66', 'Germanium-67', 'Germanium-68', 'Germanium-69', 'Germanium-70', 'Germanium-71', 'Germanium-72', 'Germanium-73', 'Germanium-74', 'Germanium-75', 'Germanium-76', 'Germanium-77', 'Germanium-78', 'Germanium-79', 'Germanium-80', 'Germanium-81', 'Germanium-82', 'Germanium-83', 'Germanium-84', 'Germanium-85', 'Germanium-86', 'Germanium-87', 'Germanium-88', 'Germanium-89', 'Germanium-90', 'Germanium-91', 'Germanium-92'],
+        isotopeWeights: [59, 60, 61, 62, 63, 64, 65, 66, 67, 68, 69, 70, 71, 72, 73, 74, 75, 76, 77, 78, 79, 80, 81, 82, 83, 84, 85, 86, 87, 88, 89, 90, 91, 92]
+    },
+    {
+        initialWeight: 64,
+        isotopes: ['Arsenic-64', 'Arsenic-65', 'Arsenic-66', 'Arsenic-67', 'Arsenic-68', 'Arsenic-69', 'Arsenic-70', 'Arsenic-71', 'Arsenic-72', 'Arsenic-73', 'Arsenic-74', 'Arsenic-75', 'Arsenic-76', 'Arsenic-77', 'Arsenic-78', 'Arsenic-79', 'Arsenic-80', 'Arsenic-81', 'Arsenic-82', 'Arsenic-83', 'Arsenic-84', 'Arsenic-85', 'Arsenic-86', 'Arsenic-87', 'Arsenic-88', 'Arsenic-89', 'Arsenic-90', 'Arsenic-91', 'Arsenic-92', 'Arsenic-93', 'Arsenic-94', 'Arsenic-95'],
+        isotopeWeights: [64, 65, 66, 67, 68, 69, 70, 71, 72, 73, 74, 75, 76, 77, 78, 79, 80, 81, 82, 83, 84, 85, 86, 87, 88, 89, 90, 91, 92, 93, 94, 95]
+    },
+    {
+        initialWeight: 63,
+        isotopes: ['Selenium-63', 'Selenium-64', 'Selenium-65', 'Selenium-66', 'Selenium-67', 'Selenium-68', 'Selenium-69', 'Selenium-70', 'Selenium-71', 'Selenium-72', 'Selenium-73', 'Selenium-74', 'Selenium-75', 'Selenium-76', 'Selenium-77', 'Selenium-78', 'Selenium-79', 'Selenium-80', 'Selenium-81', 'Selenium-82', 'Selenium-83', 'Selenium-84', 'Selenium-85', 'Selenium-86', 'Selenium-87', 'Selenium-88', 'Selenium-89', 'Selenium-90', 'Selenium-91', 'Selenium-92', 'Selenium-93', 'Selenium-94', 'Selenium-95', 'Selenium-96', 'Selenium-97'],
+        isotopeWeights: [63, 64, 65, 66, 67, 68, 69, 70, 71, 72, 73, 74, 75, 76, 77, 78, 79, 80, 81, 82, 83, 84, 85, 86, 87, 88, 89, 90, 91, 92, 93, 94, 95, 96, 97]
+    },
+    {
+        initialWeight: 68,
+        isotopes: ['Bromine-68', 'Bromine-69', 'Bromine-70', 'Bromine-71', 'Bromine-72', 'Bromine-73', 'Bromine-74', 'Bromine-75', 'Bromine-76', 'Bromine-77', 'Bromine-78', 'Bromine-79', 'Bromine-80', 'Bromine-81', 'Bromine-82', 'Bromine-83', 'Bromine-84', 'Bromine-85', 'Bromine-86', 'Bromine-87', 'Bromine-88', 'Bromine-89', 'Bromine-90', 'Bromine-91', 'Bromine-92', 'Bromine-93', 'Bromine-94', 'Bromine-95', 'Bromine-96', 'Bromine-97', 'Bromine-98', 'Bromine-99', 'Bromine-100', 'Bromine-101'],
+        isotopeWeights: [68, 69, 70, 71, 72, 73, 74, 75, 76, 77, 78, 79, 80, 81, 82, 83, 84, 85, 86, 87, 88, 89, 90, 91, 92, 93, 94, 95, 96, 97, 98, 99, 100, 101]
+    },
+    {
+        initialWeight: 67,
+        isotopes: ['Krypton-67', 'Krypton-68', 'Krypton-69', 'Krypton-70', 'Krypton-71', 'Krypton-72', 'Krypton-73', 'Krypton-74', 'Krypton-75', 'Krypton-76', 'Krypton-77', 'Krypton-78', 'Krypton-79', 'Krypton-80', 'Krypton-81', 'Krypton-82', 'Krypton-83', 'Krypton-84', 'Krypton-85', 'Krypton-86', 'Krypton-87', 'Krypton-88', 'Krypton-89', 'Krypton-90', 'Krypton-91', 'Krypton-92', 'Krypton-93', 'Krypton-94', 'Krypton-95', 'Krypton-96', 'Krypton-97', 'Krypton-98', 'Krypton-99', 'Krypton-100', 'Krypton-101', 'Krypton-102', 'Krypton-103'],
+        isotopeWeights: [67, 68, 69, 70, 71, 72, 73, 74, 75, 76, 77, 78, 79, 80, 81, 82, 83, 84, 85, 86, 87, 88, 89, 90, 91, 92, 93, 94, 95, 96, 97, 98, 99, 100, 101, 102, 103]
+    },
+    {
+        initialWeight: 71,
+        isotopes: ['Rubidium-71', 'Rubidium-72', 'Rubidium-73', 'Rubidium-74', 'Rubidium-75', 'Rubidium-76', 'Rubidium-77', 'Rubidium-78', 'Rubidium-79', 'Rubidium-80', 'Rubidium-81', 'Rubidium-82', 'Rubidium-83', 'Rubidium-84', 'Rubidium-85', 'Rubidium-86', 'Rubidium-87', 'Rubidium-88', 'Rubidium-89', 'Rubidium-90', 'Rubidium-91', 'Rubidium-92', 'Rubidium-93', 'Rubidium-94', 'Rubidium-95', 'Rubidium-96', 'Rubidium-97', 'Rubidium-98', 'Rubidium-99', 'Rubidium-100', 'Rubidium-101', 'Rubidium-102', 'Rubidium-103', 'Rubidium-104', 'Rubidium-105', 'Rubidium-106'],
+        isotopeWeights: [71, 72, 73, 74, 75, 76, 77, 78, 79, 80, 81, 82, 83, 84, 85, 86, 87, 88, 89, 90, 91, 92, 93, 94, 95, 96, 97, 98, 99, 100, 101, 102, 103, 104, 105, 106]
+    },
+    {
+        initialWeight: 73,
+        isotopes: ['Strontium-73', 'Strontium-74', 'Strontium-75', 'Strontium-76', 'Strontium-77', 'Strontium-78', 'Strontium-79', 'Strontium-80', 'Strontium-81', 'Strontium-82', 'Strontium-83', 'Strontium-84', 'Strontium-85', 'Strontium-86', 'Strontium-87', 'Strontium-88', 'Strontium-89', 'Strontium-90', 'Strontium-91', 'Strontium-92', 'Strontium-93', 'Strontium-94', 'Strontium-95', 'Strontium-96', 'Strontium-97', 'Strontium-98', 'Strontium-99', 'Strontium-100', 'Strontium-101', 'Strontium-102', 'Strontium-103', 'Strontium-104', 'Strontium-105', 'Strontium-106', 'Strontium-107', 'Strontium-108'],
+        isotopeWeights: [73, 74, 75, 76, 77, 78, 79, 80, 81, 82, 83, 84, 85, 86, 87, 88, 89, 90, 91, 92, 93, 94, 95, 96, 97, 98, 99, 100, 101, 102, 103, 104, 105, 106, 107, 108]
+    },
+    {
+        initialWeight: 76,
+        isotopes: ['Yttrium-76', 'Yttrium-77', 'Yttrium-78', 'Yttrium-79', 'Yttrium-80', 'Yttrium-81', 'Yttrium-82', 'Yttrium-83', 'Yttrium-84', 'Yttrium-85', 'Yttrium-86', 'Yttrium-87', 'Yttrium-88', 'Yttrium-89', 'Yttrium-90', 'Yttrium-91', 'Yttrium-92', 'Yttrium-93', 'Yttrium-94', 'Yttrium-95', 'Yttrium-96', 'Yttrium-97', 'Yttrium-98', 'Yttrium-99', 'Yttrium-100', 'Yttrium-101', 'Yttrium-102', 'Yttrium-103', 'Yttrium-104', 'Yttrium-105', 'Yttrium-106', 'Yttrium-107', 'Yttrium-108', 'Yttrium-109', 'Yttrium-110', 'Yttrium-111'],
+        isotopeWeights: [76, 77, 78, 79, 80, 81, 82, 83, 84, 85, 86, 87, 88, 89, 90, 91, 92, 93, 94, 95, 96, 97, 98, 99, 100, 101, 102, 103, 104, 105, 106, 107, 108, 109, 110, 111]
+    },
+    {
+        initialWeight: 77,
+        isotopes: ['Zirconium-77', 'Zirconium-78', 'Zirconium-79', 'Zirconium-80', 'Zirconium-81', 'Zirconium-82', 'Zirconium-83', 'Zirconium-84', 'Zirconium-85', 'Zirconium-86', 'Zirconium-87', 'Zirconium-88', 'Zirconium-89', 'Zirconium-90', 'Zirconium-91', 'Zirconium-92', 'Zirconium-93', 'Zirconium-94', 'Zirconium-95', 'Zirconium-96', 'Zirconium-97', 'Zirconium-98', 'Zirconium-99', 'Zirconium-100', 'Zirconium-101', 'Zirconium-102', 'Zirconium-104', 'Zirconium-105', 'Zirconium-106', 'Zirconium-107', 'Zirconium-108', 'Zirconium-109', 'Zirconium-110', 'Zirconium-111', 'Zirconium-112', 'Zirconium-113', 'Zirconium-114'],
+        isotopeWeights: [77, 78, 79, 80, 81, 82, 83, 84, 85, 86, 87, 88, 89, 90, 91, 92, 93, 94, 95, 96, 97, 98, 99, 100, 101, 102, 103, 104, 105, 106, 107, 108, 109, 110, 111, 112, 113, 114]
+    },
+    {
+        initialWeight: 81,
+        isotopes: ['Niobium-81', 'Niobium-82', 'Niobium-83', 'Niobium-84', 'Niobium-85', 'Niobium-86', 'Niobium-87', 'Niobium-88', 'Niobium-89', 'Niobium-90', 'Niobium-91', 'Niobium-92', 'Niobium-93', 'Niobium-94', 'Niobium-95', 'Niobium-96', 'Niobium-97', 'Niobium-98', 'Niobium-99', 'Niobium-100', 'Niobium-101', 'Niobium-102', 'Niobium-103', 'Niobium-104', 'Niobium-105', 'Niobium-106', 'Niobium-107', 'Niobium-108', 'Niobium-109', 'Niobium-110', 'Niobium-111', 'Niobium-112', 'Niobium-113', 'Niobium-114', 'Niobium-115', 'Niobium-116', 'Niobium-117'],
+        isotopeWeights: [81, 82, 83, 84, 85, 86, 87, 88, 89, 90, 91, 92, 93, 94, 95, 96, 97, 98, 99, 100, 101, 102, 103, 104, 105, 106, 107, 108, 109, 110, 111, 112, 113, 114, 115, 116, 117]
+    },
+    {
+        initialWeight: 81,
+        isotopes: ['Molybdenum-81', 'Molybdenum-82', 'Molybdenum-83', 'Molybdenum-84', 'Molybdenum-85', 'Molybdenum-86', 'Molybdenum-87', 'Molybdenum-88', 'Molybdenum-89', 'Molybdenum-90', 'Molybdenum-91', 'Molybdenum-92', 'Molybdenum-93', 'Molybdenum-94', 'Molybdenum-95', 'Molybdenum-96', 'Molybdenum-97', 'Molybdenum-98', 'Molybdenum-99', 'Molybdenum-100', 'Molybdenum-101', 'Molybdenum-102', 'Molybdenum-103', 'Molybdenum-104', 'Molybdenum-105', 'Molybdenum-106', 'Molybdenum-107', 'Molybdenum-108', 'Molybdenum-109', 'Molybdenum-110', 'Molybdenum-111', 'Molybdenum-112', 'Molybdenum-113', 'Molybdenum-114', 'Molybdenum-115', 'Molybdenum-116', 'Molybdenum-117', 'Molybdenum-118', 'Molybdenum-119'],
+        isotopeWeights: [81, 82, 83, 84, 85, 86, 87, 88, 89, 90, 91, 92, 93, 94, 95, 96, 97, 98, 99, 100, 101, 102, 103, 104, 105, 106, 107, 108, 109, 110, 111, 112, 113, 114, 115, 116, 117, 118, 119]
+    },
+    {
+        initialWeight: 85,
+        isotopes: ['Technetium-85', 'Technetium-86', 'Technetium-87', 'Technetium-88', 'Technetium-89', 'Technetium-90', 'Technetium-91', 'Technetium-92', 'Technetium-93', 'Technetium-94', 'Technetium-95', 'Technetium-96', 'Technetium-97', 'Technetium-98', 'Technetium-99', 'Technetium-100', 'Technetium-101', 'Technetium-102', 'Technetium-103', 'Technetium-104', 'Technetium-105', 'Technetium-106', 'Technetium-107', 'Technetium-108', 'Technetium-109', 'Technetium-110', 'Technetium-111', 'Technetium-112', 'Technetium-113', 'Technetium-114', 'Technetium-115', 'Technetium-116', 'Technetium-117', 'Technetium-118'],
+        isotopeWeights: [85, 86, 87, 88, 89, 90, 91, 92, 93, 94, 95, 96, 97, 98, 99, 100, 101, 102, 103, 104, 105, 106, 107, 108, 109, 110, 111, 112, 113, 114, 115, 116, 117, 118]
+    },
+    {
+        initialWeight: 87,
+        isotopes: ['Ruthenium-87', 'Ruthenium-88', 'Ruthenium-89', 'Ruthenium-90', 'Ruthenium-91', 'Ruthenium-92', 'Ruthenium-93', 'Ruthenium-94', 'Ruthenium-95', 'Ruthenium-96', 'Ruthenium-97', 'Ruthenium-98', 'Ruthenium-99', 'Ruthenium-100', 'Ruthenium-101', 'Ruthenium-102', 'Ruthenium-103', 'Ruthenium-104', 'Ruthenium-105', 'Ruthenium-106', 'Ruthenium-107', 'Ruthenium-108', 'Ruthenium-109', 'Ruthenium-110', 'Ruthenium-111', 'Ruthenium-112', 'Ruthenium-113', 'Ruthenium-114', 'Ruthenium-115', 'Ruthenium-116', 'Ruthenium-117', 'Ruthenium-118', 'Ruthenium-119', 'Ruthenium-120'],
+        isotopeWeights: [87 ,88, 89, 90, 91, 92, 93, 94, 95, 96, 97, 98, 99, 100, 101, 102, 103, 104, 105, 106, 107, 108, 109, 110, 111, 112, 113, 114, 115, 116, 117, 118, 119, 120]
+    },
+    {
+        initialWeight: 90,
+        isotopes: ['Rhodium-90', 'Rhodium-91', 'Rhodium-92', 'Rhodium-93', 'Rhodium-94', 'Rhodium-95', 'Rhodium-96', 'Rhodium-97', 'Rhodium-98', 'Rhodium-99', 'Rhodium-100', 'Rhodium-101', 'Rhodium-102', 'Rhodium-103', 'Rhodium-104', 'Rhodium-105', 'Rhodium-106', 'Rhodium-107', 'Rhodium-108', 'Rhodium-109', 'Rhodium-110', 'Rhodium-111', 'Rhodium-112', 'Rhodium-113', 'Rhodium-114', 'Rhodium-115', 'Rhodium-116', 'Rhodium-117', 'Rhodium-118', 'Rhodium-119', 'Rhodium-120', 'Rhodium-121', 'Rhodium-122', 'Rhodium-123', 'Rhodium-124', 'Rhodium-125', 'Rhodium-126', 'Rhodium-127', 'Rhodium-128'],
+        isotopeWeights: [90, 91, 92, 93, 94, 95, 96, 97, 98, 99, 100, 101, 102, 103, 104, 105, 106, 107, 108, 109, 110, 111, 112, 113, 114, 115, 116, 117, 118, 119, 120, 121, 122, 123, 124, 125, 126, 127, 128]
+    },
+    {
+        initialWeight: 91,
+        isotopes: ['Palladium-91', 'Palladium-92', 'Palladium-93', 'Palladium-94', 'Palladium-95', 'Palladium-96', 'Palladium-97', 'Palladium-98', 'Palladium-99', 'Palladium-100', 'Palladium-101', 'Palladium-102', 'Palladium-103', 'Palladium-104', 'Palladium-105', 'Palladium-106', 'Palladium-107', 'Palladium-108', 'Palladium-109', 'Palladium-110', 'Palladium-111', 'Palladium-112', 'Palladium-113', 'Palladium-114', 'Palladium-115', 'Palladium-116', 'Palladium-117', 'Palladium-118', 'Palladium-119', 'Palladium-120', 'Palladium-121', 'Palladium-122', 'Palladium-123', 'Palladium-124', 'Palladium-125', 'Palladium-126', 'Palladium-127', 'Palladium-128', 'Palladium-129'],
+        isotopeWeights: [91, 92, 93, 94, 95, 96, 97, 98, 99, 100, 101, 102, 103, 104, 105, 106, 107, 108, 109, 110, 111, 112, 113, 114, 115, 116, 117, 118, 119, 120, 121, 122, 123, 124, 125, 126, 127, 128, 129]
     }
 ];
 class Element {
