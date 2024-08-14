@@ -1,4 +1,3 @@
-
 const { MongoClient } = require('mongodb');
 const uri = "mongodb+srv://tcable:deltacorp@cluster0.alkdm.mongodb.net/";
 const client = new MongoClient(uri);

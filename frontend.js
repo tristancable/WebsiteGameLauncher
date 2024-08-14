@@ -1,26 +1,14 @@
 const express = require('express');
-//const { DAL } = require("./dal/mongo-dal");
-const bcrypt = require('bcrypt');
-const session = require('express-session');
-
-const saltRounds = 10;
 
 const port = 1224;
 const app = express();
-
-let sessionOptions = {
-    secret: 'deltacorp',
-    cookie: {}
-};
-
-app.use(session(sessionOptions));
 
 app.set('view engine', 'ejs');
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(express.static('public'));
 
-app.get('/', (req, res) => {
+app.get('/', async (req, res) => {
     res.render('index');
 });
 
@@ -40,6 +28,14 @@ app.get('/tictactoe', (req, res) => {
     res.render('tictactoe');
 });
 
+app.get('/login', (req, res) => {
+    res.render('login');
+});
+
+app.get('/register', (req, res) => {
+    res.render('register');
+});
+
 app.listen(port, () => {
-    console.log(`Website Game Launcher running on http://localhost:${port}/`);
+    console.log(`WGL Frontend running on http://localhost:${port}/`);
 });
