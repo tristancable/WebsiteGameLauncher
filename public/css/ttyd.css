@@ -45,6 +45,30 @@ body
     top: 465px;
 }
 
+#enemy1
+{
+    visibility: hidden;
+    height: 0px;
+    width: 0px;
+    position: absolute;
+}
+
+#enemy2
+{
+    visibility: hidden;
+    height: 0px;
+    width: 0px;
+    position: absolute;
+}
+
+#enemy3
+{
+    visibility: hidden;
+    height: 0px;
+    width: 0px;
+    position: absolute;
+}
+
 #splash
 {
     position: fixed; top: 0; left: 0; z-index: 999;
