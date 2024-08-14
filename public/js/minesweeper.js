@@ -1,14 +1,14 @@
 //minesweeper functions
-const EASY_TILES_WIDTH = 8;
-const EASY_TILES_HEIGHT = 10;
+const EASY_TILES_WIDTH = 10;
+const EASY_TILES_HEIGHT = 8;
 const EASY_MINES = 20;
 
-const MEDIUM_TILES_WIDTH = 15;
-const MEDIUM_TILES_HEIGHT = 20;
+const MEDIUM_TILES_WIDTH = 20;
+const MEDIUM_TILES_HEIGHT = 15;
 const MEDIUM_MINES = 40;
 
-const HARD_TILES_WIDTH = 20;
-const HARD_TILES_HEIGHT = 25;
+const HARD_TILES_WIDTH = 25;
+const HARD_TILES_HEIGHT = 20;
 const HARD_MINES = 99;
 
 let difficulty = 0;
@@ -77,14 +77,15 @@ function createBoard(strDifficulty) {
 
 function generateTilesDifficulty(difficultyWidth, difficultyHeight) {
     mineArray = Array.from(Array(difficultyWidth), () => new Array(difficultyHeight));
-    for (let i = 0; i < difficultyWidth; i++) {
-        for (let j = 0; j < difficultyHeight; j++) {
+    for (let j = 0; j < difficultyHeight; j++) {
+        for (let i = 0; i < difficultyWidth; i++) {
 
             mineArray[i][j] = false;
             let tile = document.createElement("button");
             let idName = "tile" + i + "," + j;
             tile.id = idName;
             tile.className = "tile";
+            tile.innerText = "";
             tile.addEventListener("mousedown", clickTile);
             document.getElementById("board").appendChild(tile);
         }
@@ -101,6 +102,9 @@ function generateMines() {
             else {
                 i++
                 mineArray[width][height] = true;
+
+                tempTile = document.getElementById("tile" + width + "," + height);
+                tempTile.classList.add("tileBomb");
             }
         }
     } else if (difficulty == 1) {
@@ -115,8 +119,8 @@ function generateMines() {
         }
     } else if (difficulty == 2) {
         while (i < HARD_MINES) {
-            let width = getRandomInt(HARD_TILES_WIDTH);
-            let height = getRandomInt(HARD_TILES_HEIGHT);
+            let width  = getRandomInt(HARD_TILES_WIDTH);
+            let height= getRandomInt(HARD_TILES_HEIGHT);
             if (mineArray[width][height]);
             else {
                 i++
@@ -124,15 +128,16 @@ function generateMines() {
             }
         }
     }
-
-
+                    // consol log HERE ---------------------------
+                    console.log("mine,",mineArray);
 }
+
 
 function clickTile() {
     if (!firstClick) timer.start();
     let tempTile = document.getElementById(this.id);
     let tileNum = this.id.substr(4);
-    console.log(tileNum);
+    console.log("myClick",tileNum);
     let nums = tileNum.split(',');
     let x = nums[0];
     let y = nums[1];
@@ -142,8 +147,9 @@ function clickTile() {
     } else {
         tempTile.classList.add("tileClear");
         //console.log(x,y);
-        //let num = checkNearbyMines(x,y);
-        //tempTile.setValue = num;
+        let num = checkNearby(x,y);
+        
+        tempTile.innerText = num;
         tempTile.disabled = true;
 
     }
@@ -151,35 +157,53 @@ function clickTile() {
 }
 
 
-function flagTile() {
-    let tempTile = document.getElementById(this.id);
-    tempTile.classList.add("tileFlagged");
+// function flagTile() {
+//     let tempTile = document.getElementById(this.id);
+//     tempTile.classList.add("tileFlagged");
 
-}
-
-// function findNearbyMines(x, y) {
-
-//     mineCount = checkNearbyMines(x, y);
-//     return mineCount;
 // }
 
-function checkNearbyMines(x, y) {
+
+function checkNearby(x, y) {
     let nearbyMineCount = 0;
-    //console.log(mineArray[x][y]);
-    if (x < 0 || x >= mineArray.length || y < 0 || y >= mineArray[0].length) {
+
+    x = parseInt(x);
+    y = parseInt(y);
+    
+    
+    if (findMines(x - 1, y + 1)) nearbyMineCount++;
+    if (findMines(x - 1, y - 1)) nearbyMineCount++;
+    if (findMines(x + 1, y - 1)) nearbyMineCount++;
+    if (findMines(x + 1, y + 1)) nearbyMineCount++;
+    if (findMines(x - 1, y)) nearbyMineCount++;
+    if (findMines(x + 1, y)) nearbyMineCount++;
+    if (findMines(x, y - 1)) nearbyMineCount++;
+    if (findMines(x, y + 1)) nearbyMineCount++;
+    
+
+    return nearbyMineCount;
+}
+
+
+function findMines(newX, newY) {
+    if (newX < 0 || newX >= mineArray.length || newY < 0 || newY >= mineArray[0].length) {
+        return false;
+    }
+
+    if (mineArray[newX][newY]) return true;
+    else return false;
+}
+
+function findMinesTest(newX, newY) {
+    console.log(newX,newY);
+    if (newX < 0 || newX >= mineArray.length || newY < 0 || newY >= mineArray[0].length) {
         return;
     }
 
-    if (mineArray[x - 1][y - 1]) nearbyMineCount++;
-    if (mineArray[x + 1][y - 1]) nearbyMineCount++;
-    if (mineArray[x + 1][y + 1]) nearbyMineCount++;
-    if (mineArray[x - 1][y + 1]) nearbyMineCount++;
-    if (mineArray[x - 1][y]) nearbyMineCount++;
-    if (mineArray[x + 1][y]) nearbyMineCount++;
-    if (mineArray[x][y - 1]) nearbyMineCount++;
-    if (mineArray[x][y + 1]) nearbyMineCount++;
-
-    return nearbyMineCount;
+    if (mineArray[newX][newY]){ 
+        console.log("mineNear",newX,newY);
+        return true;}
+    else return false;
 }
 
 // function floodFill(x,y) {
@@ -207,7 +231,6 @@ function checkNearbyMines(x, y) {
 function onGameOver() {
     timer.stop();
     let tempTile;
-
     for (let i = 0; i < mineArray.length; i++) {
         for (let j = 0; j < mineArray[i].length; j++) {
             tempTile = document.getElementById("tile" + i + "," + j);
