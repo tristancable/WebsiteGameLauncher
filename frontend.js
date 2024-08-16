@@ -1,4 +1,5 @@
 const express = require('express');
+const session = require('express-session');
 const path = require('path');
 
 const port = 1224;
@@ -35,12 +36,9 @@ app.get('/login', (req, res) => {
 });
 
 app.post('/login', async (req, res) => {
-    console.log("Handle the submission of the form!");
-    console.log("Submitted Values:", req.body);
-
-    let user = req.body;
-    let url = "http://localhost:1225/login";
-    let options = {
+    const user = req.body;
+    const url = "http://localhost:1225/login";
+    const options = {
         method: "POST",
         headers: {
             "Content-Type": "application/json"
@@ -49,12 +47,22 @@ app.post('/login', async (req, res) => {
     };
 
     try {
-        let response = await fetch(url, options);
-    } catch (error) {
-        console.error("Error logging in:", error);
-    }
+        const response = await fetch(url, options);
+        const data = await response.json();
 
-    res.redirect('/login');
+        if (response.ok) {
+            // req.session.username = user.username;
+            res.redirect('/');
+        } else {
+            if (data.passwordError) {
+                res.render('login', { passwordError: data.passwordError });
+            } else if (data.error) {
+                res.render('login', { error: data.error });
+            }
+        }
+    } catch (error) {
+        res.render('login', { error: 'Error logging in' });
+    }
 });
 
 app.get('/register', (req, res) => {
