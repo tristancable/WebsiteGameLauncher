@@ -34,14 +34,15 @@ function resetGame() {
     difficulty = dropDown.value;
     let barWidth;
     if (difficulty == 0) {
-        tempMineCount.innerText = "Mines: " + EASY_MINES;
-        barWidth = "250px";
+        //tempMineCount.innerText = "Mines: " + EASY_MINES;
+        tempMineCount.innerText = EASY_MINES;
+        barWidth = "254px";  //the width is wac _________________________
     } else if (difficulty == 1) {
-        barWidth = "500px";
-        tempMineCount.innerText = "Mines: " + MEDIUM_MINES;
+        barWidth = "504px";
+        tempMineCount.innerText = MEDIUM_MINES;
     } else if (difficulty == 2) {
-        barWidth = "625px";
-        tempMineCount.innerText = "Mines: " + HARD_MINES;
+        barWidth = "629px";
+        tempMineCount.innerText = HARD_MINES;
     }
     if (document.getElementById("board")) document.getElementById("board").remove();
     document.getElementById("topBar").style.width = barWidth;
@@ -146,12 +147,16 @@ function clickTile() {
         onGameOver();
     } else {
         tempTile.classList.add("tileClear");
-        //console.log(x,y);
-        let num = checkNearby(x,y);
-        
-        tempTile.innerText = num;
-        tempTile.disabled = true;
 
+        let num = checkNearby(x,y);
+
+        if (num == 0) {
+            tempTile.innerText = "";
+            clearChunk(x,y);
+        } else {
+            tempTile.innerText = num;
+        }
+        tempTile.disabled = true;
     }
     firstClick = true; // cant click bomb 1st click
 }
@@ -180,8 +185,29 @@ function checkNearby(x, y) {
     if (findMines(x, y - 1)) nearbyMineCount++;
     if (findMines(x, y + 1)) nearbyMineCount++;
     
-
     return nearbyMineCount;
+}
+
+
+function clearChunk(x, y) {
+    let tempTile = document.getElementById("tile" + x + "," + y);
+
+    x = parseInt(x);
+    y = parseInt(y);
+
+    let nearby = checkNearby(x,y);
+    if (x < 0 || x >= mineArray.length || y < 0 || y >= mineArray[0].length || mineArray[x][y] || !(nearby == 0)) {
+        return;
+    }
+    if (nearby == 0) {
+        tempTile.classList.add("tileClear");
+        tempTile.innerText = "";
+    }
+
+    clearChunk(x - 1, y);
+    clearChunk(x + 1, y);
+    clearChunk(x, y - 1);
+    clearChunk(x, y + 1);
 }
 
 
@@ -205,27 +231,6 @@ function findMinesTest(newX, newY) {
         return true;}
     else return false;
 }
-
-// function floodFill(x,y) {
-//     let nearbyMineCount = 0;
-//     //console.log(mineArray[x][y]);
-//     if (x < 0 || x >= floodFill.length || y < 0 || y >= floodFill[0].length ||
-//         mineArray[x][y]) {
-//     return;
-//     }
-
-//     if (floodFill(x + 1, y + 1)) nearbyMineCount++;
-//     if (floodFill(x - 1, y - 1)) nearbyMineCount++;
-//     if (floodFill(x - 1, y + 1)) nearbyMineCount++;
-//     if (floodFill(x + 1, y - 1)) nearbyMineCount++;
-//     if (floodFill(x - 1, y)) nearbyMineCount++;
-//     if (floodFill(x + 1, y)) nearbyMineCount++;
-//     if (floodFill(x, y - 1)) nearbyMineCount++;
-//     if (floodFill(x, y + 1)) nearbyMineCount++;
-
-//     return nearbyMineCount;
-// }
-
 
 
 function onGameOver() {
