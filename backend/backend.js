@@ -18,42 +18,33 @@ let sessionOptions = {
 app.use(session(sessionOptions));
 
 app.set('view engine', 'ejs');
-app.set('views', path.join(__dirname, 'views'));
+app.set('views', path.join(__dirname, '..', 'views'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
-app.use(express.static('public'));
+app.use(express.static(path.join(__dirname, '..', 'public')));
 app.use(cors());
 
-app.get('/login', (req, res) => {
-    console.log("LOGIN REQUEST", req.session.username);
-
-    return res.render('https://localhost:1224/login');
-});
-
 app.get('/register', (req, res) => {
-    console.log("REGISTER REQUEST");
-
-    return res.render('https://localhost:1224/register');
+    res.render('register', { error: req.query.error });
 });
 
 app.post('/register', async (req, res) => {
-    console.log("REGISTER POSTED", req.body);
+    let username = req.body.username;
+    let password = req.body.password;
 
     try {
-        const { username, password } = req.body;
-        const findUser = await DAL.findUserByUsername(username);
-
-        if (findUser) {
-            return res.status(400).send('That username already exists.');
+        const existingUser = await DAL.findUser(username);
+        if (existingUser) {
+            return res.status(400).json({ error: 'Username already exists' });
         }
 
         const hashedPassword = await bcrypt.hash(password, saltRounds);
-        await DAL.createUser({ username, password: hashedPassword });
-
-        res.status(200).send('Registration successful');
+        password = hashedPassword;
+        await DAL.createUser(req.body);
+        res.status(201).json({ message: 'User registered successfully' });
     } catch (error) {
-        console.error("Error creating user:", error);
-        res.status(500).send("Error creating user");
+        console.error('Error registering user:', error);
+        res.status(500).json({ error: 'Error registering user' });
     }
 });
 

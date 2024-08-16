@@ -33,7 +33,7 @@ exports.DAL = {
             const userCollection = database.collection("users");
             const result = await userCollection.insertOne(userData);
 
-            console.log(`${result.insertedCount} documents were inserted`);
+            console.log(`Documents were inserted`);
         } finally {
             await client.close();
         }
