@@ -206,3 +206,10 @@ hr {
 #login:hover {
     opacity: 1;
 }
+
+#points {
+    margin: 5px;
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+}
