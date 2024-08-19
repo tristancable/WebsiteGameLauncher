@@ -51,6 +51,8 @@ body
     height: 0px;
     width: 0px;
     position: absolute;
+    right: 100px;
+    top: 0px;
 }
 
 #enemy2
@@ -59,6 +61,8 @@ body
     height: 0px;
     width: 0px;
     position: absolute;
+    right: 100px;
+    top: 0px;
 }
 
 #enemy3
@@ -67,6 +71,8 @@ body
     height: 0px;
     width: 0px;
     position: absolute;
+    right: 100px;
+    top: 0px;
 }
 
 #splash
