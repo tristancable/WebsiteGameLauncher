@@ -377,13 +377,228 @@ const elementsData = [
         initialWeight: 159,
         isotopes: ['Rhenium-159', 'Rhenium-160', 'Rhenium-161', 'Rhenium-162', 'Rhenium-163', 'Rhenium-164', 'Rhenium-165', 'Rhenium-166', 'Rhenium-167', 'Rhenium-168', 'Rhenium-169', 'Rhenium-170', 'Rhenium-171', 'Rhenium-172', 'Rhenium-173', 'Rhenium-174', 'Rhenium-175', 'Rhenium-176', 'Rhenium-177', 'Rhenium-178', 'Rhenium-179', 'Rhenium-180', 'Rhenium-181', 'Rhenium-182', 'Rhenium-183', 'Rhenium-184', 'Rhenium-185', 'Rhenium-186', 'Rhenium-187', 'Rhenium-188', 'Rhenium-189', 'Rhenium-190', 'Rhenium-191', 'Rhenium-192', 'Rhenium-193', 'Rhenium-194'],
         isotopeWeights: [159, 160, 161, 162, 163, 164, 165, 166, 167, 168, 169, 170, 171, 172, 173, 174, 175, 176, 177, 178, 179, 180, 181, 182, 183, 184, 185, 186, 187, 188, 189, 190, 191, 192, 193, 194]
+    },
+    {
+        initialWeight: 160,
+        isotopes: ['Osmium-160', 'Osmium-161', 'Osmium-162', 'Osmium-163', 'Osmium-164', 'Osmium-165', 'Osmium-166', 'Osmium-167', 'Osmium-168', 'Osmium-169', 'Osmium-170', 'Osmium-171', 'Osmium-172', 'Osmium-173', 'Osmium-174', 'Osmium-175', 'Osmium-176', 'Osmium-177', 'Osmium-178', 'Osmium-179', 'Osmium-180', 'Osmium-181', 'Osmium-182', 'Osmium-183', 'Osmium-184', 'Osmium-185', 'Osmium-186', 'Osmium-187', 'Osmium-188', 'Osmium-189', 'Osmium-190', 'Osmium-191', 'Osmium-192', 'Osmium-193', 'Osmium-194', 'Osmium-195', 'Osmium-196', 'Osmium-197', 'Osmium-198', 'Osmium-199', 'Osmium-200', 'Osmium-201', 'Osmium-202', 'Osmium-203'],
+        isotopeWeights: [160, 161, 162, 163, 164, 165, 166, 167, 168, 169, 170, 171, 172, 173, 174, 175, 176, 177, 178, 179, 180, 181, 182, 183, 184, 185, 186, 187, 188, 189, 190, 191, 192, 193, 194, 195, 196, 197, 198, 199, 200, 201, 202, 203]
+    },
+    {
+        initialWeight: 164,
+        isotopes: ['Iridium-164', 'Iridium-165', 'Iridium-166', 'Iridium-167', 'Iridium-168', 'Iridium-169', 'Iridium-170', 'Iridium-171', 'Iridium-172', 'Iridium-173', 'Iridium-174', 'Iridium-175', 'Iridium-176', 'Iridium-177', 'Iridium-178', 'Iridium-179', 'Iridium-180', 'Iridium-181', 'Iridium-182', 'Iridium-183', 'Iridium-184', 'Iridium-185', 'Iridium-186', 'Iridium-187', 'Iridium-188', 'Iridium-189', 'Iridium-190', 'Iridium-191', 'Iridium-192', 'Iridium-193', 'Iridium-194', 'Iridium-195', 'Iridium-196', 'Iridium-197', 'Iridium-198', 'Iridium-199', 'Iridium-200', 'Iridium-201', 'Iridium-202'],
+        isotopeWeights: [164, 165, 166, 167, 168, 169, 170, 171, 172, 173, 174, 175, 176, 177, 178, 179, 180, 181, 182, 183, 184, 185, 186, 187, 188, 189, 190, 191, 192, 193, 194, 195, 196, 197, 198, 199, 200, 201, 202]
+    },
+    {
+        initialWeight: 165,
+        isotopes: ['Platinum-165', 'Platinum-166', 'Platinum-167', 'Platinum-168', 'Platinum-169', 'Platinum-170', 'Platinum-171', 'Platinum-172', 'Platinum-173', 'Platinum-174', 'Platinum-175', 'Platinum-176', 'Platinum-177', 'Platinum-178', 'Platinum-179', 'Platinum-180', 'Platinum-181', 'Platinum-182', 'Platinum-183', 'Platinum-184', 'Platinum-185', 'Platinum-186', 'Platinum-187', 'Platinum-188', 'Platinum-189', 'Platinum-190', 'Platinum-191', 'Platinum-192', 'Platinum-193', 'Platinum-194', 'Platinum-195', 'Platinum-196', 'Platinum-197', 'Platinum-198', 'Platinum-199', 'Platinum-200', 'Platinum-201', 'Platinum-202', 'Platinum-203', 'Platinum-204', 'Platinum-205', 'Platinum-206', 'Platinum-207', 'Platinum-208'],
+        isotopeWeights: [165, 166, 167, 168, 169, 170, 171, 172, 173, 174, 175, 176, 177, 178, 179, 180, 181, 182, 183, 184, 185, 186, 187, 188, 189, 190, 191, 192, 193, 194, 195, 196, 197, 198, 199, 200, 201, 202, 203, 204, 205, 206, 207, 208]
+    },
+    {
+        initialWeight: 170,
+        isotopes: ['Gold-170', 'Gold-171', 'Gold-172', 'Gold-173', 'Gold-174', 'Gold-175', 'Gold-176', 'Gold-177', 'Gold-178', 'Gold-179', 'Gold-180', 'Gold-181', 'Gold-182', 'Gold-183', 'Gold-184', 'Gold-185', 'Gold-186', 'Gold-187', 'Gold-188', 'Gold-189', 'Gold-190', 'Gold-191', 'Gold-192', 'Gold-193', 'Gold-194', 'Gold-195', 'Gold-196', 'Gold-197', 'Gold-198', 'Gold-199', 'Gold-200', 'Gold-201', 'Gold-202', 'Gold-203', 'Gold-204', 'Gold-205', 'Gold-206', 'Gold-207', 'Gold-208', 'Gold-209', 'Gold-210'],
+        isotopeWeights: [170, 171, 172, 173, 174, 175, 176, 177, 178, 179, 180, 181, 182, 183, 184, 185, 186, 187, 188, 189, 190, 191, 192, 193, 194, 195, 196, 197, 198, 199, 200, 201, 202, 203, 204, 205, 206, 207, 208, 209, 210]
+    },
+    {
+        initialWeight: 170,
+        isotopes: ['Mercury-170', 'Mercury-171', 'Mercury-172', 'Mercury-173', 'Mercury-174', 'Mercury-175', 'Mercury-176', 'Mercury-177', 'Mercury-178', 'Mercury-179', 'Mercury-180', 'Mercury-181', 'Mercury-182', 'Mercury-183', 'Mercury-184', 'Mercury-185', 'Mercury-186', 'Mercury-187', 'Mercury-188', 'Mercury-189', 'Mercury-190', 'Mercury-191', 'Mercury-192', 'Mercury-193', 'Mercury-194', 'Mercury-195', 'Mercury-196', 'Mercury-197', 'Mercury-198', 'Mercury-199', 'Mercury-200', 'Mercury-201', 'Mercury-202', 'Mercury-203', 'Mercury-204', 'Mercury-205', 'Mercury-206', 'Mercury-207', 'Mercury-208', 'Mercury-209', 'Mercury-210', 'Mercury-211', 'Mercury-212', 'Mercury-213', 'Mercury-214', 'Mercury-215', 'Mercury-216'],
+        isotopeWeights: [170, 171, 172, 173, 174, 175, 176, 177, 178, 179, 180, 181, 182, 183, 184, 185, 186, 187, 188, 189, 190, 191, 192, 193, 194, 195, 196, 197, 198, 199, 200, 201, 202, 203, 204, 205, 206, 207, 208, 209, 210, 211, 212, 213, 214, 215, 216]
+    },
+    {
+        initialWeight: 176,
+        isotopes: ['Thallium-176', 'Thallium-177', 'Thallium-178', 'Thallium-179', 'Thallium-180', 'Thallium-181', 'Thallium-182', 'Thallium-183', 'Thallium-184', 'Thallium-185', 'Thallium-186', 'Thallium-187', 'Thallium-188', 'Thallium-189', 'Thallium-190', 'Thallium-191', 'Thallium-192', 'Thallium-193', 'Thallium-194', 'Thallium-195', 'Thallium-196', 'Thallium-197', 'Thallium-198', 'Thallium-199', 'Thallium-200', 'Thallium-201', 'Thallium-202', 'Thallium-203', 'Thallium-204', 'Thallium-205', 'Thallium-206 (Radium E)', 'Thallium-207 (Actinium C)', 'Thallium-208 (Thorium C")', 'Thallium-209', 'Thallium-210 (Radium C")', 'Thallium-211', 'Thallium-212', 'Thallium-213', 'Thallium-214', 'Thallium-215', 'Thallium-216'],
+        isotopeWeights: [176, 177, 178, 179, 180, 181, 182, 183, 184, 185, 186, 187, 188, 189, 190, 191, 192, 193, 194, 195, 196, 197, 198, 199, 200, 201, 202, 203, 204, 205, 206, 207, 208, 209, 210, 211, 212, 213, 214, 215, 216]
+    },
+    {
+        initialWeight: 178,
+        isotopes: ['Lead-178', 'Lead-179', 'Lead-180', 'Lead-181', 'Lead-182', 'Lead-183', 'Lead-184', 'Lead-185', 'Lead-186', 'Lead-187', 'Lead-188', 'Lead-189', 'Lead-190', 'Lead-191', 'Lead-192', 'Lead-193', 'Lead-194', 'Lead-195', 'Lead-196', 'Lead-197', 'Lead-198', 'Lead-199', 'Lead-200', 'Lead-201', 'Lead-202', 'Lead-203', 'Lead-204', 'Lead-205', 'Lead-206 (Radium G)', 'Lead-207 (Actinium D)', 'Lead-208 (Thorium D)', 'Lead-209', 'Lead-210 (Radium D/Radiolead/Radio-lead)', 'Lead-211 (Actinium B)', 'Lead-212 (Thorium B)', 'Lead-213', 'Lead-214 (Thorium B)', 'Lead-215', 'Lead-216', 'Lead-217', 'Lead-218'],
+        isotopeWeights: [178, 179, 180, 181, 182, 183, 184, 185, 186, 187, 188, 189, 190, 191, 192, 193, 194, 195, 196, 197, 198, 199, 200, 201, 202, 203, 204, 205, 206, 207, 208, 209, 210, 211, 212, 213, 214, 215, 216, 217, 218]
+    },
+    {
+        initialWeight: 184,
+        isotopes: ['Bismuth-184', 'Bismuth-185', 'Bismuth-186', 'Bismuth-187', 'Bismuth-188', 'Bismuth-189', 'Bismuth-190', 'Bismuth-191', 'Bismuth-192', 'Bismuth-193', 'Bismuth-194', 'Bismuth-195', 'Bismuth-196', 'Bismuth-197', 'Bismuth-198', 'Bismuth-199', 'Bismuth-200', 'Bismuth-201', 'Bismuth-202', 'Bismuth-203', 'Bismuth-204', 'Bismuth-205', 'Bismuth-206', 'Bismuth-207', 'Bismuth-208', 'Bismuth-209', 'Bismuth-210 (Radium E)', 'Bismuth-211 (Actinium C)', 'Bismuth-212 (Thorium C)', 'Bismuth-213', 'Bismuth-214 (Radium C)', 'Bismuth-215', 'Bismuth-216', 'Bismuth-217', 'Bismuth-218', 'Bismuth-219', 'Bismuth-220', 'Bismuth-221', 'Bismuth-222', 'Bismuth-223', 'Bismuth-224'],
+        isotopeWeights: [184, 185, 186, 187, 188, 189, 190, 191, 192, 193, 194, 195, 196, 197, 198, 199, 200, 201, 202, 203, 204, 205, 206, 207, 208, 209, 210, 211, 212, 213, 214, 215, 216, 217, 218, 219, 220, 221, 222, 223, 224]
+    },
+    {
+        initialWeight: 186,
+        isotopes: ['Polonium-186', 'Polonium-187', 'Polonium-188', 'Polonium-189', 'Polonium-190', 'Polonium-191', 'Polonium-192', 'Polonium-193', 'Polonium-194', 'Polonium-195', 'Polonium-196', 'Polonium-197', 'Polonium-198', 'Polonium-199', 'Polonium-200', 'Polonium-201', 'Polonium-202', 'Polonium-203', 'Polonium-204', 'Polonium-205', 'Polonium-206', 'Polonium-207', 'Polonium-208', 'Polonium-209', 'Polonium-210 (Radium F)', 'Polonium-211 (Actinium C\')', 'Polonium-212 (Thorium C\')', 'Polonium-213', 'Polonium-214 (Radium C\')', 'Polonium-215 (Actinium A)', 'Polonium-216 (Thorium A)', 'Polonium-217', 'Polonium-218 (Radium A)', 'Polonium-219', 'Polonium-220', 'Polonium-221', 'Polonium-222', 'Polonium-223', 'Polonium-224', 'Polonium-225', 'Polonium-226', 'Polonium-227'],
+        isotopeWeights: [186, 187, 188, 189, 190, 191, 192, 193, 194, 195, 196, 197, 198, 199, 200, 201, 202, 203, 204, 205, 206, 207, 208, 209, 210, 211, 212, 213, 214, 215, 216, 217, 218, 219, 220, 221, 222, 223, 224, 225, 226, 227]
+    },
+    {
+        initialWeight: 188,
+        isotopes: ['Astatine-188', 'Astatine-190', 'Astatine-191', 'Astatine-192', 'Astatine-193', 'Astatine-194', 'Astatine-195', 'Astatine-196', 'Astatine-197', 'Astatine-198', 'Astatine-199', 'Astatine-200', 'Astatine-201', 'Astatine-202', 'Astatine-203', 'Astatine-204', 'Astatine-205', 'Astatine-206', 'Astatine-207', 'Astatine-208', 'Astatine-209', 'Astatine-210', 'Astatine-211', 'Astatine-212', 'Astatine-213', 'Astatine-214', 'Astatine-215', 'Astatine-216', 'Astatine-217', 'Astatine-218', 'Astatine-219', 'Astatine-220', 'Astatine-221', 'Astatine-222', 'Astatine-223', 'Astatine-224', 'Astatine-225', 'Astatine-226', 'Astatine-227', 'Astatine-228', 'Astatine-229'],
+        isotopeWeights: [188, 190, 191, 192, 193, 194, 195, 196, 197, 198, 199, 200, 201, 202, 203, 204, 205, 206, 207, 208, 209, 210, 211, 212, 213, 214, 215, 216, 217, 218, 219, 220, 221, 222, 223, 224, 225, 226, 227, 228, 229]
+    },
+    {
+        initialWeight: 193,
+        isotopes: ['Radon-193', 'Radon-194', 'Radon-195', 'Radon-196', 'Radon-197', 'Radon-198', 'Radon-199', 'Radon-200', 'Radon-201', 'Radon-202', 'Radon-203', 'Radon-204', 'Radon-205', 'Radon-206', 'Radon-207', 'Radon-208', 'Radon-209', 'Radon-210', 'Radon-211', 'Radon-212', 'Radon-213', 'Radon-214', 'Radon-215', 'Radon-216', 'Radon-217', 'Radon-218', 'Radon-219 (Actinon/Actinium emanation', 'Radon-220 (Thoron/Thorium emanation)', 'Radon-221', 'Radon-222 (Radon/Radium emanation/Emanation/Emanon/Niton', 'Radon-223', 'Radon-224', 'Radon-225', 'Radon-226', 'Radon-227', 'Radon-228', 'Radon-229', 'Radon-230', 'Radon-231'],
+        isotopeWeights: [193, 194, 195, 196, 197, 198, 199, 200, 201, 202, 203, 204, 205, 206, 207, 208, 209, 210, 211, 212, 213, 214, 215, 216, 217, 218, 219, 220, 221, 222, 223, 224, 225, 226, 227, 228, 229, 230, 231]
+    },
+    {
+        initialWeight: 197,
+        isotopes: ['Francium-197', 'Francium-198', 'Francium-199', 'Francium-200', 'Francium-201', 'Francium-202', 'Francium-203', 'Francium-204', 'Francium-205', 'Francium-206', 'Francium-207', 'Francium-208', 'Francium-209', 'Francium-210', 'Francium-211', 'Francium-212', 'Francium-213', 'Francium-214', 'Francium-215', 'Francium-216', 'Francium-217', 'Francium-218', 'Francium-219', 'Francium-220', 'Francium-221', 'Francium-222', 'Francium-223 (Actinium K)', 'Francium-224', 'Francium-225', 'Francium-226', 'Francium-227', 'Francium-228', 'Francium-229', 'Francium-230', 'Francium-231', 'Francium-232', 'Francium-233'],
+        isotopeWeights: [197, 198, 199, 200, 201, 202, 203, 204, 205, 206, 207, 208, 209, 210, 211, 212, 213, 214, 215, 216, 217, 218, 219, 220, 221, 222, 223, 224, 225, 226, 227, 228, 229, 230, 231, 232, 233]
+    },
+    {
+        initialWeight: 201,
+        isotopes: ['Radium-201', 'Radium-202', 'Radium-203', 'Radium-204', 'Radium-205', 'Radium-206', 'Radium-207', 'Radium-208', 'Radium-209', 'Radium-210', 'Radium-211', 'Radium-212', 'Radium-213', 'Radium-214', 'Radium-215', 'Radium-216', 'Radium-217', 'Radium-218', 'Radium-219', 'Radium-220', 'Radium-221', 'Radium-222', 'Radium-223 (Actinium X)', 'Radium-224 (Thorium X)', 'Radium-225', 'Radium-226 (Radium)', 'Radium-227', 'Radium-228 (Mesothorium 1)', 'Radium-229', 'Radium-230', 'Radium-231', 'Radium-232', 'Radium-233', 'Radium-234'],
+        isotopeWeights: [201, 202, 203, 204, 205, 206, 207, 208, 209, 210, 211, 212, 213, 214, 215, 216, 217, 218, 219, 220, 221, 222, 223, 224, 225, 226, 227, 228, 229, 230, 231, 232, 233, 234]
+    },
+    {
+        initialWeight: 203,
+        isotopes: ['Actinium-203', 'Actinium-204', 'Actinium-205', 'Actinium-206', 'Actinium-207', 'Actinium-208', 'Actinium-209', 'Actinium-210', 'Actinium-211', 'Actinium-212', 'Actinium-213', 'Actinium-214', 'Actinium-215', 'Actinium-216', 'Actinium-217', 'Actinium-218', 'Actinium-219', 'Actinium-220', 'Actinium-221', 'Actinium-222', 'Actinium-223', 'Actinium-224', 'Actinium-225', 'Actinium-226', 'Actinium-227 (Actinium)', 'Actinium-228 (Mesothorium 2)', 'Actinium-229', 'Actinium-230', 'Actinium-231', 'Actinium-232', 'Actinium-233', 'Actinium-234', 'Actinium-235', 'Actinium-236'],
+        isotopeWeights: [203, 204, 205, 206, 207, 208, 209, 210, 211, 212, 213, 214, 215, 216, 217, 218, 219, 220, 221, 222, 223, 224, 225, 226, 227, 228, 229, 230, 231, 232, 233, 234, 235, 236]
+    },
+    {
+        initialWeight: 207,
+        isotopes: ['Thorium-207', 'Thorium-208', 'Thorium-209', 'Thorium-210', 'Thorium-211', 'Thorium-212', 'Thorium-213', 'Thorium-214', 'Thorium-215', 'Thorium-216', 'Thorium-217', 'Thorium-218', 'Thorium-219', 'Thorium-220', 'Thorium-221', 'Thorium-222', 'Thorium-223', 'Thorium-224', 'Thorium-225', 'Thorium-226', 'Thorium-227 (Radioactinium)', 'Thorium-228 (Radiothorium)', 'Thorium-229', 'Thorium-230 (Ionium)', 'Thorium-231 (Uranium Y)', 'Thorium-232 (Thorium)', 'Thorium-233', 'Thorium-234 (Uranium X₁)', 'Thorium-235', 'Thorium-236', 'Thorium-237', 'Thorium-238'],
+        isotopeWeights: [207, 208, 209, 210, 211, 212, 213, 214, 215, 216, 217, 218, 219, 220, 221, 222, 223, 224, 225, 226, 227, 228, 229, 230, 231, 232, 233, 234, 235, 236, 237, 238]
+    },
+    {
+        initialWeight: 211,
+        isotopes: ['Protactinium-211', 'Protactinium-212', 'Protactinium-213', 'Protactinium-214', 'Protactinium-215', 'Protactinium-216', 'Protactinium-217', 'Protactinium-218', 'Protactinium-219', 'Protactinium-220', 'Protactinium-221', 'Protactinium-222', 'Protactinium-223', 'Protactinium-224', 'Protactinium-225', 'Protactinium-226', 'Protactinium-227', 'Protactinium-228', 'Protactinium-229', 'Protactinium-230', 'Protactinium-231 (Protoactinium)', 'Protactinium-232', 'Protactinium-233', 'Protactinium-234(m) (Uranium Z/Uranium X₂/Brevium)', 'Protactinium-235', 'Protactinium-236', 'Protactinium-237', 'Protactinium-238', 'Protactinium-239'],
+        isotopeWeights: [211, 212, 213, 214, 215, 216, 217, 218, 219, 220, 221, 222, 223, 224, 225, 226, 227, 228, 229, 230, 231, 232, 233, 234, 235, 236, 237, 238, 239]
+    },
+    {
+        initialWeight: 214,
+        isotopes: ['Uranium-214', 'Uranium-215', 'Uranium-216', 'Uranium-217', 'Uranium-218', 'Uranium-219', 'Uranium-221', 'Uranium-222', 'Uranium-223', 'Uranium-224', 'Uranium-225', 'Uranium-226', 'Uranium-227', 'Uranium-228', 'Uranium-229', 'Uranium-230', 'Uranium-231', 'Uranium-232', 'Uranium-233', 'Uranium-234 (Uranium II)', 'Uranium-235 (Actin Uranium/Actino-Uranium)', 'Uranium-236 (Thoruranium)', 'Uranium-237', 'Uranium-238 (Uranium I)', 'Uranium-239', 'Uranium-240', 'Uranium-241', 'Uranium-242'],
+        isotopeWeights: [214, 215, 216, 217, 218, 219, 221, 222, 223, 224, 225, 226, 227, 228, 229, 230, 231, 232, 233, 234, 235, 236, 237, 238, 239, 240, 241, 242]
+    },
+    {
+        initialWeight: 219,
+        isotopes: ['Neptunium-219', 'Neptunium-220', 'Neptunium-222', 'Neptunium-223', 'Neptunium-234', 'Neptunium-235', 'Neptunium-236', 'Neptunium-237', 'Neptunium-238', 'Neptunium-239', 'Neptunium-240', 'Neptunium-241', 'Neptunium-242', 'Neptunium-243', 'Neptunium-244'],
+        isotopeWeights: [219, 220, 222, 223, 224, 225, 226, 227, 228, 229, 230, 231, 232, 233, 234, 235, 236, 237, 238, 239, 240, 241, 242]
+    },
+    {
+        initialWeight: 228,
+        isotopes: ['Plutonium-228', 'Plutonium-229', 'Plutonium-230', 'Plutonium-231', 'Plutonium-232', 'Plutonium-233', 'Plutonium-234', 'Plutonium-235', 'Plutonium-236', 'Plutonium-237', 'Plutonium-238', 'Plutonium-239', 'Plutonium-240', 'Plutonium-241', 'Plutonium-242', 'Plutonium-243', 'Plutonium-244', 'Plutonium-245', 'Plutonium-246', 'Plutonium-247'],
+        isotopeWeights: [228, 229, 230, 231, 232, 233, 234, 235, 236, 237, 238, 239, 240, 241, 242, 243, 244, 245, 246, 247]
+    },
+    {
+        initialWeight: 223,
+        isotopes: ['Americium-223', 'Americium-229', 'Americium-230', 'Americium-232', 'Americium-233', 'Americium-234', 'Americium-235', 'Americium-236', 'Americium-237', 'Americium-238', 'Americium-239', 'Americium-240', 'Americium-241', 'Americium-242', 'Americium-243', 'Americium-244', 'Americium-245', 'Americium-246', 'Americium-247'],
+        isotopeWeights: [223, 229, 230, 232, 233, 234, 235, 236, 237, 238, 239, 240, 241, 242, 243, 244, 245, 246, 247]
+    },
+    {
+        initialWeight: 233,
+        isotopes: ['Curium-233', 'Curium-234', 'Curium-235', 'Curium-236', 'Curium-237', 'Curium-238', 'Curium-239', 'Curium-240', 'Curium-241', 'Curium-242', 'Curium-243', 'Curium-244', 'Curium-245', 'Curium-246', 'Curium-247', 'Curium-248', 'Curium-249', 'Curium-250', 'Curium-251'],
+        isotopeWeights: [233, 234, 235, 236, 237, 238, 239, 240, 241, 242, 243, 244, 245, 246, 247, 248, 249, 250, 251]
+    },
+    {
+        initialWeight: 233,
+        isotopes: ['Berkelium-233', 'Berkelium-234', 'Berkelium-236', 'Berkelium-238', 'Berkelium-239', 'Berkelium-240', 'Berkelium-241', 'Berkelium-242', 'Berkelium-243', 'Berkelium-244', 'Berkelium-245', 'Berkelium-246', 'Berkelium-247', 'Berkelium-248', 'Berkelium-249', 'Berkelium-250', 'Berkelium-251', 'Berkelium-252', 'Berkelium-253'],
+        isotopeWeights: [233, 234, 236, 238, 239, 240, 241, 242, 243, 244, 245, 246, 247, 248, 249, 250, 251, 252, 253]
+    },
+    {
+        initialWeight: 237,
+        isotopes: ['Californium-237', 'Californium-238', 'Californium-239', 'Californium-240', 'Californium-241', 'Californium-242', 'Californium-243', 'Californium-244', 'Californium-245', 'Californium-246', 'Californium-247', 'Californium-248', 'Californium-249', 'Californium-250', 'Californium-251', 'Californium-252', 'Californium-253', 'Californium-254', 'Californium-255', 'Californium-256'],
+        isotopeWeights: [237, 238, 239, 240, 241, 242, 243, 244, 245, 246, 247, 248, 249, 250, 251, 252, 253, 254, 255, 256]
+    },
+    {
+        initialWeight: 240,
+        isotopes: ['Einsteinium-240', 'Einsteinium-241', 'Einsteinium-242', 'Einsteinium-243', 'Einsteinium-244', 'Einsteinium-245', 'Einsteinium-246', 'Einsteinium-247', 'Einsteinium-248', 'Einsteinium-249', 'Einsteinium-250', 'Einsteinium-251', 'Einsteinium-252', 'Einsteinium-253', 'Einsteinium-254', 'Einsteinium-255', 'Einsteinium-256', 'Einsteinium-257'],
+        isotopeWeights: [240, 241, 242, 243, 244, 245, 246, 247, 248, 249, 250, 251, 252, 253, 254, 255, 256, 257]
+    },
+    {
+        initialWeight: 241,
+        isotopes: ['Fermium-241', 'Fermium-242', 'Fermium-243', 'Fermium-244', 'Fermium-245', 'Fermium-246', 'Fermium-247', 'Fermium-248', 'Fermium-249', 'Fermium-250', 'Fermium-251', 'Fermium-252', 'Fermium-253', 'Fermium-254', 'Fermium-255', 'Fermium-256', 'Fermium-257', 'Fermium-258', 'Fermium-259'],
+        isotopeWeights: [241, 242, 243, 244, 245, 246, 247, 248, 249, 250, 251, 252, 253, 254, 255, 256, 257, 258, 259]
+    },
+    {
+        initialWeight: 244,
+        isotopes: ['Mendelevium-244', 'Mendelevium-245', 'Mendelevium-246', 'Mendelevium-247', 'Mendelevium-248', 'Mendelevium-249', 'Mendelevium-250', 'Mendelevium-251', 'Mendelevium-252', 'Mendelevium-253', 'Mendelevium-254', 'Mendelevium-255', 'Mendelevium-256', 'Mendelevium-257', 'Mendelevium-258', 'Mendelevium-259', 'Mendelevium-260'],
+        isotopeWeights: [244, 245, 246, 247, 248, 249, 250, 251, 252, 253, 254, 255, 256, 257, 258, 259, 260]
+    },
+    {
+        initialWeight: 248,
+        isotopes: ['Nobelium-248', 'Nobelium-249', 'Nobelium-250', 'Nobelium-251', 'Nobelium-252', 'Nobelium-253', 'Nobelium-254', 'Nobelium-255', 'Nobelium-256', 'Nobelium-257', 'Nobelium-258', 'Nobelium-259', 'Nobelium-260', 'Nobelium-262'],
+        isotopeWeights: [248, 249, 250, 251, 252, 253, 254, 255, 256, 257, 258, 259, 260, 262]
+    },
+    {
+        initialWeight: 251,
+        isotopes: ['Lawrencium-251', 'Lawrencium-252', 'Lawrencium-253', 'Lawrencium-254', 'Lawrencium-255', 'Lawrencium-256', 'Lawrencium-257', 'Lawrencium-258', 'Lawrencium-259', 'Lawrencium-260', 'Lawrencium-261', 'Lawrencium-262', 'Lawrencium-264', 'Lawrencium-266'],
+        isotopeWeights: [251, 252, 253, 254, 255, 256, 257, 258, 259, 260, 261, 262, 264, 266]
+    },
+    {
+        initialWeight: 253,
+        isotopes: ['Rutherfordium-253', 'Rutherfordium-254', 'Rutherfordium-255', 'Rutherfordium-256', 'Rutherfordium-257', 'Rutherfordium-258', 'Rutherfordium-259', 'Rutherfordium-260', 'Rutherfordium-261', 'Rutherfordium-262', 'Rutherfordium-263', 'Rutherfordium-265', 'Rutherfordium-266', 'Rutherfordium-267', 'Rutherfordium-268', 'Rutherfordium-270'],
+        isotopeWeights: [253, 254, 255, 256, 257, 258, 259, 260, 261, 262, 263, 265, 266, 267, 268, 270]
+    },
+    {
+        initialWeight: 255,
+        isotopes: ['Dubnium-255', 'Dubnium-256', 'Dubnium-257', 'Dubnium-258', 'Dubnium-259', 'Dubnium-260', 'Dubnium-261', 'Dubnium-262', 'Dubnium-263', 'Dubnium-266', 'Dubnium-267', 'Dubnium-268', 'Dubnium-270'],
+        isotopeWeights: [255, 256, 257, 258, 259, 260, 261, 262, 263, 266, 267, 268, 270]
+    },
+    {
+        initialWeight: 258,
+        isotopes: ['Seaborgium-258', 'Seaborgium-259', 'Seaborgium-260', 'Seaborgium-261', 'Seaborgium-262', 'Seaborgium-263', 'Seaborgium-264', 'Seaborgium-265', 'Seaborgium-266', 'Seaborgium-267', 'Seaborgium-268', 'Seaborgium-269', 'Seaborgium-271'],
+        isotopeWeights: [258, 259, 260, 261, 262, 263, 264, 265, 266, 267, 268, 269, 271]
+    },
+    {
+        initialWeight: 260,
+        isotopes: ['Bohrium-260', 'Bohrium-261', 'Bohrium-262', 'Bohrium-264', 'Bohrium-265', 'Bohrium-266', 'Bohrium-267', 'Bohrium-270', 'Bohrium-271', 'Bohrium-272', 'Bohrium-274', 'Bohrium-278'],
+        isotopeWeights: [260, 261, 262, 264, 265, 266, 267, 270, 271, 272, 274, 278]
+    },
+    {
+        initialWeight: 263,
+        isotopes: ['Hassium-263', 'Hassium-264', 'Hassium-265', 'Hassium-266', 'Hassium-267', 'Hassium-268', 'Hassium-269', 'Hassium-270', 'Hassium-271', 'Hassium-272', 'Hassium-273', 'Hassium-275', 'Hassium-277', 'Hassium-278'],
+        isotopeWeights: [263, 264, 265, 266, 267, 268, 269, 270, 271, 272, 273, 275, 277, 278]
+    },
+    {
+        initialWeight: 266,
+        isotopes: ['Meitnerium-266', 'Meitnerium-268', 'Meitnerium-270', 'Meitnerium-274', 'Meitnerium-275', 'Meitnerium-276', 'Meitnerium-277', 'Meitnerium-278', 'Meitnerium-282'],
+        isotopeWeights: [266, 268, 270, 274, 275, 276, 277, 278, 282]
+    },
+    {
+        initialWeight: 267,
+        isotopes: ['Darmstadtium-267', 'Darmstadtium-269', 'Darmstadtium-270', 'Darmstadtium-271', 'Darmstadtium-273', 'Darmstadtium-275', 'Darmstadtium-276', 'Darmstadtium-277', 'Darmstadtium-279', 'Darmstadtium-280', 'Darmstadtium-281', 'Darmstadtium-282'],
+        isotopeWeights: [267, 269, 270, 271, 273, 275, 276, 277, 279, 280, 281, 282]
+    },
+    {
+        initialWeight: 272,
+        isotopes: ['Roentgenium-272', 'Roentgenium-274', 'Roentgenium-278', 'Roentgenium-279', 'Roentgenium-280', 'Roentgenium-281', 'Roentgenium-282', 'Roentgenium-283', 'Roentgenium-286'],
+        isotopeWeights: [272, 274, 278, 279, 280, 281, 282, 283, 286]
+    },
+    {
+        initialWeight: 277,
+        isotopes: ['Copernicium-277', 'Copernicium-281', 'Copernicium-282', 'Copernicium-283', 'Copernicium-284', 'Copernicium-285', 'Copernicium-286'],
+        isotopeWeights: [277, 281, 282, 283, 284, 285, 286]
+    },
+    {
+        initialWeight: 278,
+        isotopes: ['Nihonium-278', 'Nihonium-282', 'Nihonium-283', 'Nihonium-284', 'Nihonium-285', 'Nihonium-286', 'Nihonium-287', 'Nihonium-290'],
+        isotopeWeights: [278, 282, 283, 284, 285, 286, 287, 290]
+    },
+    {
+        initialWeight: 284,
+        isotopes: ['Flerovium-284', 'Flerovium-285', 'Flerovium-286', 'Flerovium-287', 'Flerovium-288', 'Flerovium-289', 'Flerovium-290'],
+        isotopeWeights: [284, 285, 286, 287, 288, 289, 290]
+    },
+    {
+        initialWeight: 286,
+        isotopes: ['Moscovium-286', 'Moscovium-287', 'Moscovium-288', 'Moscovium-289', 'Moscovium-290'],
+        isotopeWeights: [286, 287, 288, 289, 290]
+    },
+    {
+        initialWeight: 288,
+        isotopes: ['Livermorium-288', 'Livermorium-290', 'Livermorium-291', 'Livermorium-292', 'Livermorium-293', 'Livermorium-294'],
+        isotopeWeights: [288, 290, 291, 292, 293, 294]
+    },
+    {
+        initialWeight: 293,
+        isotopes: ['Tennessine-293', 'Tennessine-294'],
+        isotopeWeights: [293, 294]
+    },
+    {
+        initialWeight: 294,
+        isotopes: ['Oganesson-294'],
+        isotopeWeights: [294]
     }
 ];
 class Element {
     constructor({initialWeight, isotopes, isotopeWeights}) {
         this.startingWeight = initialWeight
         this.atomicWeight = initialWeight;
-        this.tickTime = 3000;
+        this.tickTime = 1000;
         this.currentTickTimeUpgrade = 0;
         this.tickTimePrice = tickTimePriceScaling(this.startingWeight, this.currentTickTimeUpgrade);
         this.isotopes = isotopes;
@@ -485,9 +700,9 @@ class Element {
     }
     buttonAvailable() {
         setInterval(() => {
-            this.tick_time_button.disabled = atomicWeight < this.tickTimePrice || this.tickTime < 1;
-            this.isotope_button.disabled = atomicWeight < this.isotopePrice || this.currentIsotope >= this.isotopes.length - 1;
-            this.next_element_button.disabled = atomicWeight < this.nextElementPrice || this.nextUnlocked;
+            this.tick_time_button.disabled = this.tickTime <= 1 || atomicWeight < this.tickTimePrice;
+            this.isotope_button.disabled = this.currentIsotope >= this.isotopes.length - 1 || atomicWeight < this.isotopePrice;
+            this.next_element_button.disabled = this.nextUnlocked || atomicWeight < this.nextElementPrice;
         }, 50);
     }
 }
@@ -503,7 +718,7 @@ window.addEventListener('load', () => {
     setInterval(() => {atomic_weight.innerText = `Atomic Weight: ${atomicWeight}`;}, 50);
 });
 function tickTimePriceScaling(baseWeight, currentUpgrade) {
-    return Math.floor(baseWeight * Math.exp((Math.log(3000) / 2999) * currentUpgrade));
+    return Math.floor(baseWeight * Math.exp((Math.log(1000) / 999) * currentUpgrade));
 }
 function isotopePriceScaling(baseWeight, currentUpgrade, isotopeAmount) {
     return Math.floor(baseWeight * Math.exp(Math.log(baseWeight * Math.pow(isotopeAmount.length, 2)) / (isotopeAmount.length - 2) * currentUpgrade));
