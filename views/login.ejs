@@ -11,7 +11,7 @@
     <%- include('partials/header') %>
         <h1>Login</h1>
         <main>
-            <form action="http://localhost:1225/login" method="post">
+            <form action="http://localhost:1224/login" method="post">
                 <div class="registerForm">
                     <hr>
                     <label for="username"><b>Username</b></label>
@@ -20,24 +20,23 @@
                             <%= error %>
                         </span>
                         <% } %>
-                    <input type="text" id="username" name="username" placeholder="Username" required />
-                    <!-- <br> -->
-                    <label for="password"><b>Password</b></label>
-                    <% if (typeof passwordError !=='undefined' ) { %>
-                        <span id="errorMessage">
-                            <%= passwordError %>
-                        </span>
-                        <% } %>
-                    <input type="password" id="password" name="password" placeholder="Password" required />
-                    <!-- <br> -->
-                    <hr>
-                    <button type="submit" id="login">Login</button>
+                            <input type="text" id="username" name="username" placeholder="Username" required />
+                            <!-- <br> -->
+                            <label for="password"><b>Password</b></label>
+                            <% if (typeof passwordError !=='undefined' ) { %>
+                                <span id="errorMessage">
+                                    <%= passwordError %>
+                                </span>
+                                <% } %>
+                                    <input type="password" id="password" name="password" placeholder="Password"
+                                        required />
+                                    <!-- <br> -->
+                                    <hr>
+                                    <button type="submit" id="login">Login</button>
                 </div>
             </form>
         </main>
-        <footer>
-            &copy; Copyright 2024 Tristan Cable
-        </footer>
+        <%- include('partials/footer') %>
 </body>
 
 </html>
