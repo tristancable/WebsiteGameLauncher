@@ -188,28 +188,116 @@ function checkNearby(x, y) {
     return nearbyMineCount;
 }
 
-
 function clearChunk(x, y) {
-    let tempTile = document.getElementById("tile" + x + "," + y);
+    
+    var fillStack = [];
+    let tempTile;
+    
+    fillStack.push([x,y]);
+    
+    while (fillStack.length > 0) {
+        var [x,y] = fillStack.pop();
+        x = parseInt(x);
+        y = parseInt(y);
+        if (checkValidRowCol(x,y))
+            return;
+        
+        let nearby = checkNearby(x,y);
+        console.log("x,y",x,y);
+        console.log("nearby",nearby);
+        
+        tempTile = document.getElementById("tile" + x + "," + y);
+        if (nearby == 0) {
+            tempTile.classList.add("tileClear");
+            tempTile.innerText = "";
+        } else {
+            tempTile.classList.add("tileClear");
+            tempTile.innerText = nearby;
+            return;
+        }
+
+        fillStack.push([x, y + 1]);
+        fillStack.push([x, y - 1]);
+        fillStack.push([x + 1, y]);
+        fillStack.push([x - 1, y]);
+
+        //console.log(fillStack);
+
+    }
+}
+
+
+
+
+// function clearChunk(x, y) {
+//     let tempTile = document.getElementById("tile" + x + "," + y);
+
+//     x = parseInt(x);
+//     y = parseInt(y);
+
+//     let nearby = checkNearby(x,y);
+//     if (x < 0 || x >= mineArray.length || y < 0 || y >= mineArray[0].length || mineArray[x][y]) {
+//         return;
+//     }
+//     if (nearby == 0) {
+//         tempTile.classList.add("tileClear");
+//         tempTile.innerText = "";
+//     } else {
+//         tempTile.classList.add("tileClear");
+//         tempTile.innerText = nearby;
+//         return;
+//     }
+
+//     clearChunk(x - 1, y);
+//     clearChunk(x + 1, y);
+//     clearChunk(x, y - 1);
+//     clearChunk(x, y + 1);
+// }
+
+function checkNearby(x, y) {
+    let nearbyMineCount = 0;
 
     x = parseInt(x);
     y = parseInt(y);
-
-    let nearby = checkNearby(x,y);
-    if (x < 0 || x >= mineArray.length || y < 0 || y >= mineArray[0].length || mineArray[x][y] || !(nearby == 0)) {
-        return;
-    }
-    if (nearby == 0) {
-        tempTile.classList.add("tileClear");
-        tempTile.innerText = "";
-    }
-
-    clearChunk(x - 1, y);
-    clearChunk(x + 1, y);
-    clearChunk(x, y - 1);
-    clearChunk(x, y + 1);
+    
+    
+    if (findMines(x - 1, y + 1)) nearbyMineCount++;
+    if (findMines(x - 1, y - 1)) nearbyMineCount++;
+    if (findMines(x + 1, y - 1)) nearbyMineCount++;
+    if (findMines(x + 1, y + 1)) nearbyMineCount++;
+    if (findMines(x - 1, y)) nearbyMineCount++;
+    if (findMines(x + 1, y)) nearbyMineCount++;
+    if (findMines(x, y - 1)) nearbyMineCount++;
+    if (findMines(x, y + 1)) nearbyMineCount++;
+    
+    return nearbyMineCount;
 }
 
+function findMines(newX, newY) {
+    if (checkValidRowCol(newX,newY))
+        return false;
+
+    if (mineArray[newX][newY]) return true;
+    else return false;
+}
+
+
+function onGameOver() {
+    timer.stop();
+    let tempTile;
+    for (let i = 0; i < mineArray.length; i++) {
+        for (let j = 0; j < mineArray[i].length; j++) {
+            tempTile = document.getElementById("tile" + i + "," + j);
+            tempTile.disabled = true;
+            if (mineArray[i][j]) tempTile.classList.add("tileBomb");
+        }
+    }
+
+}
+
+function checkValidRowCol(x,y) {
+        return (x < 0 || x >= mineArray.length || y < 0 || y >= mineArray[0].length || mineArray[x][y]);
+}
 
 function findMines(newX, newY) {
     if (newX < 0 || newX >= mineArray.length || newY < 0 || newY >= mineArray[0].length) {
@@ -217,18 +305,6 @@ function findMines(newX, newY) {
     }
 
     if (mineArray[newX][newY]) return true;
-    else return false;
-}
-
-function findMinesTest(newX, newY) {
-    console.log(newX,newY);
-    if (newX < 0 || newX >= mineArray.length || newY < 0 || newY >= mineArray[0].length) {
-        return;
-    }
-
-    if (mineArray[newX][newY]){ 
-        console.log("mineNear",newX,newY);
-        return true;}
     else return false;
 }
 
