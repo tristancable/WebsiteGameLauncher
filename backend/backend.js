@@ -13,7 +13,7 @@ const app = express();
 let sessionOptions = {
     secret: 'deltacorp',
     resave: false,
-    saveUninitialized: true,
+    saveUninitialized: false,
     cookie: { secure: false }
 };
 
@@ -22,7 +22,10 @@ app.set('views', path.join(__dirname, '..', 'views'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(express.static(path.join(__dirname, '..', 'public')));
-app.use(cors());
+app.use(cors({
+    origin: 'http://localhost:1224',
+    credentials: true
+}));
 
 app.use(session(sessionOptions));
 
@@ -120,6 +123,8 @@ app.post('/register', async (req, res) => {
 
 app.post('/update-points', async (req, res) => {
     const username = req.session.username;
+
+    console.log('Session data:', req.session);
 
     if (!username) {
         return res.status(401).json({ error: 'No user logged in' });

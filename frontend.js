@@ -8,7 +8,7 @@ const app = express();
 let sessionOptions = {
     secret: 'deltacorp',
     resave: false,
-    saveUninitialized: true,
+    saveUninitialized: false,
     cookie: { secure: false }
 };
 
@@ -20,6 +20,16 @@ app.use(express.urlencoded({ extended: true }));
 app.use(express.static('public'));
 app.set('views', path.join(__dirname, 'views'));
 
+let username = "";
+let points;
+
+// while (username) {
+//     setTimeout(() => {
+//         points += 1;
+//         console.log(points);
+//     }, 1000);
+// }
+
 // app.use((req, res, next) => {
 //     // res.locals.username = req.session ? req.session.username : null;
 //     req.session.username = req.session ? res.session.username : null;
@@ -28,14 +38,14 @@ app.set('views', path.join(__dirname, 'views'));
 //     next();
 // });
 
-app.use((req, res, next) => {
-    if (req.session.username) {
-        // updatePoints();
-        // document.addEventListener('DOMContentLoaded', updatePoints);
-    }
+// app.use((req, res, next) => {
+//     if (req.session.username) {
+//         // updatePoints();
+//         // document.addEventListener('DOMContentLoaded', updatePoints);
+//     }
 
-    next();
-});
+//     next();
+// });
 
 function point() {
     setInterval(function () {
@@ -136,7 +146,9 @@ app.post('/login', async (req, res) => {
         if (response.ok) {
             // username = data.usern ame;
             req.session.username = user.username;
+            username = user.username;
             req.session.points = data.points;
+            points = data.points;
             // console.log(req.session.points);
             // console.log(user.points);
             // console.log(data.points);
@@ -184,7 +196,49 @@ app.post('/register', async (req, res) => {
     }
 });
 
-app.get('/logout', (req, res) => {
+// app.post('/update-points', async (req, res) => {
+//     const url = "http://localhost:1225/update-points";
+//     const options = {
+//         method: "POST",
+//         headers: {
+//             "Content-Type": "application/json"
+//         },
+//         body: JSON.stringify(points)
+//     };
+
+//     try {
+//         const response = await fetch(url, options);
+//         const data = await response.json();
+
+//         if (response.ok) {
+
+//         }
+//     } catch (error) {
+
+//     }
+
+
+//     if (!req.session.username) {
+//         return res.status(401).json({ error: 'Unauthorized' });
+//     }
+
+
+
+//     res.json({ message: 'Points updated successfully', points: updatedPoints });
+// });
+
+app.get('/logout', async (req, res) => {
+    const url = "http://localhost:1225/update-points";
+    const options = {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify(points)
+    };
+    const response = await fetch(url, options);
+    const data = await response.json();
+
     req.session.destroy();
 
     return res.redirect('/');

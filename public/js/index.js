@@ -1,8 +1,14 @@
 // async function updatePoints() {
+//     let username;
+//     let points;
 //     try {
-//         const response = await fetch('/update-points', {
+//         const response = await fetch('http://localhost:1225/update-points', {
 //             method: 'POST',
-//             headers: { 'Content-Type': 'application/json' }
+//             headers: {
+//                 "Content-Type": "application/json"
+//             },
+//             credentials: 'include',
+//             body: JSON.stringify({ username: username, points: points })
 //         });
 
 //         const data = await response.json();
@@ -19,7 +25,7 @@
 //     }
 // }
 
-// document.addEventListener('DOMContentLoaded', () => {
+// window.addEventListener('load', () => {
 //     updatePoints(); // Update points once when the page loads
 //     setInterval(updatePoints, 1000); // Update points every second
 // });
