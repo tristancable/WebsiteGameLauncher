@@ -55,7 +55,7 @@ exports.DAL = {
         }
     },
 
-    updateProfile: async function (username, updateData) {
+    updatePoints: async function (username, updateData) {
         console.log("DAL UPDATE PROFILE:", username, updateData);
 
         try {

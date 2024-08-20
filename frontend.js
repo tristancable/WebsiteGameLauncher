@@ -5,34 +5,117 @@ const path = require('path');
 const port = 1224;
 const app = express();
 
+let sessionOptions = {
+    secret: 'deltacorp',
+    resave: false,
+    saveUninitialized: true,
+    cookie: { secure: false }
+};
+
+app.use(session(sessionOptions))
+
 app.set('view engine', 'ejs');
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(express.static('public'));
 app.set('views', path.join(__dirname, 'views'));
 
+// app.use((req, res, next) => {
+//     // res.locals.username = req.session ? req.session.username : null;
+//     req.session.username = req.session ? res.session.username : null;
+//     // console.log(res.locals.username);
+//     // console.log('req.session', req.session);
+//     next();
+// });
+
+app.use((req, res, next) => {
+    if (req.session.username) {
+        // updatePoints();
+        // document.addEventListener('DOMContentLoaded', updatePoints);
+    }
+
+    next();
+});
+
+function point() {
+    setInterval(function () {
+        fetch('/update-points', {
+            method: 'POST'
+        }).then(response => {
+            if (!response.ok) {
+                console.error('Failed to update points');
+            }
+        }).catch(error => console.error('Error:', error));
+    }, 1000);
+};
+
+async function updatePoints() {
+    try {
+        const response = await fetch('/update-points', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ points })
+        });
+
+        const data = await response.json();
+        if (response.ok) {
+            console.log('Points updated:', data.message);
+        } else {
+            console.error('Error updating points:', data.error);
+        }
+    } catch (error) {
+        console.error('Error communicating with the server:', error);
+    }
+}
+
 app.get('/', async (req, res) => {
-    res.render('index');
+    res.render('index', {
+        username: req.session.username,
+        points: req.session.points
+    });
 });
 
 app.get('/minesweeper', (req, res) => {
-    res.render('minesweeper');
+    res.render('minesweeper', {
+        username: req.session.username,
+        points: req.session.points
+
+    });
 });
 
 app.get('/idle-atom', (req, res) => {
-    res.render('idle_atom');
+    res.render('idle_atom', {
+        username: req.session.username,
+        points: req.session.points
+    });
 });
 
 app.get('/ttyd', (req, res) => {
-    res.render('ttyd');
+    res.render('ttyd', {
+        username: req.session.username,
+        points: req.session.points
+    });
 });
 
 app.get('/tictactoe', (req, res) => {
-    res.render('tictactoe');
+    res.render('tictactoe', {
+        username: req.session.username,
+        points: req.session.points
+    });
 });
 
 app.get('/login', (req, res) => {
-    res.render('login');
+    res.render('login', {
+        username: req.session.username,
+        points: req.session.points
+    });
+});
+
+app.get('/register', (req, res) => {
+    res.render('register', {
+        username: req.session.username,
+        points: req.session.points
+    });
 });
 
 app.post('/login', async (req, res) => {
@@ -51,7 +134,15 @@ app.post('/login', async (req, res) => {
         const data = await response.json();
 
         if (response.ok) {
-            // req.session.username = user.username;
+            // username = data.usern ame;
+            req.session.username = user.username;
+            req.session.points = data.points;
+            // console.log(req.session.points);
+            // console.log(user.points);
+            // console.log(data.points);
+            // localStorage.setItem("username", user.username);
+            // console.log('res.locals.username', res.locals.username);
+            // console.log('data.username', user.username)
             res.redirect('/');
         } else {
             if (data.passwordError) {
@@ -61,13 +152,11 @@ app.post('/login', async (req, res) => {
             }
         }
     } catch (error) {
+        console.log(error);
         res.render('login', { error: 'Error logging in' });
     }
 });
 
-app.get('/register', (req, res) => {
-    res.render('register');
-});
 
 app.post('/register', async (req, res) => {
     const newUser = req.body;
@@ -85,16 +174,20 @@ app.post('/register', async (req, res) => {
         const data = await response.json();
 
         if (response.ok) {
-            // Registration successful, redirect to login
             res.redirect('login');
         } else {
-            // Pass error message to register view
             res.render('register', { error: data.error });
         }
     } catch (error) {
         console.error("Error creating user:", error);
         res.render('register', { error: 'Error creating user' });
     }
+});
+
+app.get('/logout', (req, res) => {
+    req.session.destroy();
+
+    return res.redirect('/');
 });
 
 app.listen(port, () => {
