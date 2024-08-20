@@ -17,15 +17,24 @@
                 <a href="/tictactoe">Tic-Tac-Toe</a>
             </li>
             <li class="spacer"></li>
+            <% if (!username) { %>
                 <li>
                     <a href="/login">Login</a>
                 </li>
                 <li>
                     <a id="navBarRegister" href="/register">Register</a>
                 </li>
+                <% } else { %>
+                    <li>
+                        <div id="points">
+                            <div>Username: <%= username %></div>
+                            <div>Points: <%= points %></div>
+                        </div>
+                    </li>
                     <li>
                         <a href="/logout">Logout</a>
                     </li>
+                    <% } %>
         </ul>
     </nav>
 </header>

@@ -75,6 +75,21 @@ body
     top: 0px;
 }
 
+#enemyHP1
+{
+    visibility: hidden;
+}
+
+#enemyHP2
+{
+    visibility: hidden;
+}
+
+#enemyHP3
+{
+    visibility: hidden;
+}
+
 #splash
 {
     position: fixed; top: 0; left: 0; z-index: 999;
