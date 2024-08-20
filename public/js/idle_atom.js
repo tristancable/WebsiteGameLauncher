@@ -15,7 +15,7 @@ const elementsData = [
     },
     {
         initialWeight: 3,
-        isotopes: ['Lithium-3 (Triproton', 'Lithium-4', 'Lithium-5', 'Lithium-6', 'Lithium-7', 'Lithium-8', 'Lithium-9', 'Lithium-10', 'Lithium-11', 'Lithium-12', 'Lithium-13'],
+        isotopes: ['Lithium-3 (Triproton)', 'Lithium-4', 'Lithium-5', 'Lithium-6', 'Lithium-7', 'Lithium-8', 'Lithium-9', 'Lithium-10', 'Lithium-11', 'Lithium-12', 'Lithium-13'],
         isotopeWeights: [3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13]
     },
     {
@@ -410,7 +410,7 @@ const elementsData = [
     },
     {
         initialWeight: 178,
-        isotopes: ['Lead-178', 'Lead-179', 'Lead-180', 'Lead-181', 'Lead-182', 'Lead-183', 'Lead-184', 'Lead-185', 'Lead-186', 'Lead-187', 'Lead-188', 'Lead-189', 'Lead-190', 'Lead-191', 'Lead-192', 'Lead-193', 'Lead-194', 'Lead-195', 'Lead-196', 'Lead-197', 'Lead-198', 'Lead-199', 'Lead-200', 'Lead-201', 'Lead-202', 'Lead-203', 'Lead-204', 'Lead-205', 'Lead-206 (Radium G)', 'Lead-207 (Actinium D)', 'Lead-208 (Thorium D)', 'Lead-209', 'Lead-210 (Radium D/Radiolead/Radio-lead)', 'Lead-211 (Actinium B)', 'Lead-212 (Thorium B)', 'Lead-213', 'Lead-214 (Thorium B)', 'Lead-215', 'Lead-216', 'Lead-217', 'Lead-218'],
+        isotopes: ['Lead-178', 'Lead-179', 'Lead-180', 'Lead-181', 'Lead-182', 'Lead-183', 'Lead-184', 'Lead-185', 'Lead-186', 'Lead-187', 'Lead-188', 'Lead-189', 'Lead-190', 'Lead-191', 'Lead-192', 'Lead-193', 'Lead-194', 'Lead-195', 'Lead-196', 'Lead-197', 'Lead-198', 'Lead-199', 'Lead-200', 'Lead-201', 'Lead-202', 'Lead-203', 'Lead-204', 'Lead-205', 'Lead-206 (Radium G)', 'Lead-207 (Actinium D)', 'Lead-208 (Thorium D)', 'Lead-209', 'Lead-210 (Radium D/Radiolead/Radio-lead)', 'Lead-211 (Actinium B)', 'Lead-212 (Thorium B)', 'Lead-213', 'Lead-214 (Radium B)', 'Lead-215', 'Lead-216', 'Lead-217', 'Lead-218'],
         isotopeWeights: [178, 179, 180, 181, 182, 183, 184, 185, 186, 187, 188, 189, 190, 191, 192, 193, 194, 195, 196, 197, 198, 199, 200, 201, 202, 203, 204, 205, 206, 207, 208, 209, 210, 211, 212, 213, 214, 215, 216, 217, 218]
     },
     {
@@ -430,7 +430,7 @@ const elementsData = [
     },
     {
         initialWeight: 193,
-        isotopes: ['Radon-193', 'Radon-194', 'Radon-195', 'Radon-196', 'Radon-197', 'Radon-198', 'Radon-199', 'Radon-200', 'Radon-201', 'Radon-202', 'Radon-203', 'Radon-204', 'Radon-205', 'Radon-206', 'Radon-207', 'Radon-208', 'Radon-209', 'Radon-210', 'Radon-211', 'Radon-212', 'Radon-213', 'Radon-214', 'Radon-215', 'Radon-216', 'Radon-217', 'Radon-218', 'Radon-219 (Actinon/Actinium emanation', 'Radon-220 (Thoron/Thorium emanation)', 'Radon-221', 'Radon-222 (Radon/Radium emanation/Emanation/Emanon/Niton', 'Radon-223', 'Radon-224', 'Radon-225', 'Radon-226', 'Radon-227', 'Radon-228', 'Radon-229', 'Radon-230', 'Radon-231'],
+        isotopes: ['Radon-193', 'Radon-194', 'Radon-195', 'Radon-196', 'Radon-197', 'Radon-198', 'Radon-199', 'Radon-200', 'Radon-201', 'Radon-202', 'Radon-203', 'Radon-204', 'Radon-205', 'Radon-206', 'Radon-207', 'Radon-208', 'Radon-209', 'Radon-210', 'Radon-211', 'Radon-212', 'Radon-213', 'Radon-214', 'Radon-215', 'Radon-216', 'Radon-217', 'Radon-218', 'Radon-219 (Actinon/Actinium emanation)', 'Radon-220 (Thoron/Thorium emanation)', 'Radon-221', 'Radon-222 (Radon/Radium emanation/Emanation/Emanon/Niton)', 'Radon-223', 'Radon-224', 'Radon-225', 'Radon-226', 'Radon-227', 'Radon-228', 'Radon-229', 'Radon-230', 'Radon-231'],
         isotopeWeights: [193, 194, 195, 196, 197, 198, 199, 200, 201, 202, 203, 204, 205, 206, 207, 208, 209, 210, 211, 212, 213, 214, 215, 216, 217, 218, 219, 220, 221, 222, 223, 224, 225, 226, 227, 228, 229, 230, 231]
     },
     {
@@ -615,7 +615,8 @@ class Element {
     createHTML() {
         this.container = document.createElement('div');
         this.title = document.createElement('h3');
-        this.weight = document.createElement('p');
+        this.weight = document.createElement('span');
+        this.productionPerSecond = document.createElement('span');
         this.tick_time = document.createElement('p');
         this.tick_time_button = document.createElement('button');
         this.tick_time_price = document.createElement('span');
@@ -626,6 +627,7 @@ class Element {
         document.getElementById('element_container').appendChild(this.container);
         this.container.appendChild(this.title);
         this.container.appendChild(this.weight);
+        this.container.appendChild(this.productionPerSecond);
         this.container.appendChild(this.tick_time);
         this.container.appendChild(this.tick_time_button);
         this.container.appendChild(this.tick_time_price);
@@ -676,9 +678,10 @@ class Element {
         this.weight.innerText = `Atomic Weight: ${this.atomicWeight}`;
         this.tick_time.innerText = `Tick Time: ${this.tickTime}`;
         this.tick_time_price.innerText = this.tickTime > 1 ? `AW: ${this.tickTimePrice}` : 'Max Upgrade';
-        this.isotope_price.innerText = this.isotopeWeights[this.currentIsotope + 1] ? `AW: ${this.isotopePrice}` : 'Max Upgrade';
+        this.isotope_price.innerText = this.isotopeWeights[this.currentIsotope + 1] ? `AW: ${this.isotopePrice} [${this.currentIsotope}/${this.isotopeWeights.length - 1}]` : `Max Upgrade [${this.currentIsotope}/${this.isotopeWeights.length - 1}]`;
         if (this.nextUnlocked) this.next_element_price.innerText = 'Unlocked';
         else this.next_element_price.innerText = `AW: ${this.nextElementPrice}`;
+        this.setProductionPerSecond();
     }
     startTicking() {
         this.stopTicking();
@@ -703,7 +706,11 @@ class Element {
             this.tick_time_button.disabled = this.tickTime <= 1 || atomicWeight < this.tickTimePrice;
             this.isotope_button.disabled = this.currentIsotope >= this.isotopes.length - 1 || atomicWeight < this.isotopePrice;
             this.next_element_button.disabled = this.nextUnlocked || atomicWeight < this.nextElementPrice;
-        }, 50);
+        }, 0);
+    }
+    setProductionPerSecond() {
+        let production = (1000 / this.tickTime) * this.atomicWeight;
+        this.productionPerSecond.innerText = `+${production.toFixed(4)}/s`
     }
 }
 function loadNextElement() {
@@ -721,5 +728,5 @@ function tickTimePriceScaling(baseWeight, currentUpgrade) {
     return Math.floor(baseWeight * Math.exp((Math.log(1000) / 999) * currentUpgrade));
 }
 function isotopePriceScaling(baseWeight, currentUpgrade, isotopeAmount) {
-    return Math.floor(baseWeight * Math.exp(Math.log(baseWeight * Math.pow(isotopeAmount.length, 2)) / (isotopeAmount.length - 2) * currentUpgrade));
+    return Math.floor(baseWeight * Math.exp(Math.log(baseWeight * Math.pow(isotopeAmount.length, 2)) / (isotopeAmount.length - 1.9) * currentUpgrade));
 }
