@@ -1,6 +1,7 @@
 /** Manually setting variable types (This is to make functions more reusable)
  * @param {number} enemyNum
  * @param {string} enemyPool
+ * @param {Array} menuOptions
  */
 
 // Mario variables
@@ -15,35 +16,89 @@ let HPVivian = 0;
 let VivianX = 0;
 let VivianY = 0;
 
-// Enemy 1 variables
-let enemyAlive1 = false;
-let enemyImg1 = "";
-let HPEnemy1 = 0;
-let ATKEnemy1 = 0;
-let sizeEnemy1 = 0;
-let groundPosEnemy1 = 0;
-let Enemy1XPos = 0;
-let Enemy1YPos = 0;
+// Enemy constructor
+function Enemy(enemy, img, hp, atk, size, groundPos) 
+{
+    this.id = enemy;
+    this.alive = true;
+    this.img = img;
+    this.hp = hp;
+    this.atk = atk;
+    this.size = size;
+    this.groundPos = groundPos;
+    this.XPos = 0;
+    this.YPos = 0;
+}
 
-// Enemy 2 variables
-let enemyAlive2 = false;
-let enemyImg2 = "";
-let HPEnemy2 = 0;
-let ATKEnemy2 = 0;
-let sizeEnemy2 = 0;
-let groundPosEnemy2 = 0;
-let Enemy2XPos = 0;
-let Enemy2YPos = 0;
+function enemyGen(enemyPick, whichEnemy)
+{
+    switch(enemyPick)
+    {
+        case 1: // Enemy 1: Basic Gloomba
+            switch(whichEnemy)
+            {
+                case 1:
+                    let enemy1 = new Enemy(whichEnemy, "../assets/GloombaNormal.png", 7, 3, 140, 560);
+                    break;
+                case 2:
+                    let enemy2 = new Enemy(whichEnemy, "../assets/GloombaNormal.png", 7, 3, 140, 560);
+                    break;
+                case 3:
+                    let enemy3 = new Enemy(whichEnemy, "../assets/GloombaNormal.png", 7, 3, 140, 560);
+                    break;
+            }
+            break;
+        case 2: // Enemy 2: Paragloomba
+            break;
+        case 3: // Enemy 3: Spiky Gloomba
+            break;
+    }
+}
 
-// Enemy 3 variables
-let enemyAlive3 = false;
-let enemyImg3 = "";
-let HPEnemy3 = 0;
-let ATKEnemy3 = 0;
-let sizeEnemy3 = 0;
-let groundPosEnemy3 = 0;
-let Enemy3XPos = 0;
-let Enemy3YPos = 0;
+// Misc variables
+let turnOrder = 0;
+let selectedMenu = 0; /*0 = None, 
+                        1 = Mario Menu, 
+                        2 = Vivian Menu, 
+                        3 = Mario Hammer Menu, 
+                        4 = Mario Jump Menu,
+                        5 = Vivian Attack Menu*/
+function Person(menuOptions) 
+{
+    this.index = 0;
+    this.options = menuOptions;
+}
+let dummyMenu = 0;
+let marioMenu = 0;
+let vivianMenu = 0;
+let hammerMenu = 0;
+let jumpMenu = 0;
+let vivAtkMenu = 0;
+
+const menuArray = [dummyMenu, marioMenu, vivianMenu, hammerMenu, jumpMenu, vivAtkMenu]
+
+// Keyboard functionality
+window.addEventListener('keydown', (event) =>
+    {
+        if(event.key == 'ArrowLeft')
+        {
+            if(menuArray[selectedMenu] != 0)
+            {
+                menuArray[selectedMenu]--;
+            }
+        }
+        if(event.key == 'ArrowRight')
+        {
+            if(menuArray[selectedMenu] != 3)
+            {
+                menuArray[selectedMenu]++;
+            }
+        }
+
+        // Temporary menu UI
+        document.getElementById('temporary').textContent = menuArray[selectedMenu];
+    }
+    );
 
 async function wait(milliseconds) // Uses async to wait the inputted amount of milliseconds
 {
@@ -69,43 +124,6 @@ function enemyGen(enemyPool, whichEnemy)
     switch(enemyPool) // Please for the love of god if I forget to add breaks I will actually explode
     {
         case "Gloomba":
-            break;
-    }
-}
-
-function enemyGen(enemyNum, whichEnemy)
-{
-    switch(enemyNum)
-    {
-        case 1: // Enemy 1: Basic Gloomba
-            switch(whichEnemy)
-            {
-                case 1:
-                    sizeEnemy1 = 140;
-                    HPEnemy1 = 7;
-                    ATKEnemy1 = 3;
-                    groundPosEnemy1 = 560;
-                    enemyImg1 = "../assets/GloombaNormal.png";
-                    break;
-                case 2:
-                    sizeEnemy2 = 140;
-                    HPEnemy2 = 7;
-                    ATKEnemy2 = 3;
-                    groundPosEnemy2 = 560;
-                    enemyImg2 = "../assets/GloombaNormal.png";
-                    break;
-                case 3:
-                    sizeEnemy3 = 140;
-                    HPEnemy3 = 7;
-                    ATKEnemy3 = 3;
-                    groundPosEnemy3 = 560;
-                    enemyImg3 = "../assets/GloombaNormal.png";
-                    break;
-            }
-            break;
-        case 2: // Enemy 2: Paragloomba
-            break;
-        case 3: // Enemy 3: Spiky Gloomba
             break;
     }
 }
@@ -275,14 +293,7 @@ function update()
 
 function menu()
 {
-    window.addEventListener('keydown', (event) =>
-    {
-        if(event.key == 's')
-        {
-            // When the S key is pressed, this will happen
-        }
-    }
-    );
+    
 }
 
 async function setGame()
@@ -316,8 +327,5 @@ async function setGame()
     hop("enemy2", 2);
     hop("enemy3", 2);
 
-    while(true) // Game logic
-    {
-        // ! Come back later!
-    }
+    // ! Come back later!
 }
