@@ -47,36 +47,18 @@ let points;
 //     next();
 // });
 
-function point() {
-    setInterval(function () {
-        fetch('/update-points', {
-            method: 'POST'
-        }).then(response => {
-            if (!response.ok) {
-                console.error('Failed to update points');
-            }
-        }).catch(error => console.error('Error:', error));
-    }, 1000);
-};
-
-async function updatePoints() {
-    try {
-        const response = await fetch('/update-points', {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({ points })
-        });
-
-        const data = await response.json();
-        if (response.ok) {
-            console.log('Points updated:', data.message);
-        } else {
-            console.error('Error updating points:', data.error);
-        }
-    } catch (error) {
-        console.error('Error communicating with the server:', error);
+app.use((req, res, next) => {
+    if (req.session.username && req.session.points == undefined) {
+        req.session.points = 0;
     }
-}
+    // if (req.session.username) {
+    //     setTimeout(() => {
+    //         req.session.points += 1;
+    //         console.log(`Points for ${req.session.username}: ${req.session.points}`);
+    //     }, 1000);
+    // }
+    next();
+});
 
 app.get('/', async (req, res) => {
     res.render('index', {
@@ -196,50 +178,34 @@ app.post('/register', async (req, res) => {
     }
 });
 
-// app.post('/update-points', async (req, res) => {
-//     const url = "http://localhost:1225/update-points";
-//     const options = {
-//         method: "POST",
-//         headers: {
-//             "Content-Type": "application/json"
-//         },
-//         body: JSON.stringify(points)
-//     };
-
-//     try {
-//         const response = await fetch(url, options);
-//         const data = await response.json();
-
-//         if (response.ok) {
-
-//         }
-//     } catch (error) {
-
-//     }
-
-
-//     if (!req.session.username) {
-//         return res.status(401).json({ error: 'Unauthorized' });
-//     }
-
-
-
-//     res.json({ message: 'Points updated successfully', points: updatedPoints });
-// });
-
-app.get('/logout', async (req, res) => {
+app.post('/update-points', async (req, res) => {
+    const user = req.session;
     const url = "http://localhost:1225/update-points";
     const options = {
-        method: "POST",
+        method: "post",
         headers: {
             "Content-Type": "application/json"
         },
-        body: JSON.stringify(points)
+        body: JSON.stringify(user)
     };
+
     const response = await fetch(url, options);
     const data = await response.json();
 
-    req.session.destroy();
+    if (!req.session.username) {
+        return res.status(401).json({ error: 'No user logged in' });
+    }
+
+    req.session.points += 10;
+    points = req.session.points;
+    res.json({ points: req.session.points });
+
+});
+
+app.get('/logout', async (req, res) => {
+    if (req.session.username) {
+        req.session.destroy();
+    }
 
     return res.redirect('/');
 });
