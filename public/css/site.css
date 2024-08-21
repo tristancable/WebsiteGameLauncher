@@ -207,7 +207,7 @@ hr {
     opacity: 1;
 }
 
-#points {
+#pointsDiv {
     margin: 5px;
     display: flex;
     flex-direction: column;

@@ -122,28 +122,55 @@ app.post('/register', async (req, res) => {
 });
 
 app.post('/update-points', async (req, res) => {
-    const username = req.session.username;
+    const { username, points } = req.body;
 
-    console.log('Session data:', req.session);
-
-    if (!username) {
-        return res.status(401).json({ error: 'No user logged in' });
+    if (!username || points == null) {
+        return res.status(400).json({ error: 'Invalid data' });
     }
 
     try {
         const user = await DAL.findUser(username);
-        if (user) {
-            const updatedPoints = (user.points || 0) + 1;
-            await DAL.updatePoints(username, { points: updatedPoints });
-            req.session.points = updatedPoints;
-            res.status(200).json({ message: 'Points updated successfully' });
-        } else {
-            res.status(404).json({ error: 'User not found' });
+
+        if (!user) {
+            return res.status(404).json({ error: 'User not found' });
         }
+
+        await DAL.updateUser(username, { points });
+
+        // async function updateDB() { const updateResult = await DAL.updateUser(username, { points });}
+        // setInterval(updateDB, 10000);
+
+        res.status(200).json({ message: 'Points updated successfully' });
     } catch (error) {
+        console.error('Error updating points:', error);
         res.status(500).json({ error: 'Error' });
     }
 });
+
+
+// app.post('/update-points', async (req, res) => {
+//     const username = req.session.username;
+
+//     console.log('Session data:', req.session);
+
+//     if (!username) {
+//         return res.status(401).json({ error: 'No user logged in' });
+//     }
+
+//     try {
+//         const user = await DAL.findUser(username);
+//         if (user) {
+//             const updatedPoints = user.points;
+//             await DAL.updatePoints(username, { points: updatedPoints });
+//             req.session.points = updatedPoints;
+//             res.status(200).json({ message: 'Points updated successfully' });
+//         } else {
+//             res.status(404).json({ error: 'User not found' });
+//         }
+//     } catch (error) {
+//         res.status(500).json({ error: 'Error' });
+//     }
+// });
 
 app.listen(port, () => {
     console.log(`WGL Backend running on http://localhost:${port}/`);

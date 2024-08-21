@@ -2,24 +2,29 @@ const { MongoClient } = require('mongodb');
 const uri = "mongodb+srv://tcable:deltacorp@cluster0.alkdm.mongodb.net/";
 const client = new MongoClient(uri);
 
+let dbInstance = null;
+
+async function connectToDatabase() {
+    if (!dbInstance) {
+        await client.connect();
+        dbInstance = client.db("WebsiteGameLauncher");
+    }
+    return dbInstance;
+}
+
 exports.DAL = {
-    getAllUsers: async function () {
+    getAllUsers: async function() {
         console.log("DAL GET USERS:");
 
         try {
-            await client.connect();
-
-            const database = await client.db("WebsiteGameLauncher");
-            const userCollection = await database.collection("users");
+            const database = await connectToDatabase();
+            const userCollection = database.collection("users");
             const userResults = await userCollection.find({}).toArray();
 
-            if (userResults.length > 0) {
-                return userResults;
-            } else {
-                return null;
-            }
-        } finally {
-            await client.close();
+            return userResults.length > 0 ? userResults : null;
+        } catch (error) {
+            console.error('Error getting users:', error);
+            throw error;
         }
     },
 
@@ -27,15 +32,14 @@ exports.DAL = {
         console.log("DAL CREATE USER:", userData);
 
         try {
-            await client.connect();
-
-            const database = client.db("WebsiteGameLauncher");
+            const database = await connectToDatabase();
             const userCollection = database.collection("users");
             const result = await userCollection.insertOne(userData);
 
-            console.log(`Documents were inserted`);
-        } finally {
-            await client.close();
+            console.log(`User inserted with ID: ${result.insertedId}`);
+        } catch (error) {
+            console.error('Error creating user:', error);
+            throw error;
         }
     },
 
@@ -43,34 +47,114 @@ exports.DAL = {
         console.log("DAL FIND USER:", username);
 
         try {
-            await client.connect();
-
-            const database = client.db("WebsiteGameLauncher");
+            const database = await connectToDatabase();
             const userCollection = database.collection("users");
-            const user = await userCollection.findOne({ username: username });
+            const user = await userCollection.findOne({ username });
 
             return user;
-        } finally {
-            await client.close();
+        } catch (error) {
+            console.error('Error finding user:', error);
+            throw error;
         }
     },
 
-    updatePoints: async function (username, updateData) {
+    updateUser: async function (username, updateData) {
         console.log("DAL UPDATE PROFILE:", username, updateData);
 
         try {
-            await client.connect();
-
-            const database = client.db("WebsiteGameLauncher");
+            const database = await connectToDatabase();
             const userCollection = database.collection("users");
-            const filter = { username: username };
-            const updateDoc = {
-                $set: updateData
-            };
+            const filter = { username };
+            const updateDoc = { $set: updateData };
 
-            await userCollection.updateOne(filter, updateDoc);
-        } finally {
-            await client.close();
+            const result = await userCollection.updateOne(filter, updateDoc);
+            console.log(`Matched ${result.matchedCount} documents and modified ${result.modifiedCount} documents.`);
+        } catch (error) {
+            console.error('Error updating user:', error);
+            throw error;
         }
     }
 };
+
+process.on('SIGINT', async () => {
+    await client.close();
+    console.log("MongoDB connection closed.");
+    process.exit(0);
+});
+
+
+
+
+
+// exports.DAL = {
+//     getAllUsers: async function () {
+//         console.log("DAL GET USERS:");
+
+//         try {
+//             await client.connect();
+
+//             const database = await client.db("WebsiteGameLauncher");
+//             const userCollection = await database.collection("users");
+//             const userResults = await userCollection.find({}).toArray();
+
+//             if (userResults.length > 0) {
+//                 return userResults;
+//             } else {
+//                 return null;
+//             }
+//         } finally {
+//             await client.close();
+//         }
+//     },
+
+//     createUser: async function (userData) {
+//         console.log("DAL CREATE USER:", userData);
+
+//         try {
+//             await client.connect();
+
+//             const database = client.db("WebsiteGameLauncher");
+//             const userCollection = database.collection("users");
+//             const result = await userCollection.insertOne(userData);
+
+//             console.log(`Documents were inserted`);
+//         } finally {
+//             await client.close();
+//         }
+//     },
+
+//     findUser: async function (username) {
+//         console.log("DAL FIND USER:", username);
+
+//         try {
+//             await client.connect();
+
+//             const database = client.db("WebsiteGameLauncher");
+//             const userCollection = database.collection("users");
+//             const user = await userCollection.findOne({ username: username });
+
+//             return user;
+//         } finally {
+//             await client.close();
+//         }
+//     },
+
+//     updateUser: async function (username, updateData) {
+//         console.log("DAL UPDATE PROFILE:", username, updateData);
+
+//         try {
+//             await client.connect();
+
+//             const database = client.db("WebsiteGameLauncher");
+//             const userCollection = database.collection("users");
+//             const filter = { username: username };
+//             const updateDoc = {
+//                 $set: updateData
+//             };
+
+//             await userCollection.updateOne(filter, updateDoc);
+//         } finally {
+//             await client.close();
+//         }
+//     }
+// };

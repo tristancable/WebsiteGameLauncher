@@ -1,8 +1,13 @@
 /** Manually setting variable types (This is to make functions more reusable)
- * @param {number} enemyNum
+ * @param {number} enemyPick
  * @param {string} enemyPool
  * @param {Array} menuOptions
+ * @param {object} Enemy1
+ * @param {object} Enemy2
+ * @param {object} Enemy3
  */
+
+// ! Don't frogor to do daily attendance
 
 // Mario variables
 let MarioAlive = true;
@@ -16,8 +21,32 @@ let HPVivian = 0;
 let VivianX = 0;
 let VivianY = 0;
 
-// Enemy constructor
-function Enemy(enemy, img, hp, atk, size, groundPos) 
+// Enemy & enemy variable encyclopedia
+let Enemy1 = null;
+let Enemy2 = null;
+let Enemy3 = null;
+const enemyData =
+{
+    // Entry 1: Basic Gloomba
+    1: { enemyNum: 1, img: "../assets/GloombaNormal.png", hp: 7, atk: 3, size: 140, groundPos: 560, spiked: false, fly: false, canTouch: true, canTopple: false},
+    // Entry 2: Paragloomba
+    2: { enemyNum: 2, img: "../assets/GloombaFlying.png", hp: 7, atk: 3, size: 140, groundPos: 560, spiked: false, fly: true, canTouch: true, canTopple: false},
+    // Entry 3: Spiky Gloomba
+    3: { enemyNum: 3, img: "../assets/GloombaHelmet.png", hp: 7, atk: 3, size: 140, groundPos: 560, spiked: true, fly: false, canTouch: true, canTopple: false}
+}
+
+function enemyGen(enemyPick)
+{
+    const data = enemyData[enemyPick];
+    if (data)
+    {
+        return (enemyPick, data.img, data.hp, data.atk, data.size, data.groundPos, data.spiked, data.fly, data.canTouch, data.canTopple);
+    }
+    console.error(`${enemyPick} is not a valid enemy ID`); // Invalid ID failsafe to prevent hang or error
+    return null;
+}
+
+function Enemy(enemy, img, hp, atk, size, groundPos, spiked, fly, canTouch, canTopple) 
 {
     this.id = enemy;
     this.alive = true;
@@ -26,33 +55,12 @@ function Enemy(enemy, img, hp, atk, size, groundPos)
     this.atk = atk;
     this.size = size;
     this.groundPos = groundPos;
+    this.spiked = spiked;
+    this.fly = fly;
+    this.canTouch = canTouch;
+    this.canTopple = canTopple;
     this.XPos = 0;
     this.YPos = 0;
-}
-
-function enemyGen(enemyPick, whichEnemy)
-{
-    switch(enemyPick)
-    {
-        case 1: // Enemy 1: Basic Gloomba
-            switch(whichEnemy)
-            {
-                case 1:
-                    let enemy1 = new Enemy(whichEnemy, "../assets/GloombaNormal.png", 7, 3, 140, 560);
-                    break;
-                case 2:
-                    let enemy2 = new Enemy(whichEnemy, "../assets/GloombaNormal.png", 7, 3, 140, 560);
-                    break;
-                case 3:
-                    let enemy3 = new Enemy(whichEnemy, "../assets/GloombaNormal.png", 7, 3, 140, 560);
-                    break;
-            }
-            break;
-        case 2: // Enemy 2: Paragloomba
-            break;
-        case 3: // Enemy 3: Spiky Gloomba
-            break;
-    }
 }
 
 // Misc variables
@@ -63,40 +71,30 @@ let selectedMenu = 0; /*0 = None,
                         3 = Mario Hammer Menu, 
                         4 = Mario Jump Menu,
                         5 = Vivian Attack Menu*/
-function Person(menuOptions) 
-{
-    this.index = 0;
-    this.options = menuOptions;
-}
-let dummyMenu = 0;
-let marioMenu = 0;
-let vivianMenu = 0;
-let hammerMenu = 0;
-let jumpMenu = 0;
-let vivAtkMenu = 0;
+let menuIndex = 0;
 
-const menuArray = [dummyMenu, marioMenu, vivianMenu, hammerMenu, jumpMenu, vivAtkMenu]
+const menuArray = ["", ""];
 
 // Keyboard functionality
 window.addEventListener('keydown', (event) =>
     {
         if(event.key == 'ArrowLeft')
         {
-            if(menuArray[selectedMenu] != 0)
+            if(menuIndex != 0)
             {
-                menuArray[selectedMenu]--;
+                menuIndex--;
             }
         }
         if(event.key == 'ArrowRight')
         {
-            if(menuArray[selectedMenu] != 3)
+            if(menuIndex != menuArray.length + 1)
             {
-                menuArray[selectedMenu]++;
+                menuIndex++;
             }
         }
 
         // Temporary menu UI
-        document.getElementById('temporary').textContent = menuArray[selectedMenu];
+        document.getElementById('temporary').textContent = menuIndex;
     }
     );
 
@@ -119,7 +117,7 @@ function start()
     setGame();
 }
 
-function enemyGen(enemyPool, whichEnemy)
+function enemyChooser(enemyPool, whichEnemy)
 {
     switch(enemyPool) // Please for the love of god if I forget to add breaks I will actually explode
     {
@@ -134,21 +132,10 @@ async function entrance(getId, howFar)
     let i = 0;
     while(i <= howFar)
     {
-        
-        document.getElementById(getId).style.left = `${i}px`;
-        i = i + 9;
-        await wait(10);
-    }
-}
-
-async function enemytrance(getId, howFar)
-{
-    document.getElementById(getId).style.visibility = "visible";
-    let i = 0;
-    while(i <= howFar)
-    {
-        
-        document.getElementById(getId).style.right = `${i}px`;
+        if(document.getElementById(getId).style.right == 0)
+            document.getElementById(getId).style.left = `${i}px`;
+        else
+            document.getElementById(getId).style.right = `${i}px`;
         i = i + 9;
         await wait(10);
     }
@@ -232,62 +219,72 @@ function update()
     MarioY = infoMario.top;
     VivianX = infoVivian.left;
     VivianX = infoVivian.top;
-    Enemy1XPos = infoEnemy1.right;
-    Enemy1YPos = infoEnemy1.top;
-    Enemy2XPos = infoEnemy2.right;
-    Enemy2YPos = infoEnemy2.top;
-    Enemy3XPos = infoEnemy3.right;
-    Enemy3YPos = infoEnemy3.top;
+    if(Enemy1 != null)
+        Enemy1["XPos"] = infoEnemy1.right;
+        Enemy1["YPos"] = infoEnemy1.top;
+    if(Enemy2 != null)
+        Enemy2["XPos"] = infoEnemy2.right;
+        Enemy2["YPos"] = infoEnemy2.top;
+    if(Enemy3 != null)
+        Enemy3["XPos"] = infoEnemy3.right;
+        Enemy3["YPos"] = infoEnemy3.top;
 
     // Utilize and update sprite variables
-    document.getElementById("enemyHP1").textContent = HPEnemy1;
-    if(HPEnemy1 < 1)
+    if(Enemy1 != null)
     {
-        enemyAlive1 = false;
-        infoEnemy1.style.visibility = "hidden";
-        
+        document.getElementById("enemyHP1").textContent = Enemy1["hp"];
+        if(Enemy1["hp"] < 1)
+        {
+            Enemy1 = null;
+            infoEnemy1.style.visibility = "hidden";
+            infoHP1.style.visibility = "hidden";
+        }
+        else
+        {
+            infoHP1.style.visibility = "visible"; 
+            infoEnemy1.style.width = `${Enemy1["size"]}px`;
+            infoEnemy1.style.height = `${Enemy1["size"]}px`;
+            infoEnemy1.style.top = `${Enemy1["groundPos"]}px`;
+            infoEnemy1.src = Enemy1["img"];
+        }
     }
-    else
+    if(Enemy2 != null)
     {
-        infoHP1.style.visibility = "visible"; 
-        enemyAlive1 = true;
-        infoEnemy1.style.width = `${sizeEnemy1}px`;
-        infoEnemy1.style.height = `${sizeEnemy1}px`;
-        infoEnemy1.style.top = `${groundPosEnemy1}px`;
-        infoEnemy1.src = enemyImg1;
+        document.getElementById("enemyHP2").textContent = Enemy2["hp"];
+        if(Enemy2["hp"] < 1)
+        {
+            Enemy2 = null;
+            infoEnemy2.style.visibility = "hidden";
+            infoHP2.style.visibility = "hidden";
+        }
+        else
+        {
+            infoHP2.style.visibility = "visible"; 
+            infoEnemy2.style.width = `${Enemy2["size"]}px`;
+            infoEnemy2.style.height = `${Enemy2["size"]}px`;
+            infoEnemy2.style.top = `${Enemy2["groundPos"]}px`;
+            infoEnemy2.src = Enemy2["img"];
+        }
     }
-    document.getElementById("enemyHP2").textContent = HPEnemy2;
-    if(HPEnemy2 < 1)
-    {
-        enemyAlive2 = false;
-        infoEnemy2.style.visibility = "hidden";
-        
-    }
-    else
-    {
-        infoHP2.style.visibility = "visible"; 
-        enemyAlive2 = true;
-        infoEnemy2.style.width = `${sizeEnemy2}px`;
-        infoEnemy2.style.height = `${sizeEnemy2}px`;
-        infoEnemy2.style.top = `${groundPosEnemy2}px`;
-        infoEnemy2.src = enemyImg2;
-    }
-    document.getElementById("enemyHP3").textContent = HPEnemy3;
-    if(HPEnemy3 < 1)
-    {
-        enemyAlive3 = false;
-        infoEnemy3.style.visibility = "hidden";
-        
-    }
-    else
-    {
-        infoHP3.style.visibility = "visible"; 
-        enemyAlive3 = true;
-        infoEnemy3.style.width = `${sizeEnemy3}px`;
-        infoEnemy3.style.height = `${sizeEnemy3}px`;
-        infoEnemy3.style.top = `${groundPosEnemy3}px`;
-        infoEnemy3.src = enemyImg3;
-    }
+    if(Enemy3 != null)
+        {
+            document.getElementById("enemyHP3").textContent = Enemy3["hp"];
+            if(Enemy3["hp"] < 1)
+            {
+                Enemy3 = null;
+                infoEnemy3.style.visibility = "hidden";
+                infoHP3.style.visibility = "hidden";
+            }
+            else
+            {
+                infoHP3.style.visibility = "visible"; 
+                infoEnemy3.style.width = `${Enemy3["size"]}px`;
+                infoEnemy3.style.height = `${Enemy3["size"]}px`;
+                infoEnemy3.style.top = `${Enemy3["groundPos"]}px`;
+                infoEnemy3.src = Enemy3["img"];
+            }
+        }
+    
     // TODO: Some values will be hard coded using the Gloomba enemy for now, they should be updated with more variables later down the road.
 }
 
@@ -300,25 +297,24 @@ async function setGame()
 {
     HPMario = 25;
     HPVivian = 20;
-    HPEnemy1 = 10;
 
-    enemyGen(1, 1);
-    enemyGen(1, 2);
-    enemyGen(1, 3);
+    Enemy1 = new Enemy(enemyGen(1));
+    Enemy2 = new Enemy(enemyGen(1));
+    Enemy3 = new Enemy(enemyGen(1));
 
     update();
 
     await unveil();
     entrance("mario", 400);
-    if(enemyAlive1)
-        enemytrance("enemy1", 600)
+    if(Enemy1 != null)
+        entrance("enemy1", 600)
     await wait(400);
     entrance("vivian", 200);
-    if(enemyAlive2)
-        enemytrance("enemy2", 400)
+    if(Enemy2 != null)
+        entrance("enemy2", 400)
     await wait(300);
-    if(enemyAlive3)
-        enemytrance("enemy3", 200)
+    if(Enemy3 != null)
+        entrance("enemy3", 200)
 
     await wait(600);
     hop("mario", 2);
@@ -327,5 +323,5 @@ async function setGame()
     hop("enemy2", 2);
     hop("enemy3", 2);
 
-    // ! Come back later!
+    // ! Don't frogor to do daily attendance
 }
