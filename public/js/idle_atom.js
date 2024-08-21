@@ -598,7 +598,7 @@ class Element {
     constructor({initialWeight, isotopes, isotopeWeights}) {
         this.startingWeight = initialWeight
         this.atomicWeight = initialWeight;
-        this.tickTime = 100;
+        this.tickTime = 1000;
         this.currentTickTimeUpgrade = 0;
         this.tickTimePrice = tickTimePriceScaling(this.startingWeight, this.currentTickTimeUpgrade);
         this.isotopes = isotopes;
