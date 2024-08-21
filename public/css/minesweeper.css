@@ -14,15 +14,12 @@
 }
 #easyBoard {
     background-color: white;
-    width: 255px;
-    height: 200px;
-
     margin: 0 auto;
-
-    display: block;
+    display: inline-block;
     flex-wrap: wrap;
-
-    
+    width: 250px;
+    height: 200px;
+    font-size: 0;
 }
 
 #mediumBoard {
@@ -40,13 +37,14 @@
 #topBar {
     background-color: white;
     border: 2px black solid;
-    width: 250px;   
 
+    font-size: 0;
     margin: 0 auto;
     display: flex;
     flex-wrap: wrap;
     
     margin-top: 50px;
+    width: 255px;
 }
 
 
@@ -58,10 +56,14 @@
     width: 25px;
     height: 25px;
     background-color: lightgray;
+    border-color: solid 1px gray;
+    font-size: 14px;
+    font-weight: bold;
 
-    display: inline-block;
-    font-size: 12px;
+    float: left;
 
+    margin: 0px;
+    padding: 0px;
 }
 
 .tileClear {
@@ -71,12 +73,25 @@
 
 .tileBomb {
     background-color: red;
+    background-image: url("../assets/bomb.png");
+    background-size: cover;
 }
 
 .tileFlagged {
-    background-color: blue;
+    background-image: url("../assets/flag.jpg");
+    background-size: cover;
+    border: none;
 }
 
-#timer {
+.tileFlagBomb {
+    background-color: blueviolet;
+}
+
+#timer { 
+    font-size: 16px;
     margin: 0px 5px;
+}
+
+#mineCount{
+    font-size: 16px;
 }
