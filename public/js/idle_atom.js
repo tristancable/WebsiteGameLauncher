@@ -598,7 +598,7 @@ class Element {
     constructor({initialWeight, isotopes, isotopeWeights}) {
         this.startingWeight = initialWeight
         this.atomicWeight = initialWeight;
-        this.tickTime = 1000;
+        this.tickTime = 100;
         this.currentTickTimeUpgrade = 0;
         this.tickTimePrice = tickTimePriceScaling(this.startingWeight, this.currentTickTimeUpgrade);
         this.isotopes = isotopes;
@@ -607,7 +607,7 @@ class Element {
         this.isotopePrice = isotopePriceScaling(this.startingWeight, this.currentIsotope, this.isotopeWeights);
         this.nextElementPrice = 5 * this.startingWeight * isotopeWeights.length;
         this.nextUnlocked = false;
-        this.lastTickStart = Date.now();
+        this.lastTickStart = performance.now();
         this.createHTML();
         this.startTicking();
         this.buttonAvailable();
@@ -685,21 +685,23 @@ class Element {
     }
     startTicking() {
         this.stopTicking();
+        this.lastTickStart = performance.now();
         this.tick();
     }
     stopTicking() {
-        if (this.timeoutId) {
-            clearInterval(this.timeoutId);
+        if (this.animationFrameId) {
+            cancelAnimationFrame(this.animationFrameId);
         }
     }
     tick() {
-        let now = Date.now();
+        let now = performance.now();
         let elapsed = now - this.lastTickStart;
         if (elapsed >= this.tickTime) {
-            atomicWeight += this.atomicWeight;
-            this.lastTickStart = now;
-            this.timeoutId = setTimeout(() => this.tick(), this.tickTime);
-        } else this.timeoutId = setTimeout(() => this.tick(), this.tickTime - elapsed);
+            let ticks = Math.floor(elapsed / this.tickTime);
+            atomicWeight += ticks * this.atomicWeight;
+            this.lastTickStart = now - (elapsed % this.tickTime);
+        }
+        this.animationFrameId = requestAnimationFrame(() => this.tick());
     }
     buttonAvailable() {
         setInterval(() => {
