@@ -49,6 +49,7 @@
     
     margin-top: 50px;
     width: 255px;
+    height: 35px;
 }
 
 
@@ -57,11 +58,11 @@
 }
 
 .tile {
-    width: 25px;
-    height: 25px;
+    width: 30px;
+    height: 30px;
     background-color: lightgray;
     border-color: solid 1px gray;
-    font-size: 14px;
+    font-size: 20px;
     font-weight: bold;
 
     float: left;
@@ -100,7 +101,7 @@
 
 .text {
     font-family: arcadeClassic;
-    font-size: 18px;
+    font-size: 20px;
     margin: 3px;
 
     flex: 1;
@@ -115,7 +116,7 @@
     font-family: arcadeClassic;
     margin: 0;
     padding: 0px 3px;
-    font-size: 14px;
+    font-size: 16px;
 
     border-radius: 1px;
     border: solid 1px;
@@ -124,6 +125,6 @@
     display: flex;
     justify-content: flex-end;
     width: 75px;
-    height: 16px;
+    height: 20px;
     text-align: center;
 }

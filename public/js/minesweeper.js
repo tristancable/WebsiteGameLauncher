@@ -35,12 +35,12 @@ function resetGame() {
     let barWidth;
     if (difficulty == 0) {
         mineCount = EASY_MINES;
-        barWidth = "254px";  
+        barWidth = "304px";  
     } else if (difficulty == 1) {
-        barWidth = "504px";
+        barWidth = "604px";   
         mineCount = MEDIUM_MINES;
     } else if (difficulty == 2) {
-        barWidth = "629px";
+        barWidth = "754px";
         mineCount = HARD_MINES;
     }
     mineCountTxt.innerText = mineCount;
@@ -126,8 +126,6 @@ function generateMines() {
             }
         }
     }
-                    // consol log HERE ---------------------------
-                    //console.log("mine,",mineArray);
 }
 
 
@@ -137,7 +135,7 @@ function clickTile(event) {
     if (firstClick) timer.start();
     let tempTile = document.getElementById(this.id);
     let tileNum = this.id.substr(4);
-    console.log("myClick",tileNum);
+    
     let nums = tileNum.split(',');
     let x = nums[0];
     let y = nums[1];
@@ -186,7 +184,7 @@ function flagTile(tempTile) {
         tempTile.classList.add("tileFlagged");
         mineCount--;
     }
-    console.log(mineCount);
+    
     let text = document.getElementById("mineCount");
     text.innerText = mineCount;
 }
@@ -242,6 +240,10 @@ function clearChunk(x, y) {
             continue;
         }
         
+        fillStack.push([cx - 1, cy + 1]);
+        fillStack.push([cx - 1, cy - 1]);
+        fillStack.push([cx + 1, cy - 1]);
+        fillStack.push([cx + 1, cy + 1]);
         fillStack.push([cx, cy + 1]);
         fillStack.push([cx, cy - 1]);
         fillStack.push([cx + 1, cy]);
@@ -305,7 +307,6 @@ function checkWin() {
     for (let i = 0; i < mineArray.length; i++) {
         for (let j = 0; j < mineArray[i].length; j++) {
             tempTile = document.getElementById("tile" + i + "," + j);
-            tempTile.disabled = true;
             if (mineArray[i][j] && tempTile.classList.contains("tileFlagged")){
                 flagCount++;
             }
@@ -325,7 +326,9 @@ function checkWin() {
             tempTile = document.getElementById("tile" + i + "," + j);
             tempTile.disabled = true;
             if (!mineArray[i][j]){
+                tempTile.disabled = true;
                 tempTile.classList.add("tileClear");
+                if (checkNearby(i,j) != 0) tempTile.innerText = checkNearby(i,j);
             }
         }
     }
