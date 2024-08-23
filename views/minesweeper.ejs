@@ -7,6 +7,7 @@
 
     <link rel="stylesheet" href="/css/minesweeper.css">
     <link rel="stylesheet" href="/css/site.css">
+    <script src="./js/index.js" defer></script>
     <script src="/js/minesweeper.js" defer></script>
 </head>
 
@@ -15,16 +16,17 @@
         <h1>Minesweeper</h1>
         <main>
             <div id="topBar">
-                <span id="mineCount"></span>
-                <button onclick="resetGame()">NewGame</button>
+                <span id="mineCount" class="text"></span>
+                <span id="timer"  class="text"></span>
+                <button onclick="resetGame()"  class="btnDropDown">NewGame</button>
                 
-                <select name="difficulty" id="difficulty">
+                <select name="difficulty" id="difficulty" class="btnDropDown">
                     <option value="0">Easy</option>
                     <option value="1">Medium</option>
                     <option value="2">Hard</option>
                 </select>
                 
-                <span id="timer"></span>
+
             <div id="boardTemp" oncontextmenu="return false;" ondrag="return false;" ondragstart="return false;">
             <!-- view and stuff  -->
             </div>

@@ -1,5 +1,8 @@
 
-
+@font-face {
+    font-family: 'arcadeClassic';
+    src: url('../assets/ArcadeClassic.ttf');
+}
 
 .boardTemp {
     background-color: white;
@@ -42,6 +45,7 @@
     margin: 0 auto;
     display: flex;
     flex-wrap: wrap;
+    align-items: center;
     
     margin-top: 50px;
     width: 255px;
@@ -64,6 +68,7 @@
 
     margin: 0px;
     padding: 0px;
+    font-family: arcadeClassic;
 }
 
 .tileClear {
@@ -87,11 +92,38 @@
     background-color: blueviolet;
 }
 
-#timer { 
-    font-size: 16px;
-    margin: 0px 5px;
-}
+
 
 #mineCount{
     font-size: 16px;
+}
+
+.text {
+    font-family: arcadeClassic;
+    font-size: 18px;
+    margin: 3px;
+
+    flex: 1;
+    display: flex;
+    justify-content: flex-start;
+}
+#timer { 
+    width: 75px;
+}
+
+.btnDropDown {
+    font-family: arcadeClassic;
+    margin: 0;
+    padding: 0px 3px;
+    font-size: 14px;
+
+    border-radius: 1px;
+    border: solid 1px;
+
+    flex: 1;
+    display: flex;
+    justify-content: flex-end;
+    width: 75px;
+    height: 16px;
+    text-align: center;
 }

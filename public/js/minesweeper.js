@@ -164,12 +164,16 @@ function clickTile(event) {
                 tempTile.innerText = num;
             }
             tempTile.disabled = true;
+
         }
     } else if (event.button === 2) { //right click
         flagTile(tempTile);
     }
+    
 
     }
+    if (mineCount === 0)
+        checkWin();
 }
 
 
@@ -293,7 +297,39 @@ function onGameOver() {
             else if (mineArray[i][j]) tempTile.classList.add("tileBomb");
         }
     }
+}
 
+function checkWin() {
+    let flagCount = 0;
+    let tempTile;
+    for (let i = 0; i < mineArray.length; i++) {
+        for (let j = 0; j < mineArray[i].length; j++) {
+            tempTile = document.getElementById("tile" + i + "," + j);
+            tempTile.disabled = true;
+            if (mineArray[i][j] && tempTile.classList.contains("tileFlagged")){
+                flagCount++;
+            }
+        }
+    }
+    console.log(flagCount);
+    if (difficulty == 0) {
+        if (flagCount != EASY_MINES) return;
+    } else if (difficulty == 1) {
+        if (flagCount != MEDIUM_MINES) return;
+    } else if (difficulty == 2) {
+        if (flagCount != HARD_MINES) return;
+    }
+
+    for (let i = 0; i < mineArray.length; i++) {
+        for (let j = 0; j < mineArray[i].length; j++) {
+            tempTile = document.getElementById("tile" + i + "," + j);
+            tempTile.disabled = true;
+            if (!mineArray[i][j]){
+                tempTile.classList.add("tileClear");
+            }
+        }
+    }
+    timer.stop();
 }
 
 function checkValidRowCol(x,y) {
@@ -313,6 +349,7 @@ function findMines(newX, newY) {
 function getRandomInt(max) {
     return Math.floor(Math.random() * max);
 }
+
 
 
 
