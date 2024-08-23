@@ -38,18 +38,17 @@ const enemyData =
 function enemyGen(enemyPick)
 {
     const data = enemyData[enemyPick];
-    if (data)
+    if (data) 
     {
-        return (enemyPick, data.img, data.hp, data.atk, data.size, data.groundPos, data.spiked, data.fly, data.canTouch, data.canTopple);
+        return new Enemy(enemyPick, data.img, data.hp, data.atk, data.size, data.groundPos, data.spiked, data.fly, data.canTouch, data.canTopple);
     }
     console.error(`${enemyPick} is not a valid enemy ID`); // Invalid ID failsafe to prevent hang or error
     return null;
-}
+} 
 
 function Enemy(enemy, img, hp, atk, size, groundPos, spiked, fly, canTouch, canTopple) 
 {
     this.id = enemy;
-    this.alive = true;
     this.img = img;
     this.hp = hp;
     this.atk = atk;
@@ -64,7 +63,7 @@ function Enemy(enemy, img, hp, atk, size, groundPos, spiked, fly, canTouch, canT
 }
 
 // Misc variables
-let turnOrder = 0;
+let turn = 0;
 let selectedMenu = 0; /*0 = None, 
                         1 = Mario Menu, 
                         2 = Vivian Menu, 
@@ -73,7 +72,24 @@ let selectedMenu = 0; /*0 = None,
                         5 = Vivian Attack Menu*/
 let menuIndex = 0;
 
-const menuArray = ["", ""];
+/*const actionData =
+{
+    // JumpMenu
+    1: { }
+    // HammerMenu
+    2:
+    // Tactics
+    3: 
+    // VivianAtk
+    4:
+    // Jump (Action)
+    5:
+    // Multibounce
+    6:
+
+}*/
+
+const menuArray = [];
 
 // Keyboard functionality
 window.addEventListener('keydown', (event) =>
@@ -126,16 +142,21 @@ function enemyChooser(enemyPool, whichEnemy)
     }
 }
 
-async function entrance(getId, howFar)
+async function entrance(getId, howFar, type) // 0 = Left, 1 = Right
 {
     document.getElementById(getId).style.visibility = "visible";
     let i = 0;
     while(i <= howFar)
     {
-        if(document.getElementById(getId).style.right == 0)
-            document.getElementById(getId).style.left = `${i}px`;
-        else
-            document.getElementById(getId).style.right = `${i}px`;
+        switch(type)
+        {
+            case 0:
+                document.getElementById(getId).style.left = `${i}px`;
+                break;
+            case 1:
+                document.getElementById(getId).style.right = `${i}px`;
+                break;
+        }
         i = i + 9;
         await wait(10);
     }
@@ -288,7 +309,7 @@ function update()
     // TODO: Some values will be hard coded using the Gloomba enemy for now, they should be updated with more variables later down the road.
 }
 
-function menu()
+function menu(type)
 {
     
 }
@@ -298,23 +319,23 @@ async function setGame()
     HPMario = 25;
     HPVivian = 20;
 
-    Enemy1 = new Enemy(enemyGen(1));
-    Enemy2 = new Enemy(enemyGen(1));
-    Enemy3 = new Enemy(enemyGen(1));
+    Enemy1 = enemyGen(1);
+    Enemy2 = enemyGen(1);
+    Enemy3 = enemyGen(1);
 
     update();
 
     await unveil();
-    entrance("mario", 400);
+    entrance("mario", 400, 0);
     if(Enemy1 != null)
-        entrance("enemy1", 600)
+        entrance("enemy1", 600, 1)
     await wait(400);
-    entrance("vivian", 200);
+    entrance("vivian", 200, 0);
     if(Enemy2 != null)
-        entrance("enemy2", 400)
+        entrance("enemy2", 400, 1)
     await wait(300);
-    if(Enemy3 != null)
-        entrance("enemy3", 200)
+    if(Enemy3 != null) 
+        entrance("enemy3", 200, 1)
 
     await wait(600);
     hop("mario", 2);
