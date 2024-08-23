@@ -28,6 +28,10 @@ footer {
     border-top: red solid 2px;
 }
 
+.nav-bar .spacer {
+    flex-grow: 1;
+}
+
 nav ul {
     background-color: black;
     height: 75px;
@@ -93,4 +97,12 @@ button {
 
 span {
     margin: 0px 10px 0px 0px;
+}
+
+#pointsDiv {
+    margin: 5px;
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    color: white;
 }

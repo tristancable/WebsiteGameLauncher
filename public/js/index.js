@@ -14,5 +14,4 @@ function updatePoints() {
     .catch(error => console.error('Error updating points:', error));
 }
 
-// Call updatePoints every second
 setInterval(updatePoints, 10000);

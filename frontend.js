@@ -96,6 +96,14 @@ app.get('/tictactoe', (req, res) => {
     });
 });
 
+app.get('/shop', (req, res) => {
+    res.render('shop', {
+        username: req.session.username,
+        points: req.session.points,
+        shopItem: req.session.shopItem
+    });
+});
+
 app.get('/login', (req, res) => {
     res.render('login', {
         username: req.session.username,
@@ -108,6 +116,55 @@ app.get('/register', (req, res) => {
         username: req.session.username,
         points: req.session.points
     });
+});
+
+app.post('/shop', async (req, res) => {
+    // This function was created with the help from ChatGPT
+    if (!req.session.username) {
+        return res.redirect('/login');
+    }
+
+    const { itemName, itemPrice } = req.body;
+
+    try {
+        const response = await fetch('http://localhost:1225/shop', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                username: req.session.username,
+                item: {
+                    name: itemName,
+                    price: parseInt(itemPrice)
+                }
+            })
+        });
+
+        const data = await response.json();
+
+        if (response.ok && data.success) {
+            req.session.points = data.points;
+            res.render('shop', {
+                username: req.session.username,
+                points: req.session.points,
+                purchaseSuccess: `Successfully purchased ${itemName}!`
+            });
+        } else {
+            res.render('shop', {
+                username: req.session.username,
+                points: req.session.points,
+                purchaseError: data.error || 'Purchase failed.'
+            });
+        }
+    } catch (error) {
+        console.error('Error during purchase:', error);
+        res.render('shop', {
+            username: req.session.username,
+            points: req.session.points,
+            purchaseError: 'An error occurred during purchase. Please try again later.'
+        });
+    }
 });
 
 app.post('/login', async (req, res) => {

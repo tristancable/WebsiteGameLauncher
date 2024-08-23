@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Shop</title>
+    <link rel="stylesheet" href="/css/site.css" />
+    <link rel="stylesheet" href="/css/shop.css" />
+    <script src="/js/index.js" defer></script>
+</head>
+<body>
+    <%- include('partials/header') %>
+    <h1>Shop</h1>
+    <main>
+        <div class="shopContainer">
+            <!-- Example items were created with ChatGPT -->
+            <!-- Example items -->
+            <% const shopItems = [
+                { name: 'Gold Membership', price: 5000 },
+                { name: 'Silver Membership', price: 3000 },
+                { name: 'Bronze Membership', price: 1000 }
+            ]; %>
+
+            <% shopItems.forEach(item => { %>
+                <div class="insideContainer">
+                    <div class="itemTitle"><%= item.name %></div>
+                    <div class="itemDescription">Price: <%= item.price %> points</div>
+                    <form class="purchaseForm" method="POST" action="/shop">
+                        <input type="hidden" name="itemName" value="<%= item.name %>">
+                        <input type="hidden" name="itemPrice" value="<%= item.price %>">
+                        <button type="submit">Purchase</button>
+                    </form>
+                </div>
+            <% }); %>
+        </div>
+    </main>
+    <%- include('partials/footer') %>
+</body>
+</html>

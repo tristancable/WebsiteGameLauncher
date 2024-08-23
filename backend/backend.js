@@ -29,41 +29,50 @@ app.use(cors({
 
 app.use(session(sessionOptions));
 
-// app.use(async (req, res, next) => {
-//     if (req.session.username) {
-//         // Update points for logged-in user
-//         try {
-//             await DAL.updatePoints(req.session.username, { points: req.session.points || 0 });
-//         } catch (error) {
-//             console.error('Error updating points:', error);
-//         }
-//     }
-//     next();
-// });
+app.post('/shop', async (req, res) => {
+    // This function was created with the help from ChatGPT
+    const { username, item } = req.body;
 
-// app.use((req, res, next) => {
-//     console.log('Before setting locals.username:', req.session.username); // Debugging
-//     res.locals.username = req.session.username;
-//     console.log('After setting locals.username:', res.locals.username); // Debugging
-//     next();
-// });
+    if (!username) {
+        return res.status(401).json({ error: 'User not authenticated.' });
+    }
 
-// app.get('/', (req, res) => {
-//     req.session.username = "hello";
-//     res.render('index', { session: req.session });
-// });
+    if (!item || !item.name || !item.price) {
+        return res.status(400).json({ error: 'Invalid item data.' });
+    }
 
+    try {
+        const user = await DAL.findUser(username);
 
+        if (!user) {
+            return res.status(404).json({ error: 'User not found.' });
+        }
 
-// app.get('/test-session', (req, res) => {
-//     req.session.username = 'john_doe';
-//     res.render('test-session', { session: req.session });
-// });
+        if (user.points < item.price) {
+            return res.status(400).json({ error: 'Insufficient points for this purchase.' });
+        }
 
-// app.get('/login', (req, res) => {
-//     console.log('LOGIN REQUEST', req.session.username);
-//     res.render('login', { error: req.query.error });
-// });
+        // Deduct points and add item to user's purchased items
+        user.points -= item.price;
+        user.purchasedItems = user.purchasedItems || [];
+        user.purchasedItems.push(item.name);
+
+        // Update user in the database
+        await DAL.updateUser(username, {
+            points: user.points,
+            purchasedItems: user.purchasedItems
+        });
+
+        res.status(200).json({
+            success: true,
+            points: user.points,
+            message: `${item.name} purchased successfully.`
+        });
+    } catch (error) {
+        console.error('Error processing purchase:', error);
+        res.status(500).json({ error: 'Internal server error.' });
+    }
+});
 
 app.post('/login', async (req, res) => {
     let username = req.body.username;

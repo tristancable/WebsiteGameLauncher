@@ -1,0 +1,38 @@
+.shopContainer {
+    display: flex;
+    flex-direction: column;
+    margin: 10px;
+    width: 20%;
+    height: fit-content;
+    border: 2px solid black;
+    background-color: white;
+}
+
+.insideContainer {
+    margin: 0;
+    padding: 5px;
+    text-align: center;
+}
+
+#itemTitle {
+    font-size: 35px;
+}
+
+#itemDescription {
+    font-size: 20px;
+}
+
+#shopPurchase {
+    background-color: #988074;
+    color: white;
+    padding: 16px 20px;
+    margin: 8px 0;
+    border: none;
+    cursor: pointer;
+    width: 75%;
+    opacity: 0.9;
+}
+
+#shopPurchase:hover {
+    opacity: 1;
+}

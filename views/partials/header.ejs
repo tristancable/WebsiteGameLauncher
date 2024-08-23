@@ -16,25 +16,30 @@
             <li>
                 <a href="/tictactoe">Tic-Tac-Toe</a>
             </li>
-            <li class="spacer"></li>
-            <% if (!username) { %>
+            <% if (username) { %>
                 <li>
-                    <a href="/login">Login</a>
+                    <a href="/shop">Shop</a>
                 </li>
-                <li>
-                    <a id="navBarRegister" href="/register">Register</a>
-                </li>
-                <% } else { %>
-                    <li>
-                        <div id="pointsDiv">
-                            <div>Username: <%= username %></div>
-                            <div id="points">Points: <%= points %></div>
-                        </div>
-                    </li>
-                    <li>
-                        <a href="/logout">Logout</a>
-                    </li>
-                    <% } %>
+                <% } %>
+                    <li class="spacer"></li>
+                    <% if (!username) { %>
+                        <li>
+                            <a href="/login">Login</a>
+                        </li>
+                        <li>
+                            <a id="navBarRegister" href="/register">Register</a>
+                        </li>
+                        <% } else { %>
+                            <li>
+                                <div id="pointsDiv">
+                                    <div>Username: <%= username %></div>
+                                    <div id="points">Points: <%= points %></div>
+                                </div>
+                            </li>
+                            <li>
+                                <a href="/logout">Logout</a>
+                            </li>
+                            <% } %>
         </ul>
     </nav>
 </header>
