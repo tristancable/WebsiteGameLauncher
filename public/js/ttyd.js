@@ -72,7 +72,7 @@ let currentMenu = "";
 let init = true;
 let prevMenu = "";
 const menuReady = new Event('menuReady');
-let menuItems = null;
+let menuItems = [];
 let selectedIndex = 0;
 let broadcast = null;
 
@@ -84,7 +84,9 @@ const menuActions =
     4: { name: "Defend", menuPos: 1, action: 'guard', menu: 'tactics-menu'},
     5: { name: "Run Away", menuPos: 2, action: 'homePage', menu: 'tactics-menu' },
     6: { name: "Back", menuPos: 3, action: 'back', menu: 'tactics-menu' },
-    7: { name: "Basic Jump", menuPos: 1, action: 'jump', menu: 'jump-menu' }
+    7: { name: "Basic Jump", menuPos: 1, action: 'jump', menu: 'jump-menu' },
+    8: { name: "Multibounce", menuPos: 2, action: 'multibounce', menu: 'jump-menu' },
+    9: { name: "Power Bounce", menuPos: 3, action: 'powerBounce', menu: 'jump-menu' }
 };
 
 function menuUpdate(selectedMenu) 
@@ -92,7 +94,7 @@ function menuUpdate(selectedMenu)
     prevMenu = currentMenu;
     currentMenu = selectedMenu;
 
-    document.getElementById('action-menu').replaceChildren("");
+    document.getElementById('action-menu').replaceChildren('');
 
     const menuLength = Object.keys(menuActions).length;
     let div = null;
@@ -105,7 +107,7 @@ function menuUpdate(selectedMenu)
         if(menuActions[i].menu == selectedMenu)
         {
             div.innerHTML = menuActions[i].name + `</div>`;
-            document.getElementById("action-menu").appendChild(div);
+            document.getElementById("action-menu").appendChild(div); // Menu is made and appended
         }
     }
 
