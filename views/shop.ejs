@@ -14,9 +14,10 @@
             <!-- Example items were created with ChatGPT -->
             <!-- Example items -->
             <% const shopItems = [
-                { name: 'Gold Membership', price: 5000 },
-                { name: 'Silver Membership', price: 3000 },
-                { name: 'Bronze Membership', price: 1000 }
+            { name: 'Bronze Membership', price: 1000 },
+            { name: 'Silver Membership', price: 3000 },
+            { name: 'Gold Membership', price: 5000 },
+            { name: 'Platinum Membership', price: 10000 }
             ]; %>
 
             <% shopItems.forEach(item => { %>
@@ -26,7 +27,7 @@
                     <form class="purchaseForm" method="POST" action="/shop">
                         <input type="hidden" name="itemName" value="<%= item.name %>">
                         <input type="hidden" name="itemPrice" value="<%= item.price %>">
-                        <button type="submit">Purchase</button>
+                        <button id="shopPurchase" type="submit">Purchase</button>
                     </form>
                 </div>
             <% }); %>
