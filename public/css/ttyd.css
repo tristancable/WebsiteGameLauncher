@@ -90,6 +90,32 @@ body
     visibility: hidden;
 }
 
+#action-menu 
+{
+    display: flex;
+    justify-content: space-around;
+    padding: 10px;
+    background-color: #333;
+    color: #fff;
+    border-radius: 5px;
+}
+
+.action-item 
+{
+    padding: 10px 20px;
+    cursor: pointer;
+}
+
+.selected 
+{
+    border-bottom: 2px solid #fff;
+}
+
+.hide
+{
+    visibility: hidden;
+}
+
 #splash
 {
     position: fixed; top: 0; left: 0; z-index: 999;

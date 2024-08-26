@@ -70,49 +70,135 @@ let selectedMenu = 0; /*0 = None,
                         3 = Mario Hammer Menu, 
                         4 = Mario Jump Menu,
                         5 = Vivian Attack Menu*/
-let menuIndex = 0;
+let currentMenu = "";
+let init = true;
+let prevMenu = "";
+const menuReady = new Event('menuReady');
+let menuItems = null;
+let selectedIndex = 0;
+let broadcast = null;
 
-/*const actionData =
+const menuActions = 
 {
-    // JumpMenu
-    1: { }
-    // HammerMenu
-    2:
-    // Tactics
-    3: 
-    // VivianAtk
-    4:
-    // Jump (Action)
-    5:
-    // Multibounce
-    6:
+    1: { name: "Jump", menuPos: 1, action: 'showJumpMenu', menu: 'main-menu' },
+    2: { name: "Hammer", menuPos: 2, action: 'showHammerMenu', menu: 'main-menu' },
+    3: { name: "Tactics", menuPos: 3, action: 'showTacticsMenu', menu: 'main-menu' },
+    4: { name: "Defend", menuPos: 1, action: 'guard', menu: 'tactics-menu'},
+    5: { name: "Run Away", menuPos: 2, action: 'homePage', menu: 'tactics-menu' },
+    6: { name: "Back", menuPos: 3, action: 'back', menu: 'tactics-menu' }
+};
 
-}*/
+function menuUpdate(selectedMenu) 
+{
+    prevMenu = currentMenu;
+    currentMenu = selectedMenu;
 
-const menuArray = [];
+    document.getElementById('action-menu').replaceChildren();
+
+    const menuLength = Object.keys(menuActions).length;
+    let div = null;
+
+    for(let i = 1; i < menuLength + 1; i++)
+    {
+        div = document.createElement('div');
+        div.className = 'action-item';
+
+        if(menuActions[i].menu == selectedMenu)
+        {
+            div.innerHTML = menuActions[i].name + `</div>`;
+            document.getElementById("action-menu").appendChild(div);
+        }
+    }
+
+    init = true;
+    window.dispatchEvent(menuReady);
+}
+
+function removeRow(input) 
+{
+    document.getElementById('main-menu').removeChild(input.parentNode);
+}
 
 // Keyboard functionality
-window.addEventListener('keydown', (event) =>
+document.addEventListener('DOMContentLoaded', () => 
     {
-        if(event.key == 'ArrowLeft')
+        // const menuItems = document.getElementById('tactics-menu').querySelectorAll('.action-item');
+        
+        window.addEventListener('menuReady', function (e) 
         {
-            if(menuIndex != 0)
-            {
-                menuIndex--;
-            }
-        }
-        if(event.key == 'ArrowRight')
-        {
-            if(menuIndex != menuArray.length + 1)
-            {
-                menuIndex++;
-            }
-        }
+            menuItems = document.querySelectorAll('.action-item');
+            selectedIndex = 0;
+            menuItems[0].classList.add('selected');
+        });
 
-        // Temporary menu UI
-        document.getElementById('temporary').textContent = menuIndex;
-    }
-    );
+        function updateSelection() 
+        {
+            menuItems.forEach((item, i) => 
+            {
+                if (i == selectedIndex) 
+                {
+                    item.classList.add('selected');
+                } 
+                else 
+                {
+                    item.classList.remove('selected');
+                }
+            });
+        }
+    
+        function handleInput(event) 
+        {
+            if (event.key == 'ArrowRight') 
+            {
+                selectedIndex = (selectedIndex + 1) % menuItems.length;
+                updateSelection(selectedIndex);
+            }
+            else if (event.key == 'ArrowLeft') 
+            {
+                selectedIndex = (selectedIndex - 1 + menuItems.length) % menuItems.length;
+                updateSelection(selectedIndex);
+            }
+            else if (event.key == 'Enter') 
+            {
+                if(menuActions[selectedIndex + 1].menu == currentMenu)
+                {
+                    broadcast = new Event(menuActions[selectedIndex + 1].action);
+                }
+                else
+                {
+                    let temp = selectedIndex;
+                    while(menuActions[temp + 1].menu != currentMenu)
+                    {
+                        temp = temp + 1;
+                    }
+                    temp = temp + selectedIndex + 1;
+                    broadcast = new Event(menuActions[temp].action);
+                }
+                window.dispatchEvent(broadcast);
+                // Trigger the selected action
+            }
+            updateSelection();
+        };
+
+        // ! Broadcasts
+        // Open Tactics menu
+        window.addEventListener('showTacticsMenu', function (e) 
+        {
+            menuUpdate("tactics-menu")
+        });
+        // Return to previous menu
+        window.addEventListener('back', function (e) 
+        {
+            menuUpdate(prevMenu)
+        });
+        // Run away (Sends user to home page)
+        window.addEventListener('homePage', function (e) 
+        {
+            window.location.replace("/");
+        });
+
+        document.addEventListener('keydown', handleInput);
+    });
 
 async function wait(milliseconds) // Uses async to wait the inputted amount of milliseconds
 {
@@ -167,7 +253,7 @@ async function hop(getId, hops)
     var upDistance = getComputedStyle(document.getElementById(getId))
         .getPropertyValue('top');
     var upDistance = upDistance.replace(/\D/g,'');
-    for(let index = 0; index < 2; index++)
+    for(let index = 0; index < hops; index++)
     {
         let i = upDistance;
         while(i >= upDistance - 40)
@@ -309,11 +395,6 @@ function update()
     // TODO: Some values will be hard coded using the Gloomba enemy for now, they should be updated with more variables later down the road.
 }
 
-function menu(type)
-{
-    
-}
-
 async function setGame()
 {
     HPMario = 25;
@@ -323,6 +404,7 @@ async function setGame()
     Enemy2 = enemyGen(1);
     Enemy3 = enemyGen(1);
 
+    menuUpdate("main-menu");
     update();
 
     await unveil();
