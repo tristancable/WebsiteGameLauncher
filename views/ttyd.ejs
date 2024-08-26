@@ -5,7 +5,8 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>TTYD Engine</title>
         <link rel="stylesheet" href="/css/ttyd.css"/>
-        <script src="/js/ttyd.js"></script>
+        <script src="/js/ttyd.js" defer></script>
+        <script src="./js/index.js" defer></script>
     </head>
     <body>      
         <div id="splash" onclick="start()">
@@ -16,13 +17,23 @@
         <audio id="bgm" src="../assets/Moon Battle.mp3" loop></audio>
         <script>
             var audio = document.getElementById("bgm");
-            audio.volume = 0.12;
+            audio.volume = 0.11;
         </script>
-        <h1>day 4 of hating html</h1>
+        <h1>day 13 of hating html</h1>
+        <h2 id="marioHP">Mario: 0</h2>
+        <h2 id="vivianHP">Vivian: 0</h2>
+        <h3 id="enemyHP1">0</h3>
+        <h3 id="enemyHP2">0</h3>
+        <h3 id="enemyHP3">0</h3>
+
+        <div id="action-menu"></div>
+
         <img id="vivian" src="../assets/ViviIdle.png">
         <img id="mario" src="../assets/MarioIdle.png">
+        <img id="enemy1" src="">
+        <img id="enemy2" src="">
+        <img id="enemy3" src="">
         <img id="curtain" src="../assets/ttydStageCurtain.png">
-        
     </body>
     
 </html>
