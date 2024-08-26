@@ -10,6 +10,13 @@
     <%- include('partials/header') %>
     <h1>Shop</h1>
     <main>
+        <% if (purchaseError) { %>
+            <div class="purchaseError"><%= purchaseError %></div>
+        <% } %>
+        <% if (purchaseSuccess) { %>
+            <div class="purchaseSuccess"><%= purchaseSuccess %></div>
+        <% } %>
+
         <div class="shopContainer">
             <!-- Example items were created with ChatGPT -->
             <!-- Example items -->

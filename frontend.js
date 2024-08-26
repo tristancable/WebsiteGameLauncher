@@ -23,40 +23,10 @@ app.set('views', path.join(__dirname, 'views'));
 let username = "";
 let points;
 
-// while (username) {
-//     setTimeout(() => {
-//         points += 1;
-//         console.log(points);
-//     }, 1000);
-// }
-
-// app.use((req, res, next) => {
-//     // res.locals.username = req.session ? req.session.username : null;
-//     req.session.username = req.session ? res.session.username : null;
-//     // console.log(res.locals.username);
-//     // console.log('req.session', req.session);
-//     next();
-// });
-
-// app.use((req, res, next) => {
-//     if (req.session.username) {
-//         // updatePoints();
-//         // document.addEventListener('DOMContentLoaded', updatePoints);
-//     }
-
-//     next();
-// });
-
 app.use((req, res, next) => {
     if (req.session.username && req.session.points == undefined) {
         req.session.points = 0;
     }
-    // if (req.session.username) {
-    //     setTimeout(() => {
-    //         req.session.points += 1;
-    //         console.log(`Points for ${req.session.username}: ${req.session.points}`);
-    //     }, 1000);
-    // }
     next();
 });
 
@@ -100,7 +70,9 @@ app.get('/shop', (req, res) => {
     res.render('shop', {
         username: req.session.username,
         points: req.session.points,
-        shopItem: req.session.shopItem
+        shopItem: req.session.shopItem,
+        purchaseError: null,
+        purchaseSuccess: null
     });
 });
 
@@ -148,12 +120,14 @@ app.post('/shop', async (req, res) => {
             res.render('shop', {
                 username: req.session.username,
                 points: req.session.points,
-                purchaseSuccess: `Successfully purchased ${itemName}!`
+                purchaseSuccess: `Successfully purchased ${itemName}!`,
+                purchaseError: null
             });
         } else {
             res.render('shop', {
                 username: req.session.username,
                 points: req.session.points,
+                purchaseSuccess: null,
                 purchaseError: data.error || 'Purchase failed.'
             });
         }
@@ -183,7 +157,6 @@ app.post('/login', async (req, res) => {
         const data = await response.json();
 
         if (response.ok) {
-            // username = data.usern ame;
             req.session.username = user.username;
             username = user.username;
             req.session.points = data.points;
@@ -191,7 +164,6 @@ app.post('/login', async (req, res) => {
             // console.log(req.session.points);
             // console.log(user.points);
             // console.log(data.points);
-            // localStorage.setItem("username", user.username);
             // console.log('res.locals.username', res.locals.username);
             // console.log('data.username', user.username)
             res.redirect('/');

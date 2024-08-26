@@ -29,6 +29,19 @@ app.use(cors({
 
 app.use(session(sessionOptions));
 
+app.get('/shop', async (req, res) => {
+    const user = await DAL.findUser(req.session.username);
+    const purchasedItems = user ? user.purchasedItems : [];
+
+    res.render('shop', {
+        username: req.session.username,
+        points: req.session.points,
+        purchasedItems,
+        purchaseError: null,
+        purchaseSuccess: null
+    });
+});
+
 app.post('/shop', async (req, res) => {
     // This function was created with the help from ChatGPT
     const { username, item } = req.body;
@@ -48,16 +61,18 @@ app.post('/shop', async (req, res) => {
             return res.status(404).json({ error: 'User not found.' });
         }
 
+        if (user.purchasedItems && user.purchasedItems.includes(item.name)) {
+            return res.status(400).json({ error: 'You already own this item.' });
+        }
+
         if (user.points < item.price) {
             return res.status(400).json({ error: 'Insufficient points for this purchase.' });
         }
 
-        // Deduct points and add item to user's purchased items
         user.points -= item.price;
         user.purchasedItems = user.purchasedItems || [];
         user.purchasedItems.push(item.name);
 
-        // Update user in the database
         await DAL.updateUser(username, {
             points: user.points,
             purchasedItems: user.purchasedItems
@@ -146,40 +161,12 @@ app.post('/update-points', async (req, res) => {
 
         await DAL.updateUser(username, { points });
 
-        // async function updateDB() { const updateResult = await DAL.updateUser(username, { points });}
-        // setInterval(updateDB, 10000);
-
         res.status(200).json({ message: 'Points updated successfully' });
     } catch (error) {
         console.error('Error updating points:', error);
         res.status(500).json({ error: 'Error' });
     }
 });
-
-
-// app.post('/update-points', async (req, res) => {
-//     const username = req.session.username;
-
-//     console.log('Session data:', req.session);
-
-//     if (!username) {
-//         return res.status(401).json({ error: 'No user logged in' });
-//     }
-
-//     try {
-//         const user = await DAL.findUser(username);
-//         if (user) {
-//             const updatedPoints = user.points;
-//             await DAL.updatePoints(username, { points: updatedPoints });
-//             req.session.points = updatedPoints;
-//             res.status(200).json({ message: 'Points updated successfully' });
-//         } else {
-//             res.status(404).json({ error: 'User not found' });
-//         }
-//     } catch (error) {
-//         res.status(500).json({ error: 'Error' });
-//     }
-// });
 
 app.listen(port, () => {
     console.log(`WGL Backend running on http://localhost:${port}/`);

@@ -44,3 +44,17 @@
 #shopPurchase:hover {
     opacity: 1;
 }
+
+.purchaseError {
+    font-size: larger;
+    font-weight: bold;
+    margin: 10px 0;
+    text-align: center;
+}
+
+.purchaseSuccess {
+    font-size: larger;
+    font-weight: bold;
+    margin: 10px 0;
+    text-align: center;
+}
