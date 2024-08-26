@@ -1,13 +1,22 @@
+@font-face 
+{
+    font-family: 'popJoy';
+    font-size: 14px;
+    src: url('../assets/heyGorgeous.ttf') format('opentype');
+}
+
 body
 {
+    font-family: 'popJoy';
     display: flex;
     flex-direction: column;
-    min-height: 940px;
+    height: 940px;
+    width: 1707px;
     margin: 0;
-    font-family: "typewriter";
 
     background: url("../assets/Stage1.png");
     background-size: cover;
+    background-attachment: fixed;
 }
 
 .iconSmall

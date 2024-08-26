@@ -86,7 +86,8 @@ const menuActions =
     6: { name: "Back", menuPos: 3, action: 'back', menu: 'tactics-menu' },
     7: { name: "Basic Jump", menuPos: 1, action: 'jump', menu: 'jump-menu' },
     8: { name: "Multibounce", menuPos: 2, action: 'multibounce', menu: 'jump-menu' },
-    9: { name: "Power Bounce", menuPos: 3, action: 'powerBounce', menu: 'jump-menu' }
+    9: { name: "Power Bounce", menuPos: 3, action: 'powerBounce', menu: 'jump-menu' },
+    10: { name: "Back", menuPos: 4, action: 'back', menu: 'jump-menu' },
 };
 
 function menuUpdate(selectedMenu) 
@@ -159,7 +160,7 @@ document.addEventListener('DOMContentLoaded', () =>
                 selectedIndex = (selectedIndex - 1 + menuItems.length) % menuItems.length;
                 updateSelection(selectedIndex);
             }
-            else if (event.key == 'Enter') 
+            else if (event.key == 'z' || event.key == 'Enter') 
             {
                 if(menuActions[selectedIndex + 1].menu == currentMenu)
                 {
@@ -398,6 +399,7 @@ function update()
 
 async function setGame()
 {
+    document.getElementById("action-menu").style.visibility = "hidden";
     HPMario = 25;
     HPVivian = 20;
 
@@ -405,7 +407,6 @@ async function setGame()
     Enemy2 = enemyGen(1);
     Enemy3 = enemyGen(1);
 
-    menuUpdate("main-menu");
     update();
 
     await unveil();
@@ -425,5 +426,8 @@ async function setGame()
     hop("vivian", 2);
     hop("enemy1", 2);
     hop("enemy2", 2);
-    hop("enemy3", 2);
+    await hop("enemy3", 2);
+
+    document.getElementById("action-menu").style.visibility = "visible";
+    menuUpdate("main-menu");
 }
