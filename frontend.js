@@ -33,14 +33,16 @@ app.use((req, res, next) => {
 app.get('/', async (req, res) => {
     res.render('index', {
         username: req.session.username,
-        points: req.session.points
+        points: req.session.points,
+        pointRate: req.session.pointRate
     });
 });
 
 app.get('/minesweeper', (req, res) => {
     res.render('minesweeper', {
         username: req.session.username,
-        points: req.session.points
+        points: req.session.points,
+        pointRate: req.session.pointRate
 
     });
 });
@@ -48,21 +50,24 @@ app.get('/minesweeper', (req, res) => {
 app.get('/idle-atom', (req, res) => {
     res.render('idle_atom', {
         username: req.session.username,
-        points: req.session.points
+        points: req.session.points,
+        pointRate: req.session.pointRate
     });
 });
 
 app.get('/ttyd', (req, res) => {
     res.render('ttyd', {
         username: req.session.username,
-        points: req.session.points
+        points: req.session.points,
+        pointRate: req.session.pointRate
     });
 });
 
 app.get('/tictactoe', (req, res) => {
     res.render('tictactoe', {
         username: req.session.username,
-        points: req.session.points
+        points: req.session.points,
+        pointRate: req.session.pointRate
     });
 });
 
@@ -70,6 +75,7 @@ app.get('/shop', (req, res) => {
     res.render('shop', {
         username: req.session.username,
         points: req.session.points,
+        pointRate: req.session.pointRate,
         shopItem: req.session.shopItem,
         purchaseError: null,
         purchaseSuccess: null
@@ -79,14 +85,16 @@ app.get('/shop', (req, res) => {
 app.get('/login', (req, res) => {
     res.render('login', {
         username: req.session.username,
-        points: req.session.points
+        points: req.session.points,
+        pointRate: req.session.pointRate
     });
 });
 
 app.get('/register', (req, res) => {
     res.render('register', {
         username: req.session.username,
-        points: req.session.points
+        points: req.session.points,
+        pointRate: req.session.pointRate
     });
 });
 
@@ -161,6 +169,7 @@ app.post('/login', async (req, res) => {
             username = user.username;
             req.session.points = data.points;
             points = data.points;
+            req.session.pointRate = data.pointRate || 10;
             // console.log(req.session.points);
             // console.log(user.points);
             // console.log(data.points);
@@ -225,7 +234,7 @@ app.post('/update-points', async (req, res) => {
         return res.status(401).json({ error: 'No user logged in' });
     }
 
-    req.session.points += 10;
+    req.session.points += req.session.pointRate;
     points = req.session.points;
     res.json({ points: req.session.points });
 

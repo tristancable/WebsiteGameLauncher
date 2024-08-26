@@ -36,6 +36,7 @@ app.get('/shop', async (req, res) => {
     res.render('shop', {
         username: req.session.username,
         points: req.session.points,
+        pointRate: req.session.pointRate,
         purchasedItems,
         purchaseError: null,
         purchaseSuccess: null
@@ -130,6 +131,7 @@ app.post('/register', async (req, res) => {
     let username = req.body.username;
     let password = req.body.password;
     let points = 0;
+    let pointRate = 10;
 
     try {
         const existingUser = await DAL.findUser(username);
@@ -138,7 +140,7 @@ app.post('/register', async (req, res) => {
         }
 
         const hashedPassword = await bcrypt.hash(password, saltRounds);
-        await DAL.createUser({ username, password: hashedPassword, points });
+        await DAL.createUser({ username, password: hashedPassword, points, pointRate });
         res.status(201).json({ message: 'User registered successfully' });
     } catch (error) {
         res.status(500).json({ error: 'Error registering user' });
@@ -146,7 +148,7 @@ app.post('/register', async (req, res) => {
 });
 
 app.post('/update-points', async (req, res) => {
-    const { username, points } = req.body;
+    const { username, points, pointRate } = req.body;
 
     if (!username || points == null) {
         return res.status(400).json({ error: 'Invalid data' });
@@ -159,7 +161,7 @@ app.post('/update-points', async (req, res) => {
             return res.status(404).json({ error: 'User not found' });
         }
 
-        await DAL.updateUser(username, { points });
+        await DAL.updateUser(username, { points }, pointRate);
 
         res.status(200).json({ message: 'Points updated successfully' });
     } catch (error) {
