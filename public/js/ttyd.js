@@ -7,8 +7,6 @@
  * @param {object} Enemy3
  */
 
-// ! Don't frogor to do daily attendance
-
 // Mario variables
 let MarioAlive = true;
 let HPMario = 0;
@@ -85,7 +83,8 @@ const menuActions =
     3: { name: "Tactics", menuPos: 3, action: 'showTacticsMenu', menu: 'main-menu' },
     4: { name: "Defend", menuPos: 1, action: 'guard', menu: 'tactics-menu'},
     5: { name: "Run Away", menuPos: 2, action: 'homePage', menu: 'tactics-menu' },
-    6: { name: "Back", menuPos: 3, action: 'back', menu: 'tactics-menu' }
+    6: { name: "Back", menuPos: 3, action: 'back', menu: 'tactics-menu' },
+    7: { name: "Basic Jump", menuPos: 1, action: 'jump', menu: 'jump-menu' }
 };
 
 function menuUpdate(selectedMenu) 
@@ -93,7 +92,7 @@ function menuUpdate(selectedMenu)
     prevMenu = currentMenu;
     currentMenu = selectedMenu;
 
-    document.getElementById('action-menu').replaceChildren();
+    document.getElementById('action-menu').replaceChildren("");
 
     const menuLength = Object.keys(menuActions).length;
     let div = null;
@@ -425,6 +424,4 @@ async function setGame()
     hop("enemy1", 2);
     hop("enemy2", 2);
     hop("enemy3", 2);
-
-    // ! Don't frogor to do daily attendance
 }
