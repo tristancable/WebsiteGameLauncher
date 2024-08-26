@@ -18,16 +18,19 @@ let firstClick = true;
 
 var a = document.getElementById("timer");
 
+// When you load the minesweeper page
 window.onload = function () {
     timer = new Stopwatch(a);
     resetGame();
 }
 
+// New game, is called from resetGame() <-- which also means the new Game Button
 function newGame() {
     generateTiles();
     generateMines();
 }
 
+// will set size of the game to the appropiate size for the difficulty, and the mine count, and resets the values, including the timer
 function resetGame() {
     let dropDown = document.getElementById("difficulty");
     let mineCountTxt = document.getElementById("mineCount");
@@ -53,29 +56,29 @@ function resetGame() {
     newGame();
 }
 
+// calls function to generate tiles depending on the difficulty
 function generateTiles() {
+    createBoard();
     if (difficulty == 0) {
-        createBoard("easyBoard");
         generateTilesDifficulty(EASY_TILES_WIDTH, EASY_TILES_HEIGHT);
     }
     else if (difficulty == 1) {
-        createBoard("mediumBoard");
         generateTilesDifficulty(MEDIUM_TILES_WIDTH, MEDIUM_TILES_HEIGHT);
     }
     else if (difficulty == 2) {
-        createBoard("hardBoard");
         generateTilesDifficulty(HARD_TILES_WIDTH, HARD_TILES_HEIGHT);
     }
 }
 
-function createBoard(strDifficulty) {
+// creates the board where the tiles will be placed
+function createBoard() {
     let board = document.createElement("div");
-    let idName = "board";
-    board.id = idName;
-    board.className = strDifficulty;
+    board.id = "board";
     document.getElementById("boardTemp").appendChild(board);
 }
 
+// makes an 2d array with the current difficulty's size, for loops through it creating each tile, with a unique id
+//      assigning it the correct class and an eventlistener, finishing it with appending it to the board
 function generateTilesDifficulty(difficultyWidth, difficultyHeight) {
     mineArray = Array.from(Array(difficultyWidth), () => new Array(difficultyHeight));
     for (let j = 0; j < difficultyHeight; j++) {
@@ -93,6 +96,8 @@ function generateTilesDifficulty(difficultyWidth, difficultyHeight) {
     }
 }
 
+// will generate the mines into random tiles depending on the difficulty,
+// I have a different 2D array with same size but is boolean with if bomb
 function generateMines() {
     let i = 0;
     if (difficulty == 0) {
@@ -128,7 +133,9 @@ function generateMines() {
     }
 }
 
-
+// when you click on a tile it will check if it's the first click, it will not be a bomb and will clear a chunk
+// left click for clearing, right for setting flags
+// if click bomb gameOver(), else clear tile set text to nearby bomb count
 function clickTile(event) {
     if (event.button === 0 || !firstClick) { //left click
 
@@ -174,9 +181,8 @@ function clickTile(event) {
         checkWin();
 }
 
-
+// sets or unsets flag tiles
 function flagTile(tempTile) {
-    
     if (tempTile.classList.contains("tileFlagged")) {
         tempTile.classList.remove("tileFlagged");
         mineCount++;
@@ -184,18 +190,16 @@ function flagTile(tempTile) {
         tempTile.classList.add("tileFlagged");
         mineCount--;
     }
-    
     let text = document.getElementById("mineCount");
     text.innerText = mineCount;
 }
 
-
+//checks each nearby tile if bomb nearbyMineCount++ returns that value
 function checkNearby(x, y) {
     let nearbyMineCount = 0;
 
     x = parseInt(x);
     y = parseInt(y);
-    
     
     if (findMines(x - 1, y + 1)) nearbyMineCount++;
     if (findMines(x - 1, y - 1)) nearbyMineCount++;
@@ -205,30 +209,24 @@ function checkNearby(x, y) {
     if (findMines(x + 1, y)) nearbyMineCount++;
     if (findMines(x, y - 1)) nearbyMineCount++;
     if (findMines(x, y + 1)) nearbyMineCount++;
-    
     return nearbyMineCount;
 }
 
+// Will clear the whole chunk, flood fills until it clears a number then checks other directions
 function clearChunk(x, y) {
     var fillStack = [];
     let tempTile;
-
     fillStack.push([x,y]);
-
     
     while (fillStack.length > 0) {
         var [cx,cy] = fillStack.pop();
 
         cx = parseInt(cx);
         cy = parseInt(cy);
-        
-        if (checkValidRowCol(cx,cy))
-            continue;
-
+        if (checkValidRowCol(cx,cy)) continue;
         tempTile = document.getElementById("tile" + cx + "," + cy);
-        if (tempTile.classList.contains("tileClear"))
-            continue;
-        
+
+        if (tempTile.classList.contains("tileClear"))continue;
 
         let nearby = checkNearby(cx,cy);
         tempTile.classList.add("tileClear");
@@ -251,33 +249,7 @@ function clearChunk(x, y) {
     }
 }
 
-function floodFillRemaster(x,y, tempTile) {
-    if (x < 0 || x >= mineArray.length || y < 0 || y >= mineArray[0].length || mineArray[x][y] || tempTile.classList.contains("tileClear"))
-        return;
-
-
-}
-
-
-function checkNearby(x, y) {
-    let nearbyMineCount = 0;
-
-    x = parseInt(x);
-    y = parseInt(y);
-    
-    
-    if (findMines(x - 1, y + 1)) nearbyMineCount++;
-    if (findMines(x - 1, y - 1)) nearbyMineCount++;
-    if (findMines(x + 1, y - 1)) nearbyMineCount++;
-    if (findMines(x + 1, y + 1)) nearbyMineCount++;
-    if (findMines(x - 1, y)) nearbyMineCount++;
-    if (findMines(x + 1, y)) nearbyMineCount++;
-    if (findMines(x, y - 1)) nearbyMineCount++;
-    if (findMines(x, y + 1)) nearbyMineCount++;
-    
-    return nearbyMineCount;
-}
-
+//checks the array if x,y are bombs, returns boolean
 function findMines(newX, newY) {
     if (checkValidRowCol(newX,newY))
         return false;
@@ -286,7 +258,18 @@ function findMines(newX, newY) {
     else return false;
 }
 
+// the check for out of bounds or if tile cleared
+function floodFillRemaster(x,y, tempTile) {
+    if (x < 0 || x >= mineArray.length || y < 0 || y >= mineArray[0].length || mineArray[x][y] || tempTile.classList.contains("tileClear"))
+        return;
+}
 
+// the check for out of bounds but not if tile cleared
+function checkValidRowCol(x,y) {
+    return (x < 0 || x >= mineArray.length || y < 0 || y >= mineArray[0].length || mineArray[x][y]);
+}
+
+//you lose, stops timer etc.
 function onGameOver() {
     timer.stop();
     let tempTile;
@@ -294,13 +277,13 @@ function onGameOver() {
         for (let j = 0; j < mineArray[i].length; j++) {
             tempTile = document.getElementById("tile" + i + "," + j);
             tempTile.disabled = true;
-            if (mineArray[i][j] && tempTile.classList.contains("tileFlagged"))  // TODO, flagged bombs, nonbomb flag visuals
-                tempTile.classList.add("tileFlagBomb");
-            else if (mineArray[i][j]) tempTile.classList.add("tileBomb");
+            // TODO, flagged bombs, nonbomb flag visuals
+            if (mineArray[i][j]) tempTile.classList.add("tileBomb");
         }
     }
 }
 
+// if flagCount = mineCount it will check if you win
 function checkWin() {
     let flagCount = 0;
     let tempTile;
@@ -335,32 +318,13 @@ function checkWin() {
     timer.stop();
 }
 
-function checkValidRowCol(x,y) {
-        return (x < 0 || x >= mineArray.length || y < 0 || y >= mineArray[0].length || mineArray[x][y]);
-}
-
-function findMines(newX, newY) {
-    if (newX < 0 || newX >= mineArray.length || newY < 0 || newY >= mineArray[0].length) {
-        return false;
-    }
-
-    if (mineArray[newX][newY]) return true;
-    else return false;
-}
-
-
 function getRandomInt(max) {
     return Math.floor(Math.random() * max);
 }
 
 
-
-
-
-
 //found a cool example of a stopwatch online
 // https://stackoverflow.com/questions/20318822/how-to-create-a-stopwatch-using-javascript
-
 var Stopwatch = function (elem, options) {
     var timer = createTimer(),
         offset,

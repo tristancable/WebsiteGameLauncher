@@ -8,7 +8,7 @@
     background-color: white;
 
     margin: 0 auto;
-    display: block;
+    display: inline-block;
     flex-wrap: wrap;
     
     font-size: 0;
@@ -16,27 +16,6 @@
     padding-top: 5px;
 }
 
-#easyBoard {
-    background-color: white;
-    margin: 0 auto;
-    display: inline-block;
-    flex-wrap: wrap;
-    width: 250px;
-    height: 200px;
-    font-size: 0;
-}
-
-#mediumBoard {
-    background-color: white;
-    width: 500px;
-    height: 375px;
-}
-
-#hardBoard {
-    background-color: white;
-    width: 625px;
-    height: 500px;
-}
 
 #topBar {
     background-color: white;
@@ -109,6 +88,7 @@
     display: flex;
     justify-content: flex-start;
 }
+
 #timer { 
     width: 75px;
 }
@@ -128,4 +108,5 @@
     width: 75px;
     height: 20px;
     text-align: center;
+
 }
