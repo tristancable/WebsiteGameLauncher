@@ -217,6 +217,12 @@ document.addEventListener('DOMContentLoaded', () =>
         window.addEventListener('homePage', function (e) 
         {
             end();
+            let mario = document.getElementById("mario");
+            let vivian = document.getElementById("vivian");
+            mario.style.transform = "scaleX(-1)";
+            vivian.style.transform = "scaleX(-1)";
+            hop("mario", 2);
+            hop("vivian", 2);
         });
 
         document.addEventListener('keydown', handleInput);
@@ -245,7 +251,15 @@ async function end()
 {
     end = document.getElementById("end")
     end.style.visibility = "visible";
-    for(let i = 1; i < 100; i++)
+    for(let i = 1; i < 40; i++)
+    {
+        end.style.opacity = i / 100;
+        await wait(1);
+    }
+    update();
+    run("mario", 600, 0, 1, 10, MarioX)
+    run("vivian", 600, 0, 1, 10, VivianX)
+    for(let i = 40; i < 100; i++)
     {
         end.style.opacity = i / 100;
         await wait(1);
@@ -285,7 +299,34 @@ async function entrance(getId, howFar, type) // 0 = Left, 1 = Right
                 document.getElementById(getId).style.right = `${i}px`;
                 break;
         }
-        i = i + 9;
+        i = i + 7;
+        await wait(10);
+    }
+}
+
+async function run(getId, howFar, type, direction, speed, currentPos) // 0 = Left, 1 = Right
+{
+    let i = 0;
+    let pos = currentPos;
+    while(i <= howFar)
+    {
+        switch(type)
+        {
+            case 0:
+                document.getElementById(getId).style.left = `${pos}px`;
+                break;
+            case 1:
+                document.getElementById(getId).style.right = `${pos}px`;
+                break;
+        }
+        if(direction == 0)
+        {
+            pos = pos + speed;
+        }
+        else
+        {
+            pos = pos - speed;
+        }
         await wait(10);
     }
 }
