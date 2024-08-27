@@ -1,4 +1,3 @@
-//minesweeper functions
 const EASY_TILES_WIDTH = 10;
 const EASY_TILES_HEIGHT = 8;
 const EASY_MINES = 10;
@@ -15,7 +14,6 @@ let difficulty = 0;
 let mineCount = 0;
 var mineArray;
 let firstClick = true;
-
 var a = document.getElementById("timer");
 
 // When you load the minesweeper page
@@ -38,9 +36,9 @@ function resetGame() {
     let barWidth;
     if (difficulty == 0) {
         mineCount = EASY_MINES;
-        barWidth = "304px";  
+        barWidth = "304px";
     } else if (difficulty == 1) {
-        barWidth = "604px";   
+        barWidth = "604px";
         mineCount = MEDIUM_MINES;
     } else if (difficulty == 2) {
         barWidth = "754px";
@@ -59,15 +57,9 @@ function resetGame() {
 // calls function to generate tiles depending on the difficulty
 function generateTiles() {
     createBoard();
-    if (difficulty == 0) {
-        generateTilesDifficulty(EASY_TILES_WIDTH, EASY_TILES_HEIGHT);
-    }
-    else if (difficulty == 1) {
-        generateTilesDifficulty(MEDIUM_TILES_WIDTH, MEDIUM_TILES_HEIGHT);
-    }
-    else if (difficulty == 2) {
-        generateTilesDifficulty(HARD_TILES_WIDTH, HARD_TILES_HEIGHT);
-    }
+    if (difficulty == 0) generateTilesDifficulty(EASY_TILES_WIDTH, EASY_TILES_HEIGHT);
+    else if (difficulty == 1) generateTilesDifficulty(MEDIUM_TILES_WIDTH, MEDIUM_TILES_HEIGHT);
+    else if (difficulty == 2) generateTilesDifficulty(HARD_TILES_WIDTH, HARD_TILES_HEIGHT);
 }
 
 // creates the board where the tiles will be placed
@@ -122,8 +114,8 @@ function generateMines() {
         }
     } else if (difficulty == 2) {
         while (i < HARD_MINES) {
-            let width  = getRandomInt(HARD_TILES_WIDTH);
-            let height= getRandomInt(HARD_TILES_HEIGHT);
+            let width = getRandomInt(HARD_TILES_WIDTH);
+            let height = getRandomInt(HARD_TILES_HEIGHT);
             if (mineArray[width][height]);
             else {
                 i++
@@ -138,47 +130,38 @@ function generateMines() {
 // if click bomb gameOver(), else clear tile set text to nearby bomb count
 function clickTile(event) {
     if (event.button === 0 || !firstClick) { //left click
-
-    if (firstClick) timer.start();
-    let tempTile = document.getElementById(this.id);
-    let tileNum = this.id.substr(4);
-    
-    let nums = tileNum.split(',');
-    let x = nums[0];
-    let y = nums[1];
-    if (firstClick) {
-        while (mineArray[x][y] || checkNearby(x,y) != 0) {
-            resetGame();
-            if (firstClick) timer.start();
-        }
-    }
-    if (event.button === 0) {
-    
-        if (mineArray[x][y] && !tempTile.classList.contains("tileFlagged")) {
-            tempTile.classList.add("tileBomb");
-            onGameOver();
-        } else if (!tempTile.classList.contains("tileFlagged")) {
-            let num = checkNearby(x,y);
-
-            if (num == 0) {
-                tempTile.innerText = "";
-                clearChunk(x,y);
-                firstClick = false; // cant click bomb 1st click
-            } else {
-                tempTile.classList.add("tileClear");
-                tempTile.innerText = num;
+        let tempTile = document.getElementById(this.id);
+        let tileNum = this.id.substr(4);
+        let nums = tileNum.split(',');
+        let x = nums[0];
+        let y = nums[1];
+        if (firstClick) {
+            while (mineArray[x][y] || checkNearby(x, y) != 0) {
+                resetGame();
             }
-            tempTile.disabled = true;
-
+            timer.start();
         }
-    } else if (event.button === 2) { //right click
-        flagTile(tempTile);
+        if (event.button === 0) { //left click
+            if (mineArray[x][y] && !tempTile.classList.contains("tileFlagged")) {
+                tempTile.classList.add("tileBomb");
+                onGameOver();
+            } else if (!tempTile.classList.contains("tileFlagged")) {
+                let num = checkNearby(x, y);
+                if (num == 0) {
+                    tempTile.innerText = "";
+                    clearChunk(x, y);
+                    firstClick = false; // cant click bomb 1st click
+                } else {
+                    tempTile.classList.add("tileClear");
+                    tempTile.innerText = num;
+                }
+                tempTile.disabled = true;
+            }
+        } else if (event.button === 2) { //right click
+            flagTile(tempTile);
+        }
     }
-    
-
-    }
-    if (mineCount === 0)
-        checkWin();
+    if (mineCount === 0) checkWin();
 }
 
 // sets or unsets flag tiles
@@ -197,10 +180,9 @@ function flagTile(tempTile) {
 //checks each nearby tile if bomb nearbyMineCount++ returns that value
 function checkNearby(x, y) {
     let nearbyMineCount = 0;
-
     x = parseInt(x);
     y = parseInt(y);
-    
+
     if (findMines(x - 1, y + 1)) nearbyMineCount++;
     if (findMines(x - 1, y - 1)) nearbyMineCount++;
     if (findMines(x + 1, y - 1)) nearbyMineCount++;
@@ -216,28 +198,28 @@ function checkNearby(x, y) {
 function clearChunk(x, y) {
     var fillStack = [];
     let tempTile;
-    fillStack.push([x,y]);
-    
-    while (fillStack.length > 0) {
-        var [cx,cy] = fillStack.pop();
 
+    fillStack.push([x, y]);
+    while (fillStack.length > 0) {
+        var [cx, cy] = fillStack.pop(); //current x, (cx)
         cx = parseInt(cx);
         cy = parseInt(cy);
-        if (checkValidRowCol(cx,cy)) continue;
+
+        if (cx < 0 || cx >= mineArray.length || cy < 0 || cy >= mineArray[0].length || mineArray[cx][cy])
+            continue;
+
         tempTile = document.getElementById("tile" + cx + "," + cy);
+        if (tempTile.classList.contains("tileClear")) continue;
 
-        if (tempTile.classList.contains("tileClear"))continue;
-
-        let nearby = checkNearby(cx,cy);
+        let nearby = checkNearby(cx, cy);
         tempTile.classList.add("tileClear");
         tempTile.disabled = true;
-        if (nearby == 0) {
-            tempTile.innerText = "";
-        } else {
+        if (nearby == 0) tempTile.innerText = "";
+        else {
             tempTile.innerText = nearby;
             continue;
         }
-        
+
         fillStack.push([cx - 1, cy + 1]);
         fillStack.push([cx - 1, cy - 1]);
         fillStack.push([cx + 1, cy - 1]);
@@ -249,26 +231,6 @@ function clearChunk(x, y) {
     }
 }
 
-//checks the array if x,y are bombs, returns boolean
-function findMines(newX, newY) {
-    if (checkValidRowCol(newX,newY))
-        return false;
-
-    if (mineArray[newX][newY]) return true;
-    else return false;
-}
-
-// the check for out of bounds or if tile cleared
-function floodFillRemaster(x,y, tempTile) {
-    if (x < 0 || x >= mineArray.length || y < 0 || y >= mineArray[0].length || mineArray[x][y] || tempTile.classList.contains("tileClear"))
-        return;
-}
-
-// the check for out of bounds but not if tile cleared
-function checkValidRowCol(x,y) {
-    return (x < 0 || x >= mineArray.length || y < 0 || y >= mineArray[0].length || mineArray[x][y]);
-}
-
 //you lose, stops timer etc.
 function onGameOver() {
     timer.stop();
@@ -277,8 +239,9 @@ function onGameOver() {
         for (let j = 0; j < mineArray[i].length; j++) {
             tempTile = document.getElementById("tile" + i + "," + j);
             tempTile.disabled = true;
-            // TODO, flagged bombs, nonbomb flag visuals
-            if (mineArray[i][j]) tempTile.classList.add("tileBomb");
+            if (mineArray[i][j] && tempTile.classList.contains("tileFlagged"))
+                tempTile.classList.add("tileFlagBomb"); // TODO, flagged bombs, nonbomb flag add visuals
+            else if (mineArray[i][j]) tempTile.classList.add("tileBomb");
         }
     }
 }
@@ -290,37 +253,38 @@ function checkWin() {
     for (let i = 0; i < mineArray.length; i++) {
         for (let j = 0; j < mineArray[i].length; j++) {
             tempTile = document.getElementById("tile" + i + "," + j);
-            if (mineArray[i][j] && tempTile.classList.contains("tileFlagged")){
+            if (mineArray[i][j] && tempTile.classList.contains("tileFlagged")) {
                 flagCount++;
             }
         }
     }
-    console.log(flagCount);
-    if (difficulty == 0) {
-        if (flagCount != EASY_MINES) return;
-    } else if (difficulty == 1) {
-        if (flagCount != MEDIUM_MINES) return;
-    } else if (difficulty == 2) {
-        if (flagCount != HARD_MINES) return;
-    }
+    if (difficulty == 0 && flagCount != EASY_MINES) return;
+    else if (difficulty == 1 && flagCount != MEDIUM_MINES) return;
+    else if (difficulty == 2 && flagCount != HARD_MINES) return;
 
     for (let i = 0; i < mineArray.length; i++) {
         for (let j = 0; j < mineArray[i].length; j++) {
             tempTile = document.getElementById("tile" + i + "," + j);
             tempTile.disabled = true;
-            if (!mineArray[i][j]){
+            if (!mineArray[i][j]) {
                 tempTile.disabled = true;
                 tempTile.classList.add("tileClear");
-                if (checkNearby(i,j) != 0) tempTile.innerText = checkNearby(i,j);
+                if (checkNearby(i, j) != 0) tempTile.innerText = checkNearby(i, j);
             }
         }
     }
     timer.stop();
 }
 
-function getRandomInt(max) {
-    return Math.floor(Math.random() * max);
+//checks the array if x,y are bombs, returns boolean
+function findMines(newX, newY) {
+    if (newX < 0 || newX >= mineArray.length || newY < 0 || newY >= mineArray[0].length)
+        return false;
+    if (mineArray[newX][newY]) return true;
+    else return false;
 }
+
+function getRandomInt(max) { return Math.floor(Math.random() * max); }
 
 
 //found a cool example of a stopwatch online
@@ -331,20 +295,15 @@ var Stopwatch = function (elem, options) {
         clock,
         interval;
 
-
     // default options
     options = options || {};
     options.delay = options.delay || 1;
-
     // append elements     
     elem.appendChild(timer);
-
     // initialize
     reset();
 
-    function createTimer() {
-        return document.createElement("span");
-    }
+    function createTimer() { return document.createElement("span"); }
 
     function start() {
         if (!interval) {
@@ -370,14 +329,11 @@ var Stopwatch = function (elem, options) {
         render();
     }
 
-    function render() {
-        timer.innerHTML = clock / 1000;
-    }
+    function render() { timer.innerHTML = clock / 1000; }
 
     function delta() {
         var now = Date.now(),
             d = now - offset;
-
         offset = now;
         return d;
     }
