@@ -251,14 +251,14 @@ async function end()
 {
     end = document.getElementById("end")
     end.style.visibility = "visible";
+    await update()
     for(let i = 1; i < 40; i++)
     {
         end.style.opacity = i / 100;
         await wait(1);
     }
-    update();
-    run("mario", 600, 0, 1, 10, MarioX)
-    run("vivian", 600, 0, 1, 10, VivianX)
+    run("mario", 400, 0, 1, 7, MarioX)
+    run("vivian", 400, 0, 1, 7, VivianX)
     for(let i = 40; i < 100; i++)
     {
         end.style.opacity = i / 100;
@@ -269,9 +269,11 @@ async function end()
     await wait(50);
     document.getElementById("img1").src = "../assets/LilyEXPLODES.gif"
     document.getElementById("img2").src = "../assets/LilyEXPLODES.gif"
-    document.getElementsByClassName("iconSmall").height = "80px"
-    document.getElementsByClassName("iconSmall").width = "80px"
-    await wait(300);
+    document.getElementById("img1").style.height = "100px"
+    document.getElementById("img1").style.width = "85px"
+    document.getElementById("img2").style.height = "100px"
+    document.getElementById("img2").style.width = "85px"
+    await wait(301);
     window.location.replace("/");
 }
 
@@ -299,7 +301,7 @@ async function entrance(getId, howFar, type) // 0 = Left, 1 = Right
                 document.getElementById(getId).style.right = `${i}px`;
                 break;
         }
-        i = i + 7;
+        i = i + 5;
         await wait(10);
     }
 }
@@ -307,27 +309,41 @@ async function entrance(getId, howFar, type) // 0 = Left, 1 = Right
 async function run(getId, howFar, type, direction, speed, currentPos) // 0 = Left, 1 = Right
 {
     let i = 0;
-    let pos = currentPos;
-    while(i <= howFar)
+    await wait(1)
+    switch(direction)
     {
-        switch(type)
-        {
-            case 0:
-                document.getElementById(getId).style.left = `${pos}px`;
-                break;
-            case 1:
-                document.getElementById(getId).style.right = `${pos}px`;
-                break;
-        }
-        if(direction == 0)
-        {
-            pos = pos + speed;
-        }
-        else
-        {
-            pos = pos - speed;
-        }
-        await wait(10);
+        case 0:
+            while(i <= howFar)
+            {
+                switch(type)
+                {
+                    case 0:
+                        document.getElementById(getId).style.left = `${currentPos + i}px`;
+                        break;
+                    case 1:
+                        document.getElementById(getId).style.right = `${currentPos + i}px`;
+                        break;
+                }
+                i += speed;
+                await wait(10);
+            }
+            break;
+        case 1:
+            while(i <= howFar)
+            {
+                switch(type)
+                {
+                    case 0:
+                        document.getElementById(getId).style.left = `${currentPos - i}px`;
+                        break;
+                    case 1:
+                        document.getElementById(getId).style.right = `${currentPos - i}px`;
+                        break;
+                }
+                i += speed;
+                await wait(10);
+            }
+            break;
     }
 }
 
@@ -405,19 +421,20 @@ function update()
     document.getElementById('vivianHP').textContent = "Vivian: " + HPVivian;
 
     // Retrieve sprite positions
-    MarioX = infoMario.left;
-    MarioY = infoMario.top;
-    VivianX = infoVivian.left;
-    VivianX = infoVivian.top;
+    const regex = "/\d+/";
+    MarioX = infoMario.style.left.match(regex);
+    MarioY = infoMario.style.top.match(regex);
+    VivianX = infoVivian.style.left.match(regex);
+    VivianX = infoVivian.style.top.match(regex);
     if(Enemy1 != null)
-        Enemy1["XPos"] = infoEnemy1.right;
-        Enemy1["YPos"] = infoEnemy1.top;
+        Enemy1["XPos"] = infoEnemy1.style.right.match(regex);
+        Enemy1["YPos"] = infoEnemy1.style.top.match(regex);
     if(Enemy2 != null)
-        Enemy2["XPos"] = infoEnemy2.right;
-        Enemy2["YPos"] = infoEnemy2.top;
+        Enemy2["XPos"] = infoEnemy2.style.right.match(regex);
+        Enemy2["YPos"] = infoEnemy2.style.top.match(regex);
     if(Enemy3 != null)
-        Enemy3["XPos"] = infoEnemy3.right;
-        Enemy3["YPos"] = infoEnemy3.top;
+        Enemy3["XPos"] = infoEnemy3.style.right.match(regex);
+        Enemy3["YPos"] = infoEnemy3.style.top.match(regex);
 
     // Utilize and update sprite variables
     if(Enemy1 != null)
