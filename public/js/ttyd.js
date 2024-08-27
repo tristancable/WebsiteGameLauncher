@@ -8,6 +8,7 @@
  */
 
 // Mario variables
+let MarioData = true;
 let MarioAlive = true;
 let HPMario = 0;
 let MarioX = 0;
@@ -72,9 +73,10 @@ let currentMenu = "";
 let init = true;
 let prevMenu = "";
 const menuReady = new Event('menuReady');
-let menuItems = [];
+let menuItems = null;
 let selectedIndex = 0;
 let broadcast = null;
+let selectedAttack = "";
 
 const menuActions = 
 {
@@ -84,10 +86,13 @@ const menuActions =
     4: { name: "Defend", menuPos: 1, action: 'guard', menu: 'tactics-menu'},
     5: { name: "Run Away", menuPos: 2, action: 'homePage', menu: 'tactics-menu' },
     6: { name: "Back", menuPos: 3, action: 'back', menu: 'tactics-menu' },
-    7: { name: "Basic Jump", menuPos: 1, action: 'jump', menu: 'jump-menu' },
-    8: { name: "Multibounce", menuPos: 2, action: 'multibounce', menu: 'jump-menu' },
-    9: { name: "Power Bounce", menuPos: 3, action: 'powerBounce', menu: 'jump-menu' },
+    7: { name: "Basic Jump", menuPos: 1, action: 'jump', menu: 'jump-menu', mana: 0 },
+    8: { name: "Multibounce", menuPos: 2, action: 'multiJump', menu: 'jump-menu', mana: 1 },
+    9: { name: "Power Bounce", menuPos: 3, action: 'powerJump', menu: 'jump-menu', mana: 2 },
     10: { name: "Back", menuPos: 4, action: 'back', menu: 'jump-menu' },
+    11: { name: "Basic Hammer", menuPos: 1, action: 'hammer', menu: 'hammer-menu', mana: 0 },
+    12: { name: "Quake Hammer", menuPos: 2, action: 'quakeHammer', menu: 'hammer-menu', mana: 2 },
+    13: { name: "Back", menuPos: 3, action: 'back', menu: 'hammer-menu' },
 };
 
 function menuUpdate(selectedMenu) 
@@ -179,10 +184,25 @@ document.addEventListener('DOMContentLoaded', () =>
                 window.dispatchEvent(broadcast);
                 // Trigger the selected action
             }
+            else if(event.key == 'Escape' && currentMenu != "main-menu" && currentMenu != "vivian-menu")
+            {
+                broadcast = new Event("back");
+                window.dispatchEvent(broadcast);
+            }
             updateSelection();
         };
 
         // ! Broadcasts
+        // Open Jump menu
+        window.addEventListener('showJumpMenu', function (e) 
+        {
+            menuUpdate("jump-menu")
+        });
+        // Open Hammer menu
+        window.addEventListener('showHammerMenu', function (e) 
+        {
+            menuUpdate("hammer-menu")
+        });
         // Open Tactics menu
         window.addEventListener('showTacticsMenu', function (e) 
         {
@@ -196,7 +216,7 @@ document.addEventListener('DOMContentLoaded', () =>
         // Run away (Sends user to home page)
         window.addEventListener('homePage', function (e) 
         {
-            window.location.replace("/");
+            end();
         });
 
         document.addEventListener('keydown', handleInput);
@@ -219,6 +239,26 @@ function start()
 
     splash.classList.add("hide");
     setGame();
+}
+
+async function end()
+{
+    end = document.getElementById("end")
+    end.style.visibility = "visible";
+    for(let i = 1; i < 100; i++)
+    {
+        end.style.opacity = i / 100;
+        await wait(1);
+    }
+    await wait(450);
+    document.getElementById("explode").play();
+    await wait(50);
+    document.getElementById("img1").src = "../assets/LilyEXPLODES.gif"
+    document.getElementById("img2").src = "../assets/LilyEXPLODES.gif"
+    document.getElementsByClassName("iconSmall").height = "80px"
+    document.getElementsByClassName("iconSmall").width = "80px"
+    await wait(300);
+    window.location.replace("/");
 }
 
 function enemyChooser(enemyPool, whichEnemy)
