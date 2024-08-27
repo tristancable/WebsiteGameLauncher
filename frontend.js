@@ -77,6 +77,7 @@ app.get('/shop', (req, res) => {
         points: req.session.points,
         pointRate: req.session.pointRate,
         shopItem: req.session.shopItem,
+        purchasedItems: req.session.purchasedItems,
         purchaseError: null,
         purchaseSuccess: null
     });
@@ -99,7 +100,6 @@ app.get('/register', (req, res) => {
 });
 
 app.post('/shop', async (req, res) => {
-    // This function was created with the help from ChatGPT
     if (!req.session.username) {
         return res.redirect('/login');
     }
@@ -118,16 +118,40 @@ app.post('/shop', async (req, res) => {
                     name: itemName,
                     price: parseInt(itemPrice)
                 }
-            })
+            }),
+            credentials: 'include'
         });
 
         const data = await response.json();
 
         if (response.ok && data.success) {
             req.session.points = data.points;
+
+            if (itemName === 'Upgrade Points 1/s to 2/s') {
+                req.session.pointRate = 20;
+
+                await fetch('http://localhost:1225/update-pointRate', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({
+                        username: req.session.username,
+                        pointRate: req.session.pointRate
+                    }),
+                    credentials: 'include'
+                });
+            }
+
+            if (!req.session.purchasedItems.includes(itemName)) {
+                req.session.purchasedItems.push(itemName);
+            }
+
             res.render('shop', {
                 username: req.session.username,
                 points: req.session.points,
+                pointRate: req.session.pointRate,
+                purchasedItems: req.session.purchasedItems,
                 purchaseSuccess: `Successfully purchased ${itemName}!`,
                 purchaseError: null
             });
@@ -135,6 +159,8 @@ app.post('/shop', async (req, res) => {
             res.render('shop', {
                 username: req.session.username,
                 points: req.session.points,
+                pointRate: req.session.pointRate,
+                purchasedItems: req.session.purchasedItems,
                 purchaseSuccess: null,
                 purchaseError: data.error || 'Purchase failed.'
             });
@@ -144,10 +170,13 @@ app.post('/shop', async (req, res) => {
         res.render('shop', {
             username: req.session.username,
             points: req.session.points,
+            pointRate: req.session.pointRate,
+            purchasedItems: req.session.purchasedItems,
             purchaseError: 'An error occurred during purchase. Please try again later.'
         });
     }
 });
+
 
 app.post('/login', async (req, res) => {
     const user = req.body;
@@ -167,9 +196,10 @@ app.post('/login', async (req, res) => {
         if (response.ok) {
             req.session.username = user.username;
             username = user.username;
-            req.session.points = data.points;
+            req.session.points = data.points || 0;
             points = data.points;
             req.session.pointRate = data.pointRate || 10;
+            req.session.purchasedItems = data.purchasedItems || [];
             // console.log(req.session.points);
             // console.log(user.points);
             // console.log(data.points);
@@ -234,10 +264,12 @@ app.post('/update-points', async (req, res) => {
         return res.status(401).json({ error: 'No user logged in' });
     }
 
-    req.session.points += req.session.pointRate;
-    points = req.session.points;
-    res.json({ points: req.session.points });
+    const pointRate = req.session.pointRate;
 
+    req.session.points += pointRate;
+    points = req.session.points;
+
+    res.json({ points: req.session.points });
 });
 
 app.get('/logout', async (req, res) => {

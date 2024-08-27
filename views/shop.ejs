@@ -29,15 +29,19 @@
             ]; %>
 
             <% shopItems.forEach(item => { %>
-                <div class="insideContainer">
-                    <div class="itemTitle"><%= item.name %></div>
-                    <div class="itemDescription">Price: <%= item.price %> points</div>
-                    <form class="purchaseForm" method="POST" action="/shop">
-                        <input type="hidden" name="itemName" value="<%= item.name %>">
-                        <input type="hidden" name="itemPrice" value="<%= item.price %>">
-                        <button id="shopPurchase" type="submit">Purchase</button>
-                    </form>
-                </div>
+                <% if (purchasedItems && purchasedItems.includes(item.name)) { %>
+                    <!-- This item has been purchased, do not show -->
+                <% } else { %>
+                    <div class="insideContainer">
+                        <div class="itemTitle"><%= item.name %></div>
+                        <div class="itemDescription">Price: <%= item.price %> points</div>
+                        <form class="purchaseForm" method="POST" action="/shop">
+                            <input type="hidden" name="itemName" value="<%= item.name %>">
+                            <input type="hidden" name="itemPrice" value="<%= item.price %>">
+                            <button id="shopPurchase" type="submit">Purchase</button>
+                        </form>
+                    </div>
+                <% } %>
             <% }); %>
         </div>
     </main>

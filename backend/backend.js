@@ -29,19 +29,17 @@ app.use(cors({
 
 app.use(session(sessionOptions));
 
-app.get('/shop', async (req, res) => {
-    const user = await DAL.findUser(req.session.username);
-    const purchasedItems = user ? user.purchasedItems : [];
+// app.get('/shop', async (req, res) => {
+//     const user = await DAL.findUser(req.session.username);
 
-    res.render('shop', {
-        username: req.session.username,
-        points: req.session.points,
-        pointRate: req.session.pointRate,
-        purchasedItems,
-        purchaseError: null,
-        purchaseSuccess: null
-    });
-});
+//     res.render('shop', {
+//         username: req.session.username,
+//         points: req.session.points,
+//         pointRate: req.session.pointRate,
+//         purchaseError: null,
+//         purchaseSuccess: null
+//     });
+// });
 
 app.post('/shop', async (req, res) => {
     // This function was created with the help from ChatGPT
@@ -91,34 +89,21 @@ app.post('/shop', async (req, res) => {
 });
 
 app.post('/login', async (req, res) => {
-    let username = req.body.username;
-    let password = req.body.password;
+    const { username, password } = req.body;
 
     try {
-        let user = await DAL.findUser(username);
+        const user = await DAL.findUser(username);
+        if (!user) return res.status(400).json({ error: 'That username does not exist.' });
 
-        if (!user) {
-            return res.status(400).json({ error: 'That username does not exist.' });
-        }
-
-        console.log('USER FOUND:', user);
-
-        if (!password || !user.password) {
-            return res.status(400).json({ error: 'Invalid credentials.' });
-        }
+        if (!password || !user.password) return res.status(400).json({ error: 'Invalid credentials.' });
 
         const correctPassword = await bcrypt.compare(password, user.password);
         if (correctPassword) {
             req.session.username = user.username;
             req.session.points = user.points;
-            console.log("req.session.points", req.session.points);
-            console.log("user.points", user.points);
-            // console.log("res.locals.username", res.locals.username);
-            // console.log("user.username", user.username);
-            // console.log("username", username);
-            // console.log("req.body.username", req.body.username);
-            // console.log('Session username set to:', req.session.username);
-            return res.status(200).json({ message: 'Login successful', points: req.session.points });
+            req.session.pointRate = user.pointRate;
+            req.session.purchasedItems = user.purchasedItems;
+            return res.status(200).json({ message: 'Login successful', points: req.session.points, pointRate: req.session.pointRate, purchasedItems: req.session.purchasedItems });
         } else {
             return res.status(400).json({ passwordError: 'Invalid password.' });
         }
@@ -131,6 +116,7 @@ app.post('/register', async (req, res) => {
     let username = req.body.username;
     let password = req.body.password;
     let points = 0;
+    let purchasedItems = [];
     let pointRate = 10;
 
     try {
@@ -140,7 +126,7 @@ app.post('/register', async (req, res) => {
         }
 
         const hashedPassword = await bcrypt.hash(password, saltRounds);
-        await DAL.createUser({ username, password: hashedPassword, points, pointRate });
+        await DAL.createUser({ username, password: hashedPassword, points, pointRate, purchasedItems });
         res.status(201).json({ message: 'User registered successfully' });
     } catch (error) {
         res.status(500).json({ error: 'Error registering user' });
@@ -167,6 +153,29 @@ app.post('/update-points', async (req, res) => {
     } catch (error) {
         console.error('Error updating points:', error);
         res.status(500).json({ error: 'Error' });
+    }
+});
+
+app.post('/update-pointRate', async (req, res) => {
+    const { username, pointRate } = req.body;
+
+    if (!username || !pointRate) {
+        return res.status(400).json({ error: 'Invalid data' });
+    }
+
+    try {
+        const user = await DAL.findUser(username);
+
+        if (!user) {
+            return res.status(404).json({ error: 'User not found' });
+        }
+
+        await DAL.updateUser(username, { pointRate });
+
+        res.status(200).json({ message: 'Point rate updated successfully' });
+    } catch (error) {
+        console.error('Error updating point rate:', error);
+        res.status(500).json({ error: 'Internal server error' });
     }
 });
 
