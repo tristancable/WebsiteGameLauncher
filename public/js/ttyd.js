@@ -14,6 +14,8 @@ let HPMario = 0;
 let MarioX = 0;
 let MarioY = 0;
 
+let FlowerPoints = 20;
+
 // Vivian variables
 let VivianAlive = true;
 let HPVivian = 0;
@@ -128,7 +130,7 @@ const menuActions =
     16: { name: "Shade Fist", menuPos: 1, action: 'showEnemyMenu', menu: 'attack-menu', mana: 0 },
     17: { name: "Veil", menuPos: 2, action: 'nextTurn', menu: 'attack-menu', mana: 2 },
     18: { name: "Fiery Jynx", menuPos: 3, action: 'nextTurn', menu: 'attack-menu', mana: 5 },
-    19: { name: "Vivian Explosion", menuPos: 4, action: 'nextTurn', menu: 'attack-menu', mana: 20 },
+    19: { name: "Vivian Explosion", menuPos: 4, action: 'specialNextTurn', menu: 'attack-menu', mana: 20 },
     20: { name: "Back", menuPos: 5, action: 'back', menu: 'attack-menu' },
     21: { name: "Enemy 1", menuPos: 1, action: 'nextTurn', menu: 'enemy-menu'},
     22: { name: "Enemy 2", menuPos: 2, action: 'nextTurn', menu: 'enemy-menu' },
@@ -235,8 +237,27 @@ document.addEventListener('DOMContentLoaded', () =>
             }
             else if(event.key == 'Escape' && currentMenu != "mario-menu" && currentMenu != "vivian-menu")
             {
-                broadcast = new Event("back");
-                window.dispatchEvent(broadcast);
+                if(prevMenu == "enemy-menu")
+                    {
+                        switch(turn)
+                        {
+                            case 1:
+                            {
+                                menuUpdate("mario-menu");
+                                break;
+                            }
+                            case 2:
+                            {
+                                menuUpdate("vivian-menu");
+                                break;
+                            }
+                        }
+                    }
+                    else
+                    {
+                        broadcast = new Event("back");
+                        window.dispatchEvent(broadcast);
+                    }
             }
             updateSelection();
         };
@@ -306,6 +327,26 @@ document.addEventListener('DOMContentLoaded', () =>
         // Return to previous menu
         window.addEventListener('nextTurn', function (e) 
         {
+            if(turn == 1)
+            {
+                turn += 1;
+                menuUpdate("vivian-menu")
+                document.getElementById("turn").textContent = "Turn: " + turn;
+            }
+            else
+            {
+                turn = 1;
+                menuUpdate("mario-menu")
+                document.getElementById("turn").textContent = "Turn: " + turn;
+            }
+        });
+        window.addEventListener('specialNextTurn', function (e) 
+        {
+            document.getElementById("giggle").play();
+            hop("vivian", 1);
+            FlowerPoints -= 1;
+            document.getElementById("flower-points").textContent = "FP: " + FlowerPoints + "/20";
+
             if(turn == 1)
             {
                 turn += 1;
