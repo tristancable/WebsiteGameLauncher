@@ -62,7 +62,7 @@ function Enemy(enemy, img, hp, atk, size, groundPos, spiked, fly, canTouch, canT
 }
 
 // Misc variables
-let turn = 0;
+let turn = 1;
 let selectedMenu = 0; /*0 = None, 
                         1 = Mario Menu, 
                         2 = Vivian Menu, 
@@ -78,11 +78,13 @@ let selectedIndex = 0;
 let broadcast = null;
 let selectedAttack = "";
 
-const menuActions = 
+// If I am ever to reuse this project and actually expand upon it further, I can 
+// use this menuActions to continue where I left off with ease.
+/*const menuActions = 
 {
-    1: { name: "Jump", menuPos: 1, action: 'showJumpMenu', menu: 'main-menu' },
-    2: { name: "Hammer", menuPos: 2, action: 'showHammerMenu', menu: 'main-menu' },
-    3: { name: "Tactics", menuPos: 3, action: 'showTacticsMenu', menu: 'main-menu' },
+    1: { name: "Jump", menuPos: 1, action: 'showJumpMenu', menu: 'mario-menu' },
+    2: { name: "Hammer", menuPos: 2, action: 'showHammerMenu', menu: 'mario-menu' },
+    3: { name: "Tactics", menuPos: 3, action: 'showTacticsMenu', menu: 'mario-menu' },
     4: { name: "Defend", menuPos: 1, action: 'guard', menu: 'tactics-menu'},
     5: { name: "Run Away", menuPos: 2, action: 'homePage', menu: 'tactics-menu' },
     6: { name: "Back", menuPos: 3, action: 'back', menu: 'tactics-menu' },
@@ -93,12 +95,59 @@ const menuActions =
     11: { name: "Basic Hammer", menuPos: 1, action: 'hammer', menu: 'hammer-menu', mana: 0 },
     12: { name: "Quake Hammer", menuPos: 2, action: 'quakeHammer', menu: 'hammer-menu', mana: 2 },
     13: { name: "Back", menuPos: 3, action: 'back', menu: 'hammer-menu' },
+    14: { name: "Attack", menuPos: 1, action: 'showAtkMenu', menu: 'vivian-menu' },
+    15: { name: "Tactics", menuPos: 2, action: 'showTacticsMenu', menu: 'vivian-menu' },
+    16: { name: "Shade Fist", menuPos: 1, action: 'shadeFist', menu: 'attack-menu', mana: 0 },
+    17: { name: "Veil", menuPos: 2, action: 'veil', menu: 'attack-menu', mana: 2 },
+    18: { name: "Fiery Jynx", menuPos: 3, action: 'fieryJynx', menu: 'attack-menu', mana: 2 },
+    19: { name: "Vivian Explosion", menuPos: 4, action: 'vivianExplosion', menu: 'attack-menu', mana: 2 },
+    20: { name: "Back", menuPos: 5, action: 'back', menu: 'attack-menu' },
+    21: { name: "Enemy 1", menuPos: 1, action: 'nextTurn', menu: 'enemy-menu'},
+    22: { name: "Enemy 2", menuPos: 2, action: 'nextTurn', menu: 'enemy-menu' },
+    23: { name: "Enemy 3", menuPos: 3, action: 'nextTurn', menu: 'enemy-menu' },
+    24: { name: "Back", menuPos: 4, action: 'back', menu: 'enemy-menu' }
+};*/
+
+const menuActions = 
+{
+    1: { name: "Jump", menuPos: 1, action: 'showJumpMenu', menu: 'mario-menu' },
+    2: { name: "Hammer", menuPos: 2, action: 'showHammerMenu', menu: 'mario-menu' },
+    3: { name: "Tactics", menuPos: 3, action: 'showTacticsMenu', menu: 'mario-menu' },
+    4: { name: "Defend", menuPos: 1, action: 'nextTurn', menu: 'tactics-menu'},
+    5: { name: "Run Away", menuPos: 2, action: 'homePage', menu: 'tactics-menu' },
+    6: { name: "Back", menuPos: 3, action: 'back', menu: 'tactics-menu' },
+    7: { name: "Basic Jump", menuPos: 1, action: 'showEnemyMenu', menu: 'jump-menu', mana: 0 },
+    8: { name: "Multibounce", menuPos: 2, action: 'showEnemyMenu', menu: 'jump-menu', mana: 1 },
+    9: { name: "Power Bounce", menuPos: 3, action: 'showEnemyMenu', menu: 'jump-menu', mana: 2 },
+    10: { name: "Back", menuPos: 4, action: 'back', menu: 'jump-menu' },
+    11: { name: "Basic Hammer", menuPos: 1, action: 'nextTurn', menu: 'hammer-menu', mana: 0 },
+    12: { name: "Quake Hammer", menuPos: 2, action: 'nextTurn', menu: 'hammer-menu', mana: 2 },
+    13: { name: "Back", menuPos: 3, action: 'back', menu: 'hammer-menu' },
+    14: { name: "Attack", menuPos: 1, action: 'showAtkMenu', menu: 'vivian-menu' },
+    15: { name: "Tactics", menuPos: 2, action: 'showTacticsMenu', menu: 'vivian-menu' },
+    16: { name: "Shade Fist", menuPos: 1, action: 'showEnemyMenu', menu: 'attack-menu', mana: 0 },
+    17: { name: "Veil", menuPos: 2, action: 'nextTurn', menu: 'attack-menu', mana: 2 },
+    18: { name: "Fiery Jynx", menuPos: 3, action: 'nextTurn', menu: 'attack-menu', mana: 5 },
+    19: { name: "Vivian Explosion", menuPos: 4, action: 'nextTurn', menu: 'attack-menu', mana: 20 },
+    20: { name: "Back", menuPos: 5, action: 'back', menu: 'attack-menu' },
+    21: { name: "Enemy 1", menuPos: 1, action: 'nextTurn', menu: 'enemy-menu'},
+    22: { name: "Enemy 2", menuPos: 2, action: 'nextTurn', menu: 'enemy-menu' },
+    23: { name: "Enemy 3", menuPos: 3, action: 'nextTurn', menu: 'enemy-menu' },
+    24: { name: "Back", menuPos: 4, action: 'back', menu: 'enemy-menu' }
 };
 
-function menuUpdate(selectedMenu) 
+async function menuUpdate(selectedMenu) 
 {
+    let menu = document.getElementById("action-menu");
+    if(menu.classList.contains("appear"))
+        menu.classList.toggle("appear");
+        await wait(1);
+    menu.classList.toggle("appear");
     prevMenu = currentMenu;
     currentMenu = selectedMenu;
+
+    // ? Remove in future builds
+    document.getElementById("selected-menu").textContent = selectedMenu;
 
     document.getElementById('action-menu').replaceChildren('');
 
@@ -113,7 +162,7 @@ function menuUpdate(selectedMenu)
         if(menuActions[i].menu == selectedMenu)
         {
             div.innerHTML = menuActions[i].name + `</div>`;
-            document.getElementById("action-menu").appendChild(div); // Menu is made and appended
+            menu.appendChild(div); // Menu is made and appended
         }
     }
 
@@ -123,7 +172,7 @@ function menuUpdate(selectedMenu)
 
 function removeRow(input) 
 {
-    document.getElementById('main-menu').removeChild(input.parentNode);
+    document.getElementById('mario-menu').removeChild(input.parentNode);
 }
 
 // Keyboard functionality
@@ -184,7 +233,7 @@ document.addEventListener('DOMContentLoaded', () =>
                 window.dispatchEvent(broadcast);
                 // Trigger the selected action
             }
-            else if(event.key == 'Escape' && currentMenu != "main-menu" && currentMenu != "vivian-menu")
+            else if(event.key == 'Escape' && currentMenu != "mario-menu" && currentMenu != "vivian-menu")
             {
                 broadcast = new Event("back");
                 window.dispatchEvent(broadcast);
@@ -192,7 +241,7 @@ document.addEventListener('DOMContentLoaded', () =>
             updateSelection();
         };
 
-        // ! Broadcasts
+        // * Broadcasts *
         // Open Jump menu
         window.addEventListener('showJumpMenu', function (e) 
         {
@@ -208,10 +257,39 @@ document.addEventListener('DOMContentLoaded', () =>
         {
             menuUpdate("tactics-menu")
         });
+        // Open Vivian Attack menu
+        window.addEventListener('showAtkMenu', function (e) 
+        {
+            menuUpdate("attack-menu")
+        });
+        // Open enemy select
+        window.addEventListener('showEnemyMenu', function (e) 
+        {
+            menuUpdate("enemy-menu")
+        });
         // Return to previous menu
         window.addEventListener('back', function (e) 
         {
-            menuUpdate(prevMenu)
+            if(prevMenu == "enemy-menu")
+            {
+                switch(turn)
+                {
+                    case 1:
+                    {
+                        menuUpdate("mario-menu");
+                        break;
+                    }
+                    case 2:
+                    {
+                        menuUpdate("vivian-menu");
+                        break;
+                    }
+                }
+            }
+            else
+            {
+                menuUpdate(prevMenu);
+            }
         });
         // Run away (Sends user to home page)
         window.addEventListener('homePage', function (e) 
@@ -223,6 +301,23 @@ document.addEventListener('DOMContentLoaded', () =>
             vivian.style.transform = "scaleX(-1)";
             hop("mario", 2);
             hop("vivian", 2);
+        });
+        // ! NOTICE: Broadcasts past this point are hard coded and should be removed if work is resumed on this project!
+        // Return to previous menu
+        window.addEventListener('nextTurn', function (e) 
+        {
+            if(turn == 1)
+            {
+                turn += 1;
+                menuUpdate("vivian-menu")
+                document.getElementById("turn").textContent = "Turn: " + turn;
+            }
+            else
+            {
+                turn = 1;
+                menuUpdate("mario-menu")
+                document.getElementById("turn").textContent = "Turn: " + turn;
+            }
         });
 
         document.addEventListener('keydown', handleInput);
@@ -257,8 +352,8 @@ async function end()
         end.style.opacity = i / 100;
         await wait(1);
     }
-    run("mario", 400, 0, 1, 7, MarioX)
-    run("vivian", 400, 0, 1, 7, VivianX)
+    run("mario", 600, 0, 1, 10, MarioX)
+    run("vivian", 600, 0, 1, 10, VivianX)
     for(let i = 40; i < 100; i++)
     {
         end.style.opacity = i / 100;
@@ -270,9 +365,9 @@ async function end()
     document.getElementById("img1").src = "../assets/LilyEXPLODES.gif"
     document.getElementById("img2").src = "../assets/LilyEXPLODES.gif"
     document.getElementById("img1").style.height = "100px"
-    document.getElementById("img1").style.width = "85px"
+    document.getElementById("img1").style.width = "100px"
     document.getElementById("img2").style.height = "100px"
-    document.getElementById("img2").style.width = "85px"
+    document.getElementById("img2").style.width = "100px"
     await wait(301);
     window.location.replace("/");
 }
@@ -301,13 +396,14 @@ async function entrance(getId, howFar, type) // 0 = Left, 1 = Right
                 document.getElementById(getId).style.right = `${i}px`;
                 break;
         }
-        i = i + 5;
+        i = i + 7;
         await wait(10);
     }
 }
 
 async function run(getId, howFar, type, direction, speed, currentPos) // 0 = Left, 1 = Right
 {
+    await update()
     let i = 0;
     await wait(1)
     switch(direction)
@@ -335,6 +431,7 @@ async function run(getId, howFar, type, direction, speed, currentPos) // 0 = Lef
                 {
                     case 0:
                         document.getElementById(getId).style.left = `${currentPos - i}px`;
+                        console.log(currentPos - i)
                         break;
                     case 1:
                         document.getElementById(getId).style.right = `${currentPos - i}px`;
@@ -421,20 +518,26 @@ function update()
     document.getElementById('vivianHP').textContent = "Vivian: " + HPVivian;
 
     // Retrieve sprite positions
-    const regex = "/\d+/";
-    MarioX = infoMario.style.left.match(regex);
-    MarioY = infoMario.style.top.match(regex);
-    VivianX = infoVivian.style.left.match(regex);
-    VivianX = infoVivian.style.top.match(regex);
+    const regex = /px$/;
+    MarioX = infoMario.style.left.replace(regex, '');
+    MarioY = infoMario.style.top.replace(regex, '');
+    VivianX = infoVivian.style.left.replace(regex, '');
+    VivianY = infoVivian.style.top.replace(regex, '');
     if(Enemy1 != null)
-        Enemy1["XPos"] = infoEnemy1.style.right.match(regex);
-        Enemy1["YPos"] = infoEnemy1.style.top.match(regex);
+    {
+        Enemy1["XPos"] = infoEnemy1.style.right.replace(regex, '');
+        Enemy1["YPos"] = infoEnemy1.style.top.replace(regex, '');
+    }
     if(Enemy2 != null)
-        Enemy2["XPos"] = infoEnemy2.style.right.match(regex);
-        Enemy2["YPos"] = infoEnemy2.style.top.match(regex);
+    {
+        Enemy2["XPos"] = infoEnemy2.style.right.replace(regex, '');
+        Enemy2["YPos"] = infoEnemy2.style.top.replace(regex, '');
+    }
     if(Enemy3 != null)
-        Enemy3["XPos"] = infoEnemy3.style.right.match(regex);
-        Enemy3["YPos"] = infoEnemy3.style.top.match(regex);
+    {
+        Enemy3["XPos"] = infoEnemy3.style.right.replace(regex, '');
+        Enemy3["YPos"] = infoEnemy3.style.top.replace(regex, '');
+    }
 
     // Utilize and update sprite variables
     if(Enemy1 != null)
@@ -519,13 +622,14 @@ async function setGame()
     if(Enemy3 != null) 
         entrance("enemy3", 200, 1)
 
-    await wait(600);
+    await wait(800);
     hop("mario", 2);
     hop("vivian", 2);
     hop("enemy1", 2);
     hop("enemy2", 2);
     await hop("enemy3", 2);
 
-    document.getElementById("action-menu").style.visibility = "visible";
-    menuUpdate("main-menu");
+    let menu = document.getElementById("action-menu");
+    menu.style.visibility = "visible";
+    menuUpdate("mario-menu");
 }
